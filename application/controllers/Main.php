@@ -19,7 +19,7 @@ class Main extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
     public function index(){
-        $this->load->view('index');
+        //$this->load->view('index');
         //$this->_load_layout('index');
     }
     function _load_layout($template){
@@ -28,5 +28,6 @@ class Main extends CI_Controller {
         $this->_load_layout($template);
         $this->_load_layout('layout/footer');
     }
+
 
 }
