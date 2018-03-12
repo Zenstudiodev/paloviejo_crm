@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Carlos
- * Date: 2/03/2017
- * Time: 11:11 AM
- */
+<!-- footer content -->
+<footer>
+    <div class="pull-right">
+        <p class="footer">Page rendered in <strong>{elapsed_time}</strong>
+            seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>
+        </p>
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</div>
+</div>

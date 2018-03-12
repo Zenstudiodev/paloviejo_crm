@@ -75,14 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'destino7_zenstud',
-	'password' => 'Znstd!12',
-	'database' => 'destino7_pv_crm',
+	'hostname' => '192.232.222.255',
+	'username' => 'cdesarro_dlatios',
+	'password' => 'latios1988',
+	'database' => 'cdesarro_paloviejo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	'db_debug' => TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
@@ -94,3 +94,4 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends Base_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,12 +18,32 @@ class Dashboard extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-	    $data['name'] = "Carlos";
-        $this->load->helper('url');
-		$this->load->view('dashboard', $data);
 
-	}
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('Prospecto');
+        $this->load->model('Cita');
+        $this->load->model('Notificaciones_model');
+    }
+
+    //vista de panel de inicio
+    public function index()
+	{
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // datos de citas de usuario en panel
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        $data['citas'] = $this->Cita->ListarCitas($data['user_id']);
+        $data['prospectos'] = $this->Prospecto->ListarProspectos($data['user_id']);
+        //titulo de pagina
+        $data['title'] = 'Dashboard';
+
+        echo $this->templates->render('dashboard', $data);
+    }
 
 }

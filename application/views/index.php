@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="jumbotron">
                                                 <h1>CRM - Paloviejo S.A.</h1>
                                                 <p>Por favor, Inicie Sesión</p>
-                                                <a href="index.php/login" class="btn btn-success btn-lg"> Login</a>
+                                                <a href="<?php echo base_url();?>index.php/login" class="btn btn-success btn-lg"> Login</a>
                                             </div>
                                         </div>
 
@@ -178,8 +178,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                <?php echo $name; ?>
-
                 <p class="footer">Page rendered in <strong>{elapsed_time}</strong>
                     seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>
                 </p>

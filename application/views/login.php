@@ -1,456 +1,118 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * template
+ */
+ $this->insert('layout/head',['title' => $title]);
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<body class="login">
+<div>
+    <?php
+    $username = array(
+        'name' => 'username',
+        'placeholder' => 'Username',
+        'type' => 'text',
+        'class' => 'form-control has-feedback-left',
+        'required' => 'required'
+    );
+    $password = array(
+        'name' => 'password',
+        'placeholder' => 'Password',
+        'type' => 'password',
+        'class' => 'form-control has-feedback-left',
+        'required' => 'required'
+    );
+    ?>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
 
-    <title>Paloviejo - CRM</title>
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form id="demo-form2"  class="form-horizontal form-label-left" method="post" action="<?php echo base_url();?>index.php/login/user_login">
+                    <h1>CRM</h1>
+                    <div>
+                        <?php
+                        if (isset($error)){ ?>
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <?php echo $error; ?>
+                            </div>
+                        <?php }
+                        ?>
 
-    <!-- Bootstrap -->
-
-    <link href="<?php echo base_url();?>ui/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-     Font Awesome -->
-    <link href="<?php echo base_url();?>ui/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="<?php echo base_url();?>ui/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- FullCalendar -->
-    <link href="<?php echo base_url();?>ui/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>ui/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
-
-    <!-- Custom styling plus plugins -->
-    <link href="<?php echo base_url();?>ui/build/css/custom.min.css" rel="stylesheet">
-</head>
-
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Paloviejo - CRM</span></a>
-                </div>
-
-                <div class="clearfix"></div>
-
-                <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="<?php echo base_url();?>ui/build/images/img.jpg-" alt="..." class="img-circle profile_img">
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3 form-group has-feedback">
+                            <?= form_input($username) ?>
+                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        </div>
                     </div>
-                    <div class="profile_info">
-                        <span>-,</span>
-                        <h2>-</h2>
+                    <div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3 form-group has-feedback">
+                            <?= form_input($password) ?>
+                            <span class="fa fa-unlock form-control-feedback left" aria-hidden="true"></span>
+                        </div>
                     </div>
-                </div>
-                <!-- /menu profile quick info -->
-
-                <br />
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>General</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="index.html">Tareas</a></li>
-                                    <<!--li><a href="index2.html">Dashboard2</a></li>
-                                    <li><a href="index3.html">Dashboard3</a></li>-->
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Formularios <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="form.html">Formulario </a></li>
-                                   <!-- <li><a href="form_advanced.html">Advanced Components</a></li>
-                                    <li><a href="form_validation.html">Form Validation</a></li>
-                                    <li><a href="form_wizards.html">Form Wizard</a></li>
-                                    <li><a href="form_upload.html">Form Upload</a></li>
-                                    <li><a href="form_buttons.html">Form Buttons</a></li>-->
-                                </ul>
-                            </li>
-                            <!--<li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="general_elements.html">General Elements</a></li>
-                                    <li><a href="media_gallery.html">Media Gallery</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                    <li><a href="icons.html">Icons</a></li>
-                                    <li><a href="glyphicons.html">Glyphicons</a></li>
-                                    <li><a href="widgets.html">Widgets</a></li>
-                                    <li><a href="invoice.html">Invoice</a></li>
-                                    <li><a href="inbox.html">Inbox</a></li>
-                                    <li><a href="calendar.html">Calendar</a></li>
-                                </ul>
-                            </li>-->
-                           <!-- <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="tables.html">Tables</a></li>
-                                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                                </ul>
-                            </li>-->
-                            <li><a><i class="fa fa-bar-chart-o"></i> Iniciar Sesion <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="chartjs.html">Chart JS</a></li>
-                                    <li><a href="chartjs2.html">Chart JS2</a></li>
-                                    <li><a href="morisjs.html">Moris JS</a></li>
-                                    <li><a href="echarts.html">ECharts</a></li>
-                                    <li><a href="other_charts.html">Other Charts</a></li>
-                                </ul>
-                            </li>
-                            <!--<li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                                    <li><a href="fixed_footer.html">Fixed Footer</a></li>
-                                </ul>
-                            </li>-->
-                        </ul>
-                    </div>
-                    <div class="menu_section">
-                        <h3>Live On</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="e_commerce.html">E-commerce</a></li>
-                                    <li><a href="projects.html">Projects</a></li>
-                                    <li><a href="project_detail.html">Project Detail</a></li>
-                                    <li><a href="contacts.html">Contacts</a></li>
-                                    <li><a href="profile.html">Profile</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="page_403.html">403 Error</a></li>
-                                    <li><a href="page_404.html">404 Error</a></li>
-                                    <li><a href="page_500.html">500 Error</a></li>
-                                    <li><a href="plain_page.html">Plain Page</a></li>
-                                    <li><a href="login.html">Login Page</a></li>
-                                    <li><a href="pricing_tables.html">Pricing Tables</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="#level1_1">Level One</a>
-                                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="level2.html">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_1">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_2">Level Two</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#level1_2">Level One</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-                        </ul>
+                    <div>
+                        <button id="send" type="submit" class="btn btn-success">Login</button>
+                        <a class="reset_pass" href="#">¿Perdio su contraseña?</a>
                     </div>
 
-                </div>
-                <!-- /sidebar menu -->
+                    <div class="clearfix"></div>
 
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
-            </div>
+                    <div class="separator">
+
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <p>©2017 Palo Viejo S.A.</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <form>
+                    <h1>Create Account</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Username" required="" />
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" placeholder="Email" required="" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Password" required="" />
+                    </div>
+                    <div>
+                        <a class="btn btn-default submit" href="index.html">Submit</a>
                     </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="<?php echo base_url();?>ui/build/images/img.jpg" alt="">John Doe
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul>
-                        </li>
+                    <div class="clearfix"></div>
 
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="ui/build/images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="ui/build/images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="ui/build/images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="ui/build/images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation -->
+                    <div class="separator">
+                        <p class="change_link">Already a member ?
+                            <a href="#signin" class="to_register"> Log in </a>
+                        </p>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3>Inicio de Sesión</h3>
-                    </div>
+                        <div class="clearfix"></div>
+                        <br />
 
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                            </div>
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="clearfix"></div>
-                <div class="row">
-
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Inicio de Sesión</small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <br>
-                                <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
-
-                                    <div class="form-group col-md-offset-3">
-                                        <div class="col-md-6 col-sm-6 col-xs-12  form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Usuario">
-                                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-offset-3">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 form-group has-feedback">
-                                            <input type="password" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Contraseña">
-                                            <span class="fa fa-unlock form-control-feedback left" aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <a href="dashboard" class="btn btn-success btn-lg"> Login</a>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                <?php echo $name; ?>
-
-                <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-    </div>
-</div>
-
-<!-- calendar modal -->
-<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
-            </div>
-            <div class="modal-body">
-                <div id="testmodal" style="padding: 5px 20px;">
-                    <form id="antoform" class="form-horizontal calender" role="form">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title" name="title">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Description</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary antosubmit">Save changes</button>
-            </div>
+                </form>
+            </section>
         </div>
     </div>
 </div>
-<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
-            </div>
-            <div class="modal-body">
-
-                <div id="testmodal2" style="padding: 5px 20px;">
-                    <form id="antoform2" class="form-horizontal calender" role="form">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title2" name="title2">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Description</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-<!-- /calendar modal -->
-
-<!-- jQuery -->
-<script src="<?php echo base_url();?>ui/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="<?php echo base_url();?>ui/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="<?php echo base_url();?>ui/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="<?php echo base_url();?>ui/vendors/nprogress/nprogress.js"></script>
-<!-- FullCalendar -->
-<script src="<?php echo base_url();?>ui/vendors/moment/min/moment.min.js"></script>
-<script src="<?php echo base_url();?>ui/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="<?php echo base_url();?>ui/build/js/custom.min.js"></script>
-
 </body>
 </html>
-
 
 
 

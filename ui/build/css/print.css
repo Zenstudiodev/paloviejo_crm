@@ -1,0 +1,54 @@
+@media print {
+    @page {
+        size: letter portrait;
+        margin: 1cm;
+    }
+
+    html, body {
+        font-family: "Times New Roman", Times, serif;
+        text-rendering: optimizeLegibility;
+    }
+
+    .box-header, .main-footer{
+        display: none;
+    }
+    .left_col{
+        display: none !important;
+    }
+    .nav_menu{
+        display:none;
+    }
+    .right_col{
+        margin-left: 0px !important;
+    }
+    footer{
+        display: none;
+    }
+
+    /*Titulo*/
+    h1.titulo_page_pr{
+        text-transform: uppercase;
+        text-decoration: underline;
+        font-size: 37px;
+        text-align: center;
+    }
+    h2.sub_titulo_page_pr{
+        text-transform: uppercase;
+        text-decoration: underline;
+        font-size: 19px;
+        text-align: center;
+    }
+    table{
+        font-size: 16px;
+        width: 90%;
+        margin: 0 auto;
+        text-transform: uppercase;
+        line-height: 32px;
+    }
+    td{
+        width: 50%;
+    }
+    .precio{
+        
+    }
+}
