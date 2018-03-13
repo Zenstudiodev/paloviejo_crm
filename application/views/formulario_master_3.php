@@ -30,7 +30,7 @@ $enganche = array(
     'class' => 'form-control',
     'step' => 'any',
     'required' => 'required',
-    'min' =>'0'
+    'min' => '0'
 );
 $saldo_a_financiar = array(
     'name' => 'saldo_a_financiar',
@@ -40,7 +40,7 @@ $saldo_a_financiar = array(
     'class' => 'form-control',
     'step' => 'any',
     'required' => 'required',
-    'min' =>'0'
+    'min' => '0'
 );
 $precio_total = array(
     'name' => 'precio_total',
@@ -50,7 +50,7 @@ $precio_total = array(
     'class' => 'form-control',
     'step' => 'any',
     'required' => 'required',
-    'min' =>'0'
+    'min' => '0'
 );
 
 ?>
@@ -123,25 +123,30 @@ $precio_total = array(
 
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="row" id="extras_row">
-                                <input type="hidden" name="extra_fields" id="extra_fields">
-                                <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Pago"
-                                               value="Primer pago" id="extra_d_1" name="extra_d_1" required>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Fecha"
-                                               value="Fecha" id="extra_p_1" name="extra_p_1" required>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="monto"
-                                               value="monto" id="extra_p_1" name="extra_p_1" required>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <input type="hidden" name="extra_fields" id="extra_fields">
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="pago" id="pago_1" name="pago_1" required>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="date" class="form-control"
+                                                   placeholder="Fecha" id="fecha_pago_1" name="fecha_pago_1" required>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="monto" id="monto_pago_1" name="monto_pago_1" required>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-1">
+                                    Acciones
+                                </div>
+
+                            </div>
+                            <div id="extras_row">
 
                             </div>
                             <div class="row">
@@ -175,7 +180,7 @@ $precio_total = array(
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
                                         total:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <?php echo form_input($precio_total)?>
+                                        <?php echo form_input($precio_total) ?>
                                     </div>
                                 </div>
                             </div>
@@ -245,31 +250,53 @@ $precio_total = array(
     var extra_count;
     $(document).ready(function () {
         //init_validator();
-        extra_count = 3;
+        extra_count = 1;
         $("#extra_fields").val(extra_count);
     });
     $("#add_extra").click(function () {
         console.log('antes de añadir ' + extra_count);
+        extra_count += 1;
 
-        var extra_field;
-        extra_field = '<div class="form-group">';
+        var extra_field='';
+
+        extra_field += '<div class="row" id="pago_container_' + extra_count + '">';
+        extra_field += '<div class="col-md-11">';
+        extra_field += '<div class="form-group" >';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
-        extra_field += '<input type="text" class="form-control" placeholder="Pago" value="" value="" id="extra_d_' + extra_count + '" name="extra_d_' + extra_count + '">';
+        extra_field += '<input type="text" class="form-control" placeholder="Pago" id="pago_' + extra_count + '" name="pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
-        extra_field += '<input type="text" class="form-control" placeholder="Fecha" value="" id="extra_d_' + extra_count + '" name="extra_d_' + extra_count + '">';
+        extra_field += '<input type="date" class="form-control" placeholder="Fecha" value="" id="fecha_pago_' + extra_count + '" name="fecha_pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
-        extra_field += '<input type="text" class="form-control" placeholder="Monto" value="" id="extra_d_' + extra_count + '" name="extra_d_' + extra_count + '">';
+        extra_field += '<input type="text" class="form-control" placeholder="Monto" value="" id="monto_pago_' + extra_count + '" name="monto_pago_' + extra_count + '" required>';
+        extra_field += '</div>';
+        extra_field += '</div>';
+        extra_field += '</div>';
+        extra_field += '<div class="col-md-1">';
+        extra_field += '<button type="button" class="btn btn-danger delete_btn" pago_id="' + extra_count + '" id="btn_del_' + extra_count + '"><i class="fa fa-minus-circle"></i></button>';
         extra_field += '</div>';
         extra_field += '</div>';
 
         $("#extras_row").append(extra_field);
-        extra_count += 1;
+
         $("#extra_fields").val(extra_count);
         console.log('luego de añadir ' + extra_count);
     });
+
+
+    $('#extras_row').on('click', '.delete_btn', function () {
+       var pago_id = $(this).attr('pago_id');
+        var pago_container = '#pago_container_' + pago_id;
+        //alert(pago_id);
+        $(pago_container).css('background','red');
+        $(pago_container).remove();
+        extra_count -= 1;
+
+    });
 </script>
+
+
 
 
 <?php $this->stop() ?>
