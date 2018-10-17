@@ -62,9 +62,9 @@ $fecha= New DateTime();
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
                               method="post" >
-                            <pre>
-                                <?php print_r($formulario_1);?>
-                            </pre>
+                            <!--<pre>
+                                <?php /*print_r($formulario_1);*/?>
+                            </pre>-->
 
                             <div class="form-group">
                                 <div class="row">

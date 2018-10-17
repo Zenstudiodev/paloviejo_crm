@@ -20,7 +20,7 @@ class Citas extends Base_Controller
     public function guardarCita()
     {
         //comprobamos session desde el helper de sesion
-        $data = compobarSesion();
+       $data = compobarSesion();
         //Obtenemos hora de cita en formulario para comprobar proceso
 
         $horaCita = new DateTime($this->input->post('fecha'));
@@ -60,6 +60,7 @@ class Citas extends Base_Controller
                 $guardarCita = 0;
             }
         }
+
         //comprobamos si se puede guardar la cita sino generamos mensaje de error y devovemos a vista de formulario
         if($guardarCita == 1){
 

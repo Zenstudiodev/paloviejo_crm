@@ -84,7 +84,8 @@ $this->layout('master', [
                                         );
                                         $tipoCitaOptions = array(
                                             'Cierre' => 'Cierre',
-                                            'Reunión' => 'Reunión'
+                                            'Reunión' => 'Reunión',
+                                            'firma_contrato' => 'Firma de contrato'
                                         );
 
                                         ?>

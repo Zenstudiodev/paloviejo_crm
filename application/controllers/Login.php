@@ -41,7 +41,6 @@ class Login extends Base_Controller
         echo $this->templates->render('login', $data);
 
     }
-
     // Proceso de login
     public function user_login()
     {
@@ -75,7 +74,7 @@ class Login extends Base_Controller
                     );
                     // Add user data in session
                     $this->session->set_userdata('logged_in', $session_data);
-                    redirect('dashboard');
+                    redirect(base_url().'dashboard');
                 }
             } else {
                 $data ['error'] ='Clave o usuario incorrecto';
@@ -84,7 +83,6 @@ class Login extends Base_Controller
             }
         }
     }
-
     // Validate and store registration data in database
     public function register() {
 
@@ -117,8 +115,6 @@ class Login extends Base_Controller
             }
         }
     }
-
-
 // Logout from admin page
     public function logout()
     {

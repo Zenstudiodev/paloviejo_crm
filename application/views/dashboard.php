@@ -49,6 +49,7 @@ $this->layout('master', [
                     </div>
                     <div class="x_content">
                         <div id='calendar'></div>
+                        <div id="token"></div>
                     </div>
                 </div>
             </div>

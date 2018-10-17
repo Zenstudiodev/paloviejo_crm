@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/manifest.json">
     <!-- titulo -->
     <title><?php echo $this->e($title); ?></title>
 
@@ -79,16 +80,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="<?php echo base_url(); ?>index.php/dashboard">Inicio</a></li>
+                                    <li><a href="<?php echo base_url(); ?>dashboard">Inicio</a></li>
 
-                                    <li><a href="<?php echo base_url(); ?>index.php/prospectos/prospectosList">Prospectos</a>
+                                    <li><a href="<?php echo base_url(); ?>prospectos/prospectosList">Prospectos</a>
                                     </li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Formularios <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="<?php echo base_url(); ?>index.php/prospectos/crearProspecto">Crear
+                                    <li><a href="<?php echo base_url(); ?>prospectos/crearProspecto">Crear
                                             Prospecto</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-cog"></i> Configuración <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?php echo base_url(); ?>cotizador/crear_items">Items para cotizador</a>
                                     </li>
                                 </ul>
                             </li>
@@ -322,7 +329,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- Off Body -->
 <?php echo $this->section('off_body') ?>
 
-
+<!-- PWA --
+<script src="<?php echo base_url(); ?>ui/build/js/pwabuilder-sw-register.js"></script>-->
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>ui/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -331,6 +339,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>ui/vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
 <script src="<?php echo base_url(); ?>ui/vendors/nprogress/nprogress.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script src="<?php echo base_url(); ?>/ui/build/js/fcm.js"></script>
+
+
 <?php echo $this->section('js_p') ?>
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url(); ?>ui/build/js/pv.js"></script>

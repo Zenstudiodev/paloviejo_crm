@@ -51,4 +51,37 @@
     .precio{
         
     }
+    .master_print{
+
+    }
+    .master_print table {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .master_print li {
+        text-align: justify;
+        font-size: 10px;
+    }
+    /*FORMULARIO SIB*/
+    #sib_1{
+        font-family:Arial;
+        size: letter portrait;
+        margin: 1cm;
+    }
+    #sib_1 h1{
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    #sib_1 p{
+        font-size: 16px;
+        font-weight: normal;
+        text-align: justify;
+    }
+    span.bold{
+        font-weight: bold;
+    }
+
+
 }

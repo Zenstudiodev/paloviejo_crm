@@ -75,7 +75,7 @@ $precio_total = array(
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>PLAN DE VENTA</h3>
+                <h3>PLAN DE VENTA </h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -111,12 +111,12 @@ $precio_total = array(
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_3"
                               method="post">
-                            <pre>
-                                <?php print_r($formulario_1); ?>
+                           <!-- <pre>
+                                <?php /*print_r($formulario_1); */?>
                             </pre>
                             <pre>
-                                <?php print_r($formulario_2); ?>
-                            </pre>
+                                <?php /*print_r($formulario_2); */?>
+                            </pre>-->
 
                             <div class="x_title">
                                 <h2>Forma de pago del precio total incluye O.G y E.</h2>

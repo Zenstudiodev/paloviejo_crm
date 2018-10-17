@@ -134,6 +134,8 @@ function init_sidebar() {
 };
 // /Sidebar
 
+
+
 $(document).ready(function () {
     init_sidebar();
 });

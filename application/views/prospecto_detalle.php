@@ -2,15 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //cargamos plantilla master y pasamos variables globales
 $this->layout('master', [
-	'title'            => $title,
-	'nombre'           => $nombre,
-	'user_id'          => $user_id,
-	'username'         => $username,
-	'rol'              => $rol,
-	'notificaciones'   => $notificaciones,
-	'notificaciones_s' => $notificaciones_supervisor,
-	'alertas'          => $alertas,
-	'alertas_s'        => $alertas_supervisor
+    'title' => $title,
+    'nombre' => $nombre,
+    'user_id' => $user_id,
+    'username' => $username,
+    'rol' => $rol,
+    'notificaciones' => $notificaciones,
+    'notificaciones_s' => $notificaciones_supervisor,
+    'alertas' => $alertas,
+    'alertas_s' => $alertas_supervisor
 
 ]);
 
@@ -26,13 +26,11 @@ $this->layout('master', [
 <!-- page content -->
 <div class="right_col" role="main">
 
-	<?php
+    <?php
 
-	if ($prospectos)
-	{
-		foreach ($prospectos->result() as $prospecto)
-		{
-			?>
+    if ($prospectos) {
+        foreach ($prospectos->result() as $prospecto) {
+            ?>
 
 
             <div class="">
@@ -55,14 +53,12 @@ $this->layout('master', [
 
                                 <div class="col-md-9 col-sm-9 col-xs-12">
 
-									<?php
+                                    <?php
 
-									if ($procesos)
-									{
-										echo '<h4>Procesos</h4>';
-										foreach ($procesos->result() as $proceso)
-										{
-											?>
+                                    if ($procesos) {
+                                        echo '<h4>Procesos</h4>';
+                                        foreach ($procesos->result() as $proceso) {
+                                            ?>
 
                                             <table class="table table-striped table-responsive projects">
                                                 <thead>
@@ -82,40 +78,113 @@ $this->layout('master', [
                                                     <td><?php echo $proceso->id ?></td>
 
                                                     <td>
-														<?php echo $proceso->casa ?>
+                                                        <?php echo $proceso->casa ?>
                                                     </td>
                                                     <td style="width: 20%">
-														<?php echo $proceso->nombre_proyecto ?>
+                                                        <?php echo $proceso->nombre_proyecto ?>
                                                     </td>
                                                     <td>
                                                         <div class="pull-right">
                                                             <button type="button" class="btn btn-success btn-xs <?php
-															//TODO get etapa class
-															//echo $this->Proceso_model->etapaProsceso($proceso->id);
-															?>"><?php echo $proceso->etapa ?></button>
+                                                            //TODO get etapa class
+                                                            //echo $this->Proceso_model->etapaProsceso($proceso->id);
+                                                            ?>"><?php echo $proceso->etapa ?></button>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="<?php echo base_url(); ?>index.php/documentos/subirDocumento/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                           class="btn btn-primary btn-xs">
-                                                            <i class="fa fa-pencil"></i>
-                                                            Subir documento
-                                                        </a>
-                                                        <a href="<?php echo base_url(); ?>index.php/documentos/verDocumentos/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                           class="btn btn-info btn-xs">
-                                                            <i class="fa fa-folder "></i>
-                                                            ver documentos
-                                                        </a>
-                                                        <a href="<?php echo base_url(); ?>index.php/documentos/subirPlano/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                           class="btn btn-primary btn-xs">
-                                                            <i class="fa fa-pencil"></i>
-                                                            Subir plano o cotización
-                                                        </a>
-                                                        <button type="button" class="btn btn-primary btn-xs"
-                                                                data-toggle="modal"
-                                                                data-target="#modal_proceso_<?php echo $proceso->id ?>">
-                                                            <i class="fa fa-pencil"></i> Llenar formulario Master
-                                                        </button>
+                                                        <div class="row">
+                                                            <div class="btn-group">
+                                                                <button data-toggle="dropdown"
+                                                                        class="btn btn-primary dropdown-toggle btn-xs"
+                                                                        type="button" aria-expanded="false">
+                                                                    Documentos<span class="caret"></span>
+                                                                </button>
+                                                                <ul role="menu" class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/documentos/subirDocumento/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                            <i class="fa fa-pencil"></i>Subir Documentos</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/documentos/verDocumentos/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                                    class="fa fa-folder "></i>
+                                                                            ver documentos</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <a href="<?php echo base_url(); ?>index.php/documentos/subirPlano/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                               class="btn btn-primary btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                                Subir plano o cotización
+                                                            </a>
+                                                            <button type="button" class="btn btn-primary btn-xs"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modal_proceso_<?php echo $proceso->id ?>">
+                                                                <i class="fa fa-pencil"></i> Llenar formulario Master
+                                                            </button>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="btn-group">
+                                                                <button data-toggle="dropdown"
+                                                                        class="btn btn-primary dropdown-toggle btn-xs"
+                                                                        type="button" aria-expanded="false">Formulario
+                                                                    Ive <span class="caret"></span>
+                                                                </button>
+                                                                <ul role="menu" class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                            <i class="fa fa-pencil"></i> Llenar Ive</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                                    class="fa fa-print"></i> imprimir
+                                                                            ive</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button data-toggle="dropdown"
+                                                                        class="btn btn-primary dropdown-toggle btn-xs"
+                                                                        type="button" aria-expanded="false">Formulario
+                                                                    SIB <span class="caret"></span>
+                                                                </button>
+                                                                <ul role="menu" class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                            <i class="fa fa-pencil"></i> Llenar SIB
+                                                                            1</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                                    class="fa fa-print"></i> imprimir
+                                                                            SIB 1</a>
+                                                                    </li>
+                                                                    <li class="divider"></li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                            <i class="fa fa-pencil"></i> Llenar SIB
+                                                                            2</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                                    class="fa fa-print"></i> imprimir
+                                                                            SIB 2</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <a href="<?php echo base_url(); ?>index.php/proceso/cotizador/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                               class="btn btn-info btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                                Cotizador
+                                                            </a>
+                                                            <a href="<?php echo base_url(); ?>index.php/proceso/avance_obra/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                               class="btn btn-info btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                                Avance de obra
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -136,44 +205,86 @@ $this->layout('master', [
                                                             <button type="button" class="close" data-dismiss="modal">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
-                                                            <h4 class="modal-title" id="myModalLabel">Llenar formulario
+                                                            <h4 class="modal-title" id="myModalLabel">Formulario
                                                                 master</h4>
                                                         </div>
                                                         <div class="modal-body">
                                                             <h4>Seleccione la sección que desea llenar</h4>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 1
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        DATOS GENERALES
 
-                                                            </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 2
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        DETALLES DE LA PROPIEDAD
 
-                                                            </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 3
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        FORMA DE PAGO
 
-                                                            </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 4
-                                                            </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 5
-                                                            </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/formulario/master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-primary btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Sección 6
-                                                            </a>
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        SI INCLUYE
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        NO INCLUYE
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-primary btn-xs">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                        DATOS DE REGISTRO
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        DATOS GENERALES
+
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        DETALLES DE LA PROPIEDAD
+
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        FORMA DE PAGO
+
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        SI INCLUYE
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        NO INCLUYE
+                                                                    </a>
+                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                       class="btn btn-success btn-xs" target="_blank">
+                                                                        <i class="fa fa-print"></i>
+                                                                        DATOS DE REGISTRO
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default"
@@ -185,66 +296,61 @@ $this->layout('master', [
                                                 </div>
                                             </div>
 
-										<?php }
-									}
-									else
-									{
-										echo '<h4>Aún no ha iniciado un proceso</h4>';
-									}
+                                        <?php }
+                                    } else {
+                                        echo '<h4>Aún no ha iniciado un proceso</h4>';
+                                    }
 
-									?>
+                                    ?>
 
                                     <h4>Citas</h4>
                                     <!-- end of user messages -->
                                     <ul class="messages">
-										<?php
-										if ($citas)
-										{
-											foreach ($citas->result() as $cita)
-											{
-												?>
+                                        <?php
+                                        if ($citas) {
+                                            foreach ($citas->result() as $cita) {
+                                                ?>
                                                 <li>
                                                     <div class="message_date">
                                                         <h3 class="date text-info"><?php
-															$date = date_create($cita->fecha);
-															echo date_format($date, 'd');
+                                                            $date = date_create($cita->fecha);
+                                                            echo date_format($date, 'd');
 
-															?></h3>
+                                                            ?></h3>
                                                         <p class="month">
-															<?php echo date_format($date, 'M'); ?>
-															<?php echo date_format($date, 'g A'); ?>
+                                                            <?php echo date_format($date, 'M'); ?>
+                                                            <?php echo date_format($date, 'g A'); ?>
                                                         </p>
 
                                                     </div>
                                                     <div class="message_wrapper">
                                                         <h4 class="heading"><?php echo $cita->tipo_cita ?></h4>
                                                         <blockquote class="message">
-															<?php echo $cita->observaciones; ?>
+                                                            <?php echo $cita->observaciones; ?>
 
 
 
-															<?php if ($resultado_citas) { ?>
+                                                            <?php if ($resultado_citas) { ?>
                                                                 <div class="content ">
 
-																	<?php foreach ($resultado_citas->result() as $resultado)
-																	{
-																		?>
-																		<?php if ($resultado->cita_id == $cita->id) { ?>
+                                                                    <?php foreach ($resultado_citas->result() as $resultado) {
+                                                                        ?>
+                                                                        <?php if ($resultado->cita_id == $cita->id) { ?>
 
-                                                                        <p>
-                                                                            <b>resultado:</b>
-                                                                            | <?php echo $resultado->resultado ?>
-                                                                        </p>
+                                                                            <p>
+                                                                                <b>resultado:</b>
+                                                                                | <?php echo $resultado->resultado ?>
+                                                                            </p>
 
-																	<?php } ?>
+                                                                        <?php } ?>
 
 
-																	<?php } ?>
+                                                                    <?php } ?>
 
 
                                                                 </div>
-																<?php
-															} ?>
+                                                                <?php
+                                                            } ?>
 
 
                                                             <p>
@@ -253,12 +359,10 @@ $this->layout('master', [
                                                                     reunión</a></p>
                                                     </div>
                                                 </li>
-											<?php }
-										}
-										else
-										{
-											echo '<p>Aún No hay citas programadas</p>';
-										} ?>
+                                            <?php }
+                                        } else {
+                                            echo '<p>Aún No hay citas programadas</p>';
+                                        } ?>
                                     </ul>
                                     <!-- end of user messages -->
 
@@ -273,52 +377,48 @@ $this->layout('master', [
 
                                                 <div class="">
                                                     <ul class="to_do">
-														<?php
-														if ($tareas)
-														{
-															foreach ($tareas->result() as $tarea)
-															{
-																?>
+                                                        <?php
+                                                        if ($tareas) {
+                                                            foreach ($tareas->result() as $tarea) {
+                                                                ?>
                                                                 <li>
                                                                     <p>
-																		<?php
-																		$date = date_create($tarea->fecha);
-																		echo $tarea->tarea . ' | ' . date_format($date, 'd/n ') . ' | ' . date_format($date, 'g A') . ' | ' . $tarea->observaciones;
-																		?>
+                                                                        <?php
+                                                                        $date = date_create($tarea->fecha);
+                                                                        echo $tarea->tarea . ' | ' . date_format($date, 'd/n ') . ' | ' . date_format($date, 'g A') . ' | ' . $tarea->observaciones;
+                                                                        ?>
                                                                         <a href="<?php echo base_url() . 'index.php/tareas/ResultadoTarea/' . $prospecto->id . '/' . $tarea->id; ?>"
                                                                            class="btn  btn-success btn-xs pull-right tarea">Resultado
                                                                             de tarea</a>
                                                                     </p>
 
-																	<?php if ($resultado_tareas) { ?>
+                                                                    <?php if ($resultado_tareas) { ?>
                                                                         <div class="content ">
 
-																			<?php foreach ($resultado_tareas->result() as $resultado)
-																			{
-																				?>
-																				<?php if ($resultado->tarea_id == $tarea->id) { ?>
+                                                                            <?php foreach ($resultado_tareas->result() as $resultado) {
+                                                                                ?>
+                                                                                <?php if ($resultado->tarea_id == $tarea->id) { ?>
 
-                                                                                <p>
-                                                                                    <b>resultado:</b>
-                                                                                    | <?php echo $resultado->resultado ?>
-                                                                                </p>
+                                                                                    <p>
+                                                                                        <b>resultado:</b>
+                                                                                        | <?php echo $resultado->resultado ?>
+                                                                                    </p>
 
-																			<?php } ?>
+                                                                                <?php } ?>
 
 
-																			<?php } ?>
+                                                                            <?php } ?>
 
 
                                                                         </div>
-																		<?php
-																	} ?>
+                                                                        <?php
+                                                                    } ?>
                                                                 </li>
-															<?php }// end loop
-														}// end if isset
-														else
-														{ ?>
+                                                            <?php }// end loop
+                                                        }// end if isset
+                                                        else { ?>
                                                             <p>Aún no tiene tareas</p>
-														<?php } ?>
+                                                        <?php } ?>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -349,31 +449,31 @@ $this->layout('master', [
 
                                                 <ul class="list-unstyled user_data">
                                                     <li><i class="fa fa-map-marker user-profile-icon"></i>
-														<?php echo $prospecto->nombre1 ?>
+                                                        <?php echo $prospecto->nombre1 ?>
                                                     </li>
 
                                                     <li>
                                                         <i class="fa fa-briefcase user-profile-icon"></i>
-														<?php echo $prospecto->celular1 ?>
+                                                        <?php echo $prospecto->celular1 ?>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-briefcase user-profile-icon"></i>
-														<?php echo $prospecto->email1 ?>
+                                                        <?php echo $prospecto->email1 ?>
                                                     </li>
 
                                                 </ul>
                                                 <ul class="list-unstyled user_data">
                                                     <li><i class="fa fa-map-marker user-profile-icon"></i>
-														<?php echo $prospecto->nombre2 ?>
+                                                        <?php echo $prospecto->nombre2 ?>
                                                     </li>
 
                                                     <li>
                                                         <i class="fa fa-briefcase user-profile-icon"></i>
-														<?php echo $prospecto->celular2 ?>
+                                                        <?php echo $prospecto->celular2 ?>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-briefcase user-profile-icon"></i>
-														<?php echo $prospecto->email2 ?>
+                                                        <?php echo $prospecto->email2 ?>
                                                     </li>
 
                                                 </ul>
@@ -404,12 +504,10 @@ $this->layout('master', [
                     </div>
                 </div>
             </div>
-		<?php }
-	}
-	else
-	{
-		echo 'no existe ese prospecto';
-	} ?>
+        <?php }
+    } else {
+        echo 'no existe ese prospecto';
+    } ?>
 </div>
 <!-- /page content -->
 <?php $this->stop() ?>

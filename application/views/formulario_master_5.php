@@ -151,12 +151,12 @@ $master_2 = $formulario_master_2->row();
 					);
 					?>
                     <div class="x_content">
-                        <pre>
+                       <!-- <pre>
                         <?php
-                        print_r($master_1);
+/*                        print_r($master_1);
                         print_r($master_2);
-                        ?>
-                        </pre>
+                        */?>
+                        </pre>-->
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
                               method="post">

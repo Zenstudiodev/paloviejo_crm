@@ -97,7 +97,7 @@ setlocale(LC_ALL,"es_ES");
                                     </td>
                                     <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
                                     <td>
-                                        <a href="<?php echo base_url().'index.php/Users/detalle/'.$prospecto->user_id;?>"><?php echo $prospecto->user_id; ?></a>
+                                        <a href="<?php echo base_url().'Users/detalle/'.$prospecto->user_id;?>"><?php echo $prospecto->user_id; ?></a>
                                     </td>
                                     <?php }?>
                                     <td>
@@ -126,7 +126,7 @@ setlocale(LC_ALL,"es_ES");
                                         <?php
                                         // control de acciones
                                         if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                            <a href="<?php echo base_url().'index.php/prospectos/prospectoEditar/'.$prospecto->id; ?>"
+                                            <a href="<?php echo base_url().'prospectos/prospectoEditar/'.$prospecto->id; ?>"
                                                class="btn btn-warning btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
                                         <?php } ?>
 

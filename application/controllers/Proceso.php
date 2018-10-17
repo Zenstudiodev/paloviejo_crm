@@ -27,6 +27,7 @@ class Proceso extends Base_Controller {
         $this->load->model('User');
         $this->load->model('Notificaciones_model');
         $this->load->model('casas_model');
+        $this->load->model('Cotizador_model');
     }
     public function index()
 	{
@@ -96,5 +97,122 @@ class Proceso extends Base_Controller {
         }else{
             redirect('/login', 'refresh');
         }
+    }
+    public function avance_obra()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        //si no hay segmento en la url
+        if (!$data['segmento_p']) {
+            redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+        }
+        //titulo de pagina
+        $data['title'] = 'Avance de obra';
+        echo $this->templates->render('avance_obra', $data);
+    }
+    public function cotizador()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        //si no hay segmento en la url
+        if (!$data['segmento_p']) {
+            redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+        }
+        //titulo de pagina
+        $data['title'] = 'Cotizador';
+        $data['items_cotizacion'] = $this->Cotizador_model->get_items_cotizador();
+
+        echo $this->templates->render('cotizador', $data);
+    }
+    public function aceptar_cotizacion(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        //si no hay segmento en la url
+        if (!$data['segmento_p']) {
+            redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+        }
+        //titulo de pagina
+        $data['title'] = 'Cotizador';
+        $data['items_cotizacion'] = $this->Cotizador_model->get_items_cotizador();
+
+        echo $this->templates->render('firmar', $data);
+    }
+    public function guardar_cotizacion(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        $datos = array(
+            'prospecto_id' => $this->input->post('prospecto_id'),
+            'proceso_id' => $this->input->post('proceso_id'),
+            'items' => $this->input->post('items')
+
+        );
+        $this->Cotizador_model->guardar_cotizacion($datos);
+        redirect(base_url() . 'Proceso/ver_cotizaciones_proceso/'.$datos['prospecto_id'].'/'.$datos['proceso_id']);
+    }
+    public function ver_cotizaciones_proceso(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        $datos = array(
+            'proceso' =>$data['segmento_p'],
+            'prospecto' =>$data['segmento_pr'],
+        );
+        $data['cotizaciones'] = $this->Cotizador_model->get_cotizaciones_prospecto($datos);
+        echo $this->templates->render('cotizaciones', $data);
+    }
+    public function imprimir_cotizacion(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+
+        //Id de prospecto
+        $data['cotizacion_id'] = $this->uri->segment(3);
+        $data['cotizacion'] = $this->Cotizador_model->get_cotizacion($data['cotizacion_id']);
+
+        $data['title'] = 'Imprimir cotizacion';
+        echo $this->templates->render('imprimir_cotizacion', $data);
     }
 }
