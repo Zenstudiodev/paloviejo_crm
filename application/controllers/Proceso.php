@@ -117,7 +117,7 @@ class Proceso extends Base_Controller {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
             $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
-            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+            $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
         $data['title'] = 'Avance de obra';
@@ -136,14 +136,14 @@ class Proceso extends Base_Controller {
         //Id de prospecto
         $data['segmento_p'] = $this->uri->segment(3);
 
-        //Id ce Proceso
+        //Id dee Proceso
         $data['segmento_pr'] = $this->uri->segment(4);
         //si no hay segmento en la url
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
             $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
-            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+            $data['procesos'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
         $data['title'] = 'Cotizador';
@@ -170,7 +170,7 @@ class Proceso extends Base_Controller {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
             $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
-            $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
+            $data['procesos'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
         $data['title'] = 'Cotizador';
@@ -214,5 +214,53 @@ class Proceso extends Base_Controller {
 
         $data['title'] = 'Imprimir cotizacion';
         echo $this->templates->render('imprimir_cotizacion', $data);
+    }
+    public function hoja_de_acabados(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        //si no hay segmento en la url
+        if (!$data['segmento_p']) {
+            redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
+        }
+        //titulo de pagina
+        $data['title'] = 'Avance de obra';
+        echo $this->templates->render('hoja_acabados', $data);
+    }
+    public function lista_revision(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
+        //Id de prospecto
+        $data['segmento_p'] = $this->uri->segment(3);
+        //Id ce Proceso
+        $data['segmento_pr'] = $this->uri->segment(4);
+        //si no hay segmento en la url
+        if (!$data['segmento_p']) {
+            redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
+        }
+        //titulo de pagina
+        $data['title'] = 'Avance de obra';
+        echo $this->templates->render('lista_revision', $data);
     }
 }

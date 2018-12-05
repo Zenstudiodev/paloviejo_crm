@@ -42,7 +42,7 @@ class Proceso_model extends CI_Model
 
     }
 
-    function ListarProceso($id)
+    function get_proceso_by_id($id)
     {
         $this->db->where('id', $id);
         $query = $this->db->get('proceso');
@@ -70,11 +70,6 @@ class Proceso_model extends CI_Model
                 break;
         }
         return $claseEtapa;
-    }
-
-    function DetalleDeProspecto()
-    {
-
     }
 
     function proyecto_por_id($id){

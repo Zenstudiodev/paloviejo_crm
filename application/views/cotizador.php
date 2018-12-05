@@ -66,7 +66,6 @@ $this->layout('master', [
     </div>
 </div>
 </div>
-
 <!-- /page content -->
 <?php $this->stop() ?>
 <?php $this->start('js_p') ?>
@@ -81,29 +80,21 @@ $this->layout('master', [
         prefetch: 'https://crm.paloviejosa.com/cotizador/items_cotizador_json/'
     });
     var promise = cities.initialize();
-
     promise
         .done(function() { console.log('ready to go!'); })
         .fail(function() { console.log('err, something went wrong :('); });
-
-    var elt = $('#items');
-
-    console.log(cities.ttAdapter());
+    var elt = $("#items");
+    console.log(cities);
+    //console.log(cities.ttAdapter());
     elt.tagsinput({
         itemValue: 'nombre',
         itemText: 'nombre',
         typeaheadjs: {
-            name: 'cities',
+            name: 'nombre',
             displayKey: 'nombre',
             source: cities
         }
     });
-    $("#items").val()
+    $("#items").val();
 </script>
-
 <?php $this->stop() ?>
-
-
-
-
-

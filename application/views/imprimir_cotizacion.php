@@ -77,6 +77,11 @@ $cotizacion = $cotizacion->row();
                     <td style="width: 1cm"><?php echo $numero; ?></td>
                     <td><?php echo $item_data->nombre .' - '.$item_data->descripcion?></td>
                     <td><?php echo $item_data->precio ?></td>
+                    <td>
+                        <?php if($numero == 1){ ?>
+                            <img src="https://ferreteriavidri.com/images/items/large/108695.jpg" style="width: 10%">
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
         </table>

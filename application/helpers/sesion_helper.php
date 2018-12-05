@@ -127,5 +127,9 @@ function puede_ver($rol, $roles)
 return $acceso;
 }
 
-
+function print_contenido($var){
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
+}
 ?>

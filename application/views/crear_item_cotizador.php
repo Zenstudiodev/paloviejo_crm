@@ -90,6 +90,7 @@ $this->layout('master', [
                                         <td>Nombre</td>
                                         <td>Descripcion</td>
                                         <td>Precio</td>
+                                        <td>Accion</td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -102,6 +103,11 @@ $this->layout('master', [
                                                 <td><?php echo $item->nombre?></td>
                                                 <td><?php echo $item->descripcion?></td>
                                                 <td><?php echo $item->precio?></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="<?php echo base_url()?>cotizador/subir_foto">Subir Fotos</a>
+                                                    <a class="btn btn-primary">Editar</a>
+                                                    <a class="btn btn-danger">Borrar</a>
+                                                </td>
                                             </tr>
 
                                         <?php } ?>
