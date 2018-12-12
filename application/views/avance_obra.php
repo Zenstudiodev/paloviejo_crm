@@ -83,6 +83,21 @@ $proceso = $proceso->row();
 
                     </div>
                 </div>
+                <div class="x_panel">
+                    <div class="x_title">
+                        Historial de Obra
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <a class="btn btn-success" href="#" role="button">Subir imagen de avance</a>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">fecha: 12-08-2018</span>
+                                <img src="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -109,7 +124,7 @@ $proceso = $proceso->row();
             type: "single",
             min: 0,
             max: 100,
-            from: 0,
+            from: 60,
             to: 100,
             grid: true
         });

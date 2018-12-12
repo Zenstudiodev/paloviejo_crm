@@ -14,6 +14,10 @@ $this->layout('master', [
 ]);
 $CI =& get_instance();
 $cotizacion = $cotizacion->row();
+
+$prospecto = $prospecto->row();
+$proceso = $proceso->row();
+
 ?>
 
 <?php $this->start('css_p') ?>
@@ -30,25 +34,25 @@ $cotizacion = $cotizacion->row();
     <div id="cotizacion">
         <div class="container">
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-2"><img src="<?php echo base_url()?>/ui/build/images/logo_codeca.jpeg" id="logo_codeca"></div>
-                <div class="col-md-4">Cotización <?php echo $cotizacion->cotizacion_id;?></div>
+                <div class="col-md-10"><img src="<?php echo base_url()?>/ui/build/images/logo_codeca.jpeg" id="logo_codeca_cotizacion"></div>
+                <div class="col-md-2">Cotización <?php echo $cotizacion->cotizacion_id;?></div>
             </div>
+            <h2 class="cotizacion_tittle">PRESUPUESTO DE EXTRAS SOLOCITADAS</h2>
             <div class="row">
                 <div class="col-md-2">Para:</div>
-                <div class="col-md-10"></div>
+                <div class="col-md-10">casa :<?php echo $proceso->casa?> Proyecto <?php echo $proceso->proyecto_id?></div>
             </div>
             <div class="row">
                 <div class="col-md-2">Tipo Casa:</div>
-                <div class="col-md-10"></div>
+                <div class="col-md-10"><?php echo $proceso->tipo_casa_id?></div>
             </div>
             <div class="row">
                 <div class="col-md-2">Cliente</div>
-                <div class="col-md-10"></div>
+                <div class="col-md-10"><?php echo $prospecto->nombre1?></div>
             </div>
             <div class="row">
                 <div class="col-md-2">Fecha:</div>
-                <div class="col-md-10"></div>
+                <div class="col-md-10"><?php echo $cotizacion->cotizacion_fecha;?></div>
             </div>
         </div>
         <table>
@@ -64,6 +68,7 @@ $cotizacion = $cotizacion->row();
 
             //echo $items_array;
             $numero = 0;
+            $total_cotizacion  = 0;
             ?>
 
 
@@ -76,17 +81,21 @@ $cotizacion = $cotizacion->row();
                 <tr>
                     <td style="width: 1cm"><?php echo $numero; ?></td>
                     <td><?php echo $item_data->nombre .' - '.$item_data->descripcion?></td>
-                    <td><?php echo $item_data->precio ?></td>
-                    <td>
-                        <?php if($numero == 1){ ?>
-                            <img src="https://ferreteriavidri.com/images/items/large/108695.jpg" style="width: 10%">
-                        <?php } ?>
-                    </td>
+                    <td class="item_precio"><?php echo $item_data->precio ?></td>
                 </tr>
+
+                <?php $total_cotizacion = $total_cotizacion + $item_data->precio ?>
             <?php } ?>
+            <tr>
+                <td colspan="2">Total</td>
+                <td><?php echo $total_cotizacion?></td>
+            </tr>
         </table>
 
 
+    <div id="footer_cotizacion">
+        8a. Calle 20-06 Zona 11, COlonia Mirador 1. P.B.X. 2381-7500 Fax 2381-7501
+    </div>
     </div>
 
 </div>
@@ -94,6 +103,11 @@ $cotizacion = $cotizacion->row();
 <?php $this->stop() ?>
 <?php $this->start('js_p') ?>
 <script>
+total_cotizacion = 0;
+
+    $( document ).ready(function () {
+
+    });
 </script>
 <?php $this->stop() ?>
 

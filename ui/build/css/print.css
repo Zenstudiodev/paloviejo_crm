@@ -83,5 +83,10 @@
         font-weight: bold;
     }
 
-
+/*cotizaciones */
+    #logo_codeca_cotizacion{
+        width: 3cm;
+        margin: 0 auto;
+        display: block;
+    }
 }

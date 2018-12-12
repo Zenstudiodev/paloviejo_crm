@@ -174,11 +174,24 @@ $this->layout('master', [
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <a href="<?php echo base_url(); ?>index.php/proceso/cotizador/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
-                                                               class="btn btn-info btn-xs">
-                                                                <i class="fa fa-pencil"></i>
-                                                                Cotizador
-                                                            </a>
+                                                            <div class="btn-group">
+                                                                <button data-toggle="dropdown"
+                                                                        class="btn btn-primary dropdown-toggle btn-xs"
+                                                                        type="button" aria-expanded="false">Cotizaciones<span class="caret"></span>
+                                                                </button>
+                                                                <ul role="menu" class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/proceso/cotizador/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                            <i class="fa fa-pencil"></i> Cotizador</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/proceso/ver_cotizaciones_proceso/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                                    class="fa fa-print"></i> Cotizaciones</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+
                                                             <a href="<?php echo base_url(); ?>index.php/proceso/avance_obra/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                class="btn btn-info btn-xs">
                                                                 <i class="fa fa-pencil"></i>

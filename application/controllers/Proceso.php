@@ -211,6 +211,9 @@ class Proceso extends Base_Controller {
         //Id de prospecto
         $data['cotizacion_id'] = $this->uri->segment(3);
         $data['cotizacion'] = $this->Cotizador_model->get_cotizacion($data['cotizacion_id']);
+        $cotizacion = $data['cotizacion']->row();
+        $data['prospecto'] =$this->Prospecto->ListarProspecto($cotizacion->cotizacion_prospecto_id);
+        $data['proceso'] =$this->Proceso_model->get_proceso_by_id($cotizacion->cotizacion_proceso_id);
 
         $data['title'] = 'Imprimir cotizacion';
         echo $this->templates->render('imprimir_cotizacion', $data);

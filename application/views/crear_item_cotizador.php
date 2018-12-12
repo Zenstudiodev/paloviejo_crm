@@ -103,6 +103,7 @@ $this->layout('master', [
                                                 <td><?php echo $item->nombre?></td>
                                                 <td><?php echo $item->descripcion?></td>
                                                 <td><?php echo $item->precio?></td>
+                                                <td style="height: 30px; width: 10%"><img src="<?php echo $item->imagen_src?>" class="img-responsive"></td>
                                                 <td>
                                                     <a class="btn btn-primary" href="<?php echo base_url()?>cotizador/subir_foto">Subir Fotos</a>
                                                     <a class="btn btn-primary">Editar</a>
