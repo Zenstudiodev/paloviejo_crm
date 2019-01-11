@@ -15,6 +15,13 @@ $this->layout('master', [
 
 $proceso = $proceso->row();
 
+
+$imagen_avance = array(
+    'name' => 'imagen',
+    'type' => 'file',
+    'accept' => 'image/*',
+    'required' => 'required'
+);
 ?>
 <?php $this->start('css_p') ?>
 <!--cargamos css personalizado-->
@@ -89,7 +96,17 @@ $proceso = $proceso->row();
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <a class="btn btn-success" href="#" role="button">Subir imagen de avance</a>
+
+                        <?php echo form_open_multipart('proceso/guardar_imagen_avance_obra','class="form-horizontal form-label-left"');?>
+
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <?php echo form_input($imagen_avance) ?>
+                        </div>
+
+                        <input type="submit" class="btn btn-success" name="gardar_imagen_avance" value="Guardar" >
+                    </form>
+
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <span class="badge">fecha: 12-08-2018</span>

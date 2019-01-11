@@ -84,6 +84,9 @@ class Proceso_model extends CI_Model
 		if ($query->num_rows() > 0) return $query;
 		else return false;
 	}
+	function guardar_imagen_avance_obra($data){
+
+    }
 
 
 }

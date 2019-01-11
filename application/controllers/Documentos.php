@@ -105,9 +105,9 @@ class Documentos extends Base_Controller
                 'extension'=> $this->upload->data('file_type')
             );
 
-            echo '<pre>';
-            print_r($documentoData);
-            echo '</pre>';
+            //echo '<pre>';
+            //print_r($documentoData);
+            //echo '</pre>';
 
 
             //Pass user data to model

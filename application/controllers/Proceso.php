@@ -123,6 +123,64 @@ class Proceso extends Base_Controller {
         $data['title'] = 'Avance de obra';
         echo $this->templates->render('avance_obra', $data);
     }
+    public function guardar_imagen_avance_obra(){
+
+
+        if ($this->input->post('gardar_imagen_avance')) {
+            //Check whether user upload picture
+            echo $_FILES['documento']['name'];
+
+            if (!empty($_FILES['documento']['name'])) {
+                $nombreArchivo = $this->input->post('tipo_documento') . '-' . $this->input->post('prospecto_id') . '-' . $this->input->post('proceso_id');
+
+                $config['upload_path'] = './uploads/images';
+                $config['allowed_types'] = 'gif|jpg|png|PDF';
+                $config['file_name'] = $nombreArchivo;
+                $config['overwrite'] = TRUE;
+                //$config['max_size']      = 100;
+                //$config['max_width']     = 1024;
+                //$config['max_height']    = 768;
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('documento')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('subir_documento', $error);
+                } else {
+                    $data = array('upload_data' => $this->upload->data());
+                    //$this->load->view('subir_documento', $data);
+                    echo $this->upload->data('file_name');
+                    echo $this->upload->data('file_size');
+                }
+            } else {
+                $picture = '';
+            }
+
+            //Prepare array of user data
+            $documentoData = array(
+                'src' => $this->upload->data('file_name'),
+                'proceso_id' => $this->input->post('proceso_id'),
+                'tipo_documento' => $this->input->post('tipo_documento'),
+                'tipo_actor' => $this->input->post('tipo_actor'),
+                'extension'=> $this->upload->data('file_type')
+            );
+
+            echo '<pre>';
+            print_r($documentoData);
+            echo '</pre>';
+
+
+            //Pass user data to model
+            $insertUserData = $this->Documentos_model->crear_documento($documentoData);
+            redirect('documentos/verDocumentos/' . $this->input->post('prospecto_id') . '/' . $this->input->post('proceso_id'), 'refresh');
+
+            //Storing insertion status message.
+            if ($insertUserData) {
+
+            } else {
+                echo 'error';
+            }
+        }
+    }
     public function cotizador()
     {
         //comprobamos session desde el helper de sesion
