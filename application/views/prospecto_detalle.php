@@ -197,6 +197,16 @@ $this->layout('master', [
                                                                 <i class="fa fa-pencil"></i>
                                                                 Avance de obra
                                                             </a>
+                                                            <a href="<?php echo base_url(); ?>index.php/proceso/hoja_de_acabados/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                               class="btn btn-warning btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                                Hoja de acabados
+                                                            </a>
+                                                            <a href="<?php echo base_url(); ?>index.php/proceso/lista_revision/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                               class="btn btn-info btn-xs">
+                                                                <i class="fa fa-pencil"></i>
+                                                                Hoja de entrega
+                                                            </a>
                                                         </div>
                                                     </td>
                                                 </tr>

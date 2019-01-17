@@ -301,118 +301,134 @@ $proceso = $proceso->row();
                                                         <button class="btn btn-warning">Cotizar</button>
                                                     </div>
                                                 </div>
-                                                <span class="section">Azulejo</span>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Azulejo
-                                                        de baño <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <select class="form-control">
-                                                            <option>Gris</option>
-                                                            <option>Naranja</option>
-                                                            <option>Verde</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
+                                                <span class="section">Piso de ducha y azulejos</span>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <td> Baño  </td>
+                                                            <td> Azulejo de baño </td>
+                                                            <td> Color Estuque </td>
+                                                            <td> Listelo </td>
+                                                            <td> Piso </td>
+                                                            <td> Estuque </td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Baño 1</td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Gris</option>
+                                                                    <option>Naranja</option>
+                                                                    <option>Verde</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Calipso</option>
+                                                                    <option>Noruega claro</option>
+                                                                    <option>Especial claro</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>corrugado 6x6</option>
+                                                                    <option>italic 10x5</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Baño 2</td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Gris</option>
+                                                                    <option>Naranja</option>
+                                                                    <option>Verde</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Calipso</option>
+                                                                    <option>Noruega claro</option>
+                                                                    <option>Especial claro</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>corrugado 6x6</option>
+                                                                    <option>italic 10x5</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Baño 3</td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Gris</option>
+                                                                    <option>Naranja</option>
+                                                                    <option>Verde</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>Calipso</option>
+                                                                    <option>Noruega claro</option>
+                                                                    <option>Especial claro</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>corrugado 6x6</option>
+                                                                    <option>italic 10x5</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control">
+                                                                    <option>gris acero</option>
+                                                                    <option>chocolate</option>
+                                                                    <option>kalhua</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Color
-                                                        de estuque <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <select class="form-control">
-                                                            <option>gris acero</option>
-                                                            <option>chocolate</option>
-                                                            <option>kalhua</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Listelo
-                                                        <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <select class="form-control">
-                                                            <option>Calipso</option>
-                                                            <option>Noruega claro</option>
-                                                            <option>Especial claro</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
-                                                </div>
-                                                <span class="section">Piso de ducha</span>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Baño
-                                                        1<span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>corrugado 6x6</option>
-                                                            <option>italic 10x5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>gris acero</option>
-                                                            <option>chocolate</option>
-                                                            <option>kalhua</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Baño
-                                                        2<span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>corrugado 6x6</option>
-                                                            <option>italic 10x5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>gris acero</option>
-                                                            <option>chocolate</option>
-                                                            <option>kalhua</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Baño
-                                                        3<span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>corrugado 6x6</option>
-                                                            <option>italic 10x5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-3">
-                                                        <select class="form-control">
-                                                            <option>gris acero</option>
-                                                            <option>chocolate</option>
-                                                            <option>kalhua</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-warning">Cotizar</button>
-                                                    </div>
-                                                </div>
-
-
                                             </form>
                                         </div>
                                         <div id="step-44">
@@ -590,8 +606,20 @@ $proceso = $proceso->row();
                                         </div>
                                         <div id="step-66">
                                             <h2 class="StepTitle">Notas</h2>
+
                                             <form class="form-horizontal form-label-left">
                                                 <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3" for="first-name">Notas
+                                                    </label>
+                                                    <div class="col-md-9 col-sm-9">
+                                                        <textarea class="form-control">
+
+                                                        </textarea>
+                                                    </div>
+
+                                                </div>
+                                                <a class="btn btn-primary" id="mas_notas_btn">Mas notas</a>
+                                                <div class="form-group" id="mas_notas">
                                                     <label class="control-label col-md-3 col-sm-3" for="first-name">Notas
                                                     </label>
                                                     <div class="col-md-9 col-sm-9">
@@ -641,6 +669,7 @@ $proceso = $proceso->row();
     }
     $(document).ready(function () {
         init_SmartWizard();
+        $("#mas_notas").hide();
     });
 </script>
 
@@ -669,7 +698,9 @@ $proceso = $proceso->row();
     cancelButton.addEventListener('click', function (event) {
         signaturePad.clear();
     });*/
-
+$("#mas_notas_btn").click(function () {
+    $("#mas_notas").show();
+});
 </script>
 
 <?php $this->stop() ?>

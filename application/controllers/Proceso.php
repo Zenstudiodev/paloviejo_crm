@@ -321,7 +321,7 @@ class Proceso extends Base_Controller {
             $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
-        $data['title'] = 'Avance de obra';
+        $data['title'] = 'Lista de revisión';
         echo $this->templates->render('lista_revision', $data);
     }
 }

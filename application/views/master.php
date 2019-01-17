@@ -97,6 +97,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <ul class="nav child_menu">
                                     <li><a href="<?php echo base_url(); ?>cotizador/crear_items">Items para cotizador</a>
                                     </li>
+                                    <li><a href="<?php echo base_url(); ?>cotizador/crear_items_acabado">Items para acabados</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
