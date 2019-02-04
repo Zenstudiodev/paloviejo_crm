@@ -207,6 +207,34 @@ $this->layout('master', [
                                                                 <i class="fa fa-pencil"></i>
                                                                 Hoja de entrega
                                                             </a>
+                                                            <div class="btn-group">
+                                                                <button data-toggle="dropdown"
+                                                                        class="btn btn-primary dropdown-toggle btn-xs"
+                                                                        type="button" aria-expanded="false">Reclamos y garantias<span class="caret"></span>
+                                                                </button>
+                                                                <ul role="menu" class="dropdown-menu">
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-info btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            Crear Reclamo
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-info btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            Revisar Reclamo
+                                                                        </a>
+                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-info btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            Historial de Reclamos
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
                                                         </div>
                                                     </td>
                                                 </tr>

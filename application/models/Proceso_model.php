@@ -41,6 +41,16 @@ class Proceso_model extends CI_Model
         else return false;
 
     }
+    function ListarProceso($id)
+    {
+        $this->db->select('*');
+        $this->db->from('proceso');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) return $query;
+        else return false;
+
+    }
 
     function get_proceso_by_id($id)
     {
