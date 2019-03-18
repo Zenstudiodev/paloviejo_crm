@@ -2,19 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //cargamos plantilla master y pasamos variables globales
 $this->layout('master', [
-	'title'            => $title,
-	'nombre'           => $nombre,
-	'user_id'          => $user_id,
-	'username'         => $username,
-	'rol'              => $rol,
-	'notificaciones'   => $notificaciones,
-	'notificaciones_s' => $notificaciones_supervisor,
-	'alertas'          => $alertas,
-	'alertas_s'        => $alertas_supervisor
+    'title' => $title,
+    'nombre' => $nombre,
+    'user_id' => $user_id,
+    'username' => $username,
+    'rol' => $rol,
+    'notificaciones' => $notificaciones,
+    'notificaciones_s' => $notificaciones_supervisor,
+    'alertas' => $alertas,
+    'alertas_s' => $alertas_supervisor
 ]);
 
 $prospecto = $prospecto->row();
-$proceso   = $proceso->row();
+$proceso = $proceso->row();
 
 
 ?>
@@ -55,217 +55,246 @@ $proceso   = $proceso->row();
                     </div>
                     <div class="x_content">
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url();?>/index.php/formulario/guardar_master_1"
-                              method="post" >
-							<?php
-							$nombre   = array(
-								'name'                       => 'nombre',
-								'id'                         => 'nombre',
-								'placeholder'                => 'Datos del cliente',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left ',
-								'required'                   => 'required'
-							);
-                            $fecha_entrega   = array(
-								'name'                       => 'fecha_entrega',
-								'id'                         => 'fecha_entrega',
-								'placeholder'                => 'Fecha de entrega',
-								'type'                       => 'date',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$direccion   = array(
-								'name'                       => 'direccion',
-								'id'                         => 'direccion',
-								'placeholder'                => 'Dirección',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$correo   = array(
-								'name'                       => 'correo',
-								'id'                         => 'correo',
-								'placeholder'                => 'Correo eléctronico',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$telefono_casa   = array(
-								'name'                       => 'telefono_casa',
-								'id'                         => 'telefono_casa',
-								'placeholder'                => 'Teléfono de casa',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$telefono_celular   = array(
-								'name'                       => 'telefono_celular',
-								'id'                         => 'telefono_celular',
-								'placeholder'                => 'Teléfono celular',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$nombre_sucesor   = array(
-								'name'                       => 'nombre_sucesor',
-								'id'                         => 'nombre_sucesor',
-								'placeholder'                => 'Nombre',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$dpi_sucesor   = array(
-								'name'                       => 'dpi_sucesor',
-								'id'                         => 'dpi_sucesor',
-								'placeholder'                => 'DPI',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$extendido_en_sucesor   = array(
-								'name'                       => 'extendido_en_sucesor',
-								'id'                         => 'extendido_en_sucesor',
-								'placeholder'                => 'Extendido en ',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$correo_sucesor   = array(
-								'name'                       => 'correo_sucesor',
-								'id'                         => 'correo_sucesor',
-								'placeholder'                => 'Correo elèctronico',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required'
-							);
-							$telefono_sucesor   = array(
-								'name'                       => 'codigo_cliente',
-								'id'                         => 'codigo_cliente',
-								'placeholder'                => 'Codigo CLiente',
-								'type'                       => 'text',
-								'class'                      => 'form-control has-feedback-left',
-								'required'                   => 'required',
-								'value'                   => 'required'
-							);
-							?>
+                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_1"
+                              method="post">
+                            <?php
+                            $nombre = array(
+                                'name' => 'nombre',
+                                'id' => 'nombre',
+                                'placeholder' => 'Datos del cliente',
+                                'type' => 'text',
+                                'value' => 'Juan Lopez',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
+                            $fecha_entrega = array(
+                                'name' => 'fecha_entrega',
+                                'id' => 'fecha_entrega',
+                                'placeholder' => 'Fecha de entrega',
+                                'type' => 'date',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $casa = array(
+                                'name' => 'casa',
+                                'id' => 'casa',
+                                'placeholder' => 'Casa',
+                                'value' => '74',
+                                'type' => 'text',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $proyecto = array(
+                                'name' => 'proyecto',
+                                'id' => 'proyecto',
+                                'placeholder' => 'Proyecto',
+                                'value' => 'Villas del Choacorral',
+                                'type' => 'text',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $sector = array(
+                                'name' => 'sector',
+                                'id' => 'sector',
+                                'placeholder' => 'Sector',
+                                'type' => 'text',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $fecha_visita = array(
+                                'name' => 'fecha_visita',
+                                'id' => 'fecha_visita',
+                                'placeholder' => 'Fecha de visita',
+                                'type' => 'datetime-local',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $cliente_que_atiende = array(
+                                'name' => 'cliente_que_atiende',
+                                'id' => 'cliente_que_atiende',
+                                'placeholder' => 'Quien atiende la cita',
+                                'type' => 'text',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            $forma_de_ingresar = array(
+                                'name' => 'forma_de_ingresar',
+                                'id' => 'forma_de_ingresar',
+                                'placeholder' => 'Forma de ingresar',
+                                'type' => 'text',
+                                'class' => 'form-control has-feedback-left',
+                                'required' => 'required'
+                            );
+                            ?>
 
 
                             <form class="form-horizontal form-label-left input_mask">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($nombre); ?>
+                                            <?php echo form_input($nombre); ?>
                                             <span class="fa fa-user form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
                                         <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($fecha_entrega); ?>
+                                            <?php echo form_input($fecha_entrega); ?>
                                             <span class="fa fa-calendar form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($dpi); ?>
+                                            <?php echo form_input($casa); ?>
                                             <span class="fa fa-address-card-o form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
                                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($extendido_en); ?>
-                                            <span class="fa fa-map-marker form-control-feedback left"
-                                                  aria-hidden="true"></span>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($nacionalidad); ?>
-                                            <span class="fa fa-flag form-control-feedback left"
+                                            <?php echo form_input($fecha_visita); ?>
+                                            <span class="fa fa-user-circle-o form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
                                     </div>
                                     <div class="row">
+
                                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($estado_civil); ?>
+                                            <?php echo form_input($proyecto); ?>
+                                            <span class="fa fa-map-marker form-control-feedback left"
+                                                  aria-hidden="true"></span>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                            <?php echo form_input($cliente_que_atiende); ?>
+                                            <span class="fa fa-id-card form-control-feedback left"
+                                                  aria-hidden="true"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                            <?php echo form_input($sector); ?>
                                             <span class="fa fa-user-circle-o form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
                                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($profesion); ?>
-                                            <span class="fa fa-id-card form-control-feedback left"
-                                                  aria-hidden="true"></span>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($direccion); ?>
-                                            <span class="fa fa-map-marker form-control-feedback left"
-                                                  aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($correo); ?>
+                                            <?php echo form_input($forma_de_ingresar); ?>
                                             <span class="fa fa-envelope form-control-feedback left"
                                                   aria-hidden="true"></span>
                                         </div>
+
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($telefono_casa); ?>
-                                            <span class="fa fa-phone form-control-feedback left"
-                                                  aria-hidden="true"></span>
                                         </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                        <?php echo form_input($telefono_celular); ?>
-                                            <span class="fa fa-mobile form-control-feedback left"
-                                                  aria-hidden="true"></span>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="x_title">
-                                    <h2>Sucesor</h2>
+                                    <h2>Items de referencia</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <p>Descripción de los trabajos a realizar</p>
+                                <div class="row">
+                                    <span class="badge">1</span>
 
+                                    <div class="col-md-8 col-sm-8 col-xs-12 form-group has-feedback">
+                                        <input type="text" name="item_refencia_1" id="sector"
+                                               value="Fuga de agua en la parte de abajo del mueble que esta por la puerta"
+                                               class="form-control has-feedback-left" required="required">
+                                        <span class="fa fa-check form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <span class="badge">2</span>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 form-group has-feedback">
+                                        <input type="text" name="item_refencia_2" id="sector"
+                                               value="salio una mancha blanca en la parte superior de la sala "
+                                               class="form-control has-feedback-left" required="required">
+                                        <span class="fa fa-check form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-12 form-group has-feedback">
+                                        <button class="btn btn-success">Agregar item</button>
+                                    </div>
+                                </div>
+
+                                <div class="x_title">
+                                    <h2>Items de reales</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                    <?php echo form_input($nombre_sucesor); ?>
-                                        <span class="fa fa-user form-control-feedback left"
+                                    <div class="col-md-1 col-sm-2 col-xs-12 form-group has-feedback">
+                                        <p>
+                                            <button class="btn btn-success">Subir foto</button>
+                                        </p>
+                                        <p>
+                                            <button class="btn btn-success">Sketch</button>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" name="item_real_1" value="Fuga en el cifon de lava trastos"
+                                               id="item_real_1" class="form-control has-feedback-left"
+                                               required="required">
+                                        <span class="fa fa-check form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                    <?php echo form_input($dpi_sucesor); ?>
-                                        <span class="fa fa-address-card-o form-control-feedback left"
-                                              aria-hidden="true"></span>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 form-group has-feedback">
+                                        <div class="form-group">
+                                            <label>Garantia *:</label>
+                                            <p>
+                                                Si:
+                                                <input type="radio" class="flat" name="gender" id="genderM" value="M"
+                                                       checked="" required/>
+                                                No:
+                                                <input type="radio" class="flat" name="gender" id="genderF" value="F"/>
+                                            </p>
+                                            <p>
+                                                <button class="btn btn-success">Cotizar</button>
+                                            </p>
+                                        </div>
+
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                    <?php echo form_input($extendido_en_sucesor); ?>
-                                        <span class="fa fa-map-marker form-control-feedback left"
-                                              aria-hidden="true"></span>
-                                    </div>
+
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                    <?php echo form_input($correo_sucesor); ?>
-                                        <span class="fa fa-envelope form-control-feedback left"
+                                    <div class="col-md-1 col-sm-2 col-xs-12 form-group has-feedback">
+                                        <p>
+                                            <button class="btn btn-success">Subir foto</button>
+                                        </p>
+                                        <p>
+                                            <button class="btn btn-success">Sketch</button>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" name="item_real_2"
+                                               value="Salitre por humedad en el techo de la sala" id="item_real_1"
+                                               class="form-control has-feedback-left" required="required">
+                                        <span class="fa fa-check form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-	                                    <?php echo form_input($telefono_sucesor); ?>
-                                        <span class="fa fa-mobile form-control-feedback left"
-                                              aria-hidden="true"></span>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 form-group has-feedback">
+                                        <div class="form-group">
+                                            <label>Garantia *:</label>
+                                            <p>
+                                                Si:
+                                                <input type="radio" class="flat" name="gender" id="genderM" value="M"
+                                                       checked="" required/>
+                                                No:
+                                                <input type="radio" class="flat" name="gender" id="genderF" value="F"/>
+                                            </p>
+                                            <p>
+                                                <button class="btn btn-success">Cotizar</button>
+                                            </p>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <?php echo form_input($correo_sucesor); ?>
-                                        <span class="fa fa-envelope form-control-feedback left"
-                                              aria-hidden="true"></span>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <?php echo form_input($telefono_sucesor); ?>
-                                        <span class="fa fa-mobile form-control-feedback left"
-                                              aria-hidden="true"></span>
-                                    </div>
+
                                 </div>
                                 <?php
 
-                               echo  form_hidden('proceso_id', $proceso->id);
-                               echo  form_hidden('prospecto_id', $prospecto->id);
+                                echo form_hidden('proceso_id', $proceso->id);
+                                echo form_hidden('prospecto_id', $prospecto->id);
 
                                 ?>
                                 <div class="ln_solid"></div>
@@ -279,8 +308,6 @@ $proceso   = $proceso->row();
                         </form>
                     </div>
                 </div>
-
-
 
 
             </div>
@@ -333,7 +360,7 @@ $proceso   = $proceso->row();
 
     };
     $(document).ready(function () {
-       //init_validator();
+        //init_validator();
     });
 
 
