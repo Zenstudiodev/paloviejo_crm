@@ -13,7 +13,7 @@ class Cotizador extends Base_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('proceso');
-        $this->load->model('Prospecto');
+        $this->load->model('ProspectoModel');
         $this->load->model('Proceso_model');
         $this->load->model('Cotizador_model');
         $this->load->model('Cita');

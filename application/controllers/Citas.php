@@ -7,7 +7,7 @@ class Citas extends Base_Controller
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Cita');
         $this->load->model('Tarea');
         $this->load->model('Notificaciones_model');
@@ -53,7 +53,6 @@ class Citas extends Base_Controller
             // convertimos la diferencia de fechas a horas
             $diffEnHoras = ($diff->d * 24);
             $diffEnHoras = $diffEnHoras + $diff->h;
-
             if ($diffEnHoras >= 2){
             }else{
                 echo'<p>Modificando</p>';
@@ -74,11 +73,11 @@ class Citas extends Base_Controller
         /**
         actualizamos la actividad del prospecto
         */
-         $this->Prospecto->actualizado($dataCita['prospecto_id']);
+         $this->Prospecto_model->actualizado($dataCita['prospecto_id']);
 
 
         //datos del prospecto
-        $prospecto = $this->Prospecto->ListarProspecto($dataCita['prospecto_id']);
+        $prospecto = $this->Prospecto_model->ListarProspecto($dataCita['prospecto_id']);
         $prospecto = $prospecto->row();
 
         if ($dataCita['tipo_cita' == 'cierre']){
@@ -86,7 +85,6 @@ class Citas extends Base_Controller
         }else{
             $supervisor ='propio';
         }
-
          //creamos la notificacion para cita si la cita es cierre
             $notificacion = array(
                 'user_id' => $data['user_id'],
@@ -100,8 +98,6 @@ class Citas extends Base_Controller
             );
             $this->Notificaciones_model->crear_notificacion($notificacion);
 
-
-
         //a la fecha de la cita le restamos un dia para crear la tarea
         $horaCita->modify('-1 day');
 
@@ -114,7 +110,6 @@ class Citas extends Base_Controller
         );
 
         $this->Tarea->crear_tarea($data);
-
 
         redirect('dashboard', 'refresh');
         $this->load->view('dashboard');
@@ -138,7 +133,7 @@ class Citas extends Base_Controller
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['citas'] = $this->Cita->datosCitaProspecto($data['segmento_p'], $data['segmento_c']);
         }
 
@@ -157,7 +152,7 @@ class Citas extends Base_Controller
 
         $this->Cita->guardar_resultado_cita($data);
         //actualizamos la actividad del prospecto
-        $this->Prospecto->actualizado($data['prospecto_id']);
+        $this->Prospecto_model->actualizado($data['prospecto_id']);
         if ($this->input->post('cerrado')) {
             redirect('proceso/crearProceso/' . $data['prospecto_id'], 'refresh');
         }

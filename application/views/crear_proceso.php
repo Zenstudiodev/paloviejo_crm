@@ -42,7 +42,7 @@ $this->layout('master', [
                                 <div class="x_content">
 
                                     <form class="form-horizontal form-label-left"
-                                          action="http://www.paloviejosa.com/crm/index.php/proceso/guardarProceso"
+                                          action="<?php echo base_url()?>proceso/guardarProceso"
                                           method="post" id="procesoCreateForm">
                                         <?php
                                         $casa = array(
@@ -143,7 +143,7 @@ $this->layout('master', [
             $("#casa").html('');
             $("#tipo_casa").html('');
             //hacemos llamada a app2.0 para obtener un listado de tipos de casa
-            $.getJSON("http://paloviejosa.com/app2.0/casas_crm.php?proyecto=" + proyecto, function (obj) {
+            $.getJSON("https://paloviejosa.com/app2.0/casas_crm.php?proyecto=" + proyecto, function (obj) {
                 //print de objeto json proviniente de app 2.0
                 //console.log(obj);
                 $.each(obj, function (key, value) {

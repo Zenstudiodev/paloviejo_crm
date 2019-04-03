@@ -23,7 +23,7 @@ class Dashboard extends Base_Controller {
     {
         parent::__construct();
 
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Cita');
         $this->load->model('Notificaciones_model');
     }
@@ -39,7 +39,7 @@ class Dashboard extends Base_Controller {
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
         $data['citas'] = $this->Cita->ListarCitas($data['user_id']);
-        $data['prospectos'] = $this->Prospecto->ListarProspectos($data['user_id']);
+        $data['prospectos'] = $this->Prospecto_model->ListarProspectos($data['user_id']);
         //titulo de pagina
         $data['title'] = 'Dashboard';
 

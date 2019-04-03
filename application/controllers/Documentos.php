@@ -23,7 +23,7 @@ class Documentos extends Base_Controller
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Proceso_model');
         $this->load->model('Documentos_model');
         $this->load->model('User');
@@ -53,7 +53,7 @@ class Documentos extends Base_Controller
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
         }
         //titulo de pagina
@@ -143,7 +143,7 @@ class Documentos extends Base_Controller
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['procesos'] = $this->Proceso_model->ListarProceso($data['segmento_pr']);
         }
         //titulo de pagina
@@ -236,7 +236,7 @@ class Documentos extends Base_Controller
         if (!$data['segmento_p']) {
             //redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['promitente_comprador'] = $this->Documentos_model->ListarDocumentosPromitenteComprador($data['segmento_d']);
             $data['sucesor'] = $this->Documentos_model->ListarDocumentosPromitenteSucesor($data['segmento_d']);
             $data['propietario'] = $this->Documentos_model->ListarDocumentosPromitentePropietario($data['segmento_d']);
@@ -258,7 +258,7 @@ class Documentos extends Base_Controller
         if (!$data['segmento_d']) {
             //redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['documentos'] = $this->Documentos_model->DetalleDocumento($data['segmento_d']);
         }
 

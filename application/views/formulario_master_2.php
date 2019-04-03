@@ -15,8 +15,13 @@ $this->layout('master', [
 
 $prospecto = $prospecto->row();
 $proceso   = $proceso->row();
-$formulario_1 = $formulario_1->row();
-$fecha= New DateTime();
+if($formulario_1){
+    $formulario_1 = $formulario_1->row();
+    $fecha= New DateTime();
+}else{
+
+}
+
 
 
 

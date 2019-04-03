@@ -44,7 +44,7 @@ class Cotizador_model extends CI_Model
         return $insert_id;
     }
     public function get_cotizaciones_prospecto($data){
-        $this->db->where('cotizacion_prospecto_id', $data['prospecto']);
+        $this->db->where('cotizacion_prospecto_id', $data['ProspectoModel']);
         $this->db->where('cotizacion_proceso_id', $data['proceso']);
         $query = $this->db->get('cotizaciones');
         if($query->num_rows() > 0) return $query;

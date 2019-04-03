@@ -7,7 +7,7 @@ class Proceso extends Base_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Proceso_model');
         $this->load->model('User');
         $this->load->model('Notificaciones_model');
@@ -36,7 +36,7 @@ class Proceso extends Base_Controller {
         if(!$data['segmento_p']){
             redirect('prospectos/prospectosList', 'refresh');
         }else{
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
         }
 
         $data['title'] = 'Resultado de cita';
@@ -242,7 +242,7 @@ class Proceso extends Base_Controller {
         $data['segmento_pr'] = $this->uri->segment(4);
         $datos = array(
             'proceso' =>$data['segmento_p'],
-            'prospecto' =>$data['segmento_pr'],
+            'ProspectoModel' =>$data['segmento_pr'],
         );
         $data['cotizaciones'] = $this->Cotizador_model->get_cotizaciones_prospecto($datos);
         echo $this->templates->render('cotizaciones', $data);
@@ -255,7 +255,7 @@ class Proceso extends Base_Controller {
         $data['cotizacion_id'] = $this->uri->segment(3);
         $data['cotizacion'] = $this->Cotizador_model->get_cotizacion($data['cotizacion_id']);
         $cotizacion = $data['cotizacion']->row();
-        $data['prospecto'] =$this->Prospecto->ListarProspecto($cotizacion->cotizacion_prospecto_id);
+        $data['ProspectoModel'] =$this->Prospecto->ListarProspecto($cotizacion->cotizacion_prospecto_id);
         $data['proceso'] =$this->Proceso_model->get_proceso_by_id($cotizacion->cotizacion_proceso_id);
 
         $data['title'] = 'Imprimir cotizacion';

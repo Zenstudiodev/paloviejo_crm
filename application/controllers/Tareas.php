@@ -22,7 +22,7 @@ class Tareas extends Base_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('Prospecto');
+        $this->load->model('ProspectoModel');
         $this->load->model('Tarea');
     }
     public function index()

@@ -23,7 +23,7 @@ class Prospectos extends Base_Controller
     {
         parent::__construct();
         // Modelos
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Cita');
         $this->load->model('Tarea');
         $this->load->model('User');
@@ -56,10 +56,10 @@ class Prospectos extends Base_Controller
         // comprobar si puede ver todos los prospectos
         if (puede_ver($data['rol'], array('0', '1', '2','3'))) {
             //recojemos los listados de prospectos asociados al usuario
-            $data['prospectos'] = $this->Prospecto->ListarPsopectosGeneral();
+            $data['prospectos'] = $this->Prospecto_model->ListarPsopectosGeneral();
         } else {
             //recojemos los listados de prospectos asociados al usuario
-            $data['prospectos'] = $this->Prospecto->ListarProspectos($data['user_id']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspectos($data['user_id']);
         }
         echo $this->templates->render('prospectos_list', $data);
 
@@ -75,7 +75,7 @@ class Prospectos extends Base_Controller
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         //titulo de pagina
         $data['title'] = 'Listado de prospectos inactivos';
-        $data['prospectos'] = $this->Prospecto->ListarProspectosinactivos();
+        $data['prospectos'] = $this->Prospecto_model->ListarProspectosinactivos();
 
         echo $this->templates->render('prospectos_list', $data);
 
@@ -96,7 +96,7 @@ class Prospectos extends Base_Controller
 	            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
 	            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
 	            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-	            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento']);
+	            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
 	            $data['citas'] = $this->Cita->ListarCitasProspecto($data['segmento']);
 	            $data['resultado_citas'] = $this->Cita->ResultadoCitas($data['segmento']);
 	            $data['tareas'] = $this->Tarea->ListarTareasProspecto($data['segmento']);
@@ -128,6 +128,7 @@ class Prospectos extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
+
         // cargamos alertas y notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
@@ -139,6 +140,7 @@ class Prospectos extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
+
         $data = array(
             'nombre' => $this->input->post('nombre'),
             'celular' => $this->input->post('celular'),
@@ -149,7 +151,7 @@ class Prospectos extends Base_Controller
             'medio' => $this->input->post('medio'),
             'user_id' => $data['user_id']
         );
-        $this->Prospecto->crear_prospecto($data);
+        $this->Prospecto_model->crear_prospecto($data);
         redirect('prospectos/prospectosList', 'refresh');
     }
 
@@ -157,16 +159,19 @@ class Prospectos extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
-        // Notificaciones
+
+        // cargamos alertas y notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
-        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        //titulo de pagina
+        $data['title'] = 'Crear un cita';
+
 
         $data['segmento'] = $this->uri->segment(3);
         if (!$data['segmento']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
         }
         //obtener mensaje de error desde flash data
         if ($this->session->flashdata('error')) {

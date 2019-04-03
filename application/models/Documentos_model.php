@@ -34,7 +34,7 @@ class Documentos_model extends CI_Model
 
     function ListarProspectos()
     {
-        $query = $this->db->get('prospecto');
+        $query = $this->db->get('ProspectoModel');
         if ($query->num_rows() > 0) return $query;
         else return false;
     }

@@ -10,7 +10,6 @@ function compobarSesion()
 {
     $ci =& get_instance();
     $data = array();
-
     //si esta  logueado tomar datos de usuario desde la sesión
     if (isset($ci->session->userdata['logged_in'])) {
         $data['user_id'] = $ci->session->userdata['logged_in']['id'];

@@ -25,7 +25,7 @@ class Notificaciones extends Base_Controller
         $this->load->model('User');
         $this->load->model('Notificaciones_model');
         $this->load->model('Cita');
-        $this->load->model('Prospecto');
+        $this->load->model('ProspectoModel');
     }
 
     public function index()

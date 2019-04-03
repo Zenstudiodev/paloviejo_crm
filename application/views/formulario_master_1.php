@@ -55,7 +55,7 @@ $proceso   = $proceso->row();
                     </div>
                     <div class="x_content">
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url();?>/index.php/formulario/guardar_master_1"
+                              action="<?php echo base_url();?>formulario/guardar_master_1"
                               method="post" >
 							<?php
 							$nombre   = array(
@@ -181,7 +181,7 @@ $proceso   = $proceso->row();
 							$correo_sucesor   = array(
 								'name'                       => 'correo_sucesor',
 								'id'                         => 'correo_sucesor',
-								'placeholder'                => 'Correo elèctronico',
+								'placeholder'                => 'Correo elèctronico sucesor',
 								'type'                       => 'text',
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
@@ -189,7 +189,7 @@ $proceso   = $proceso->row();
 							$telefono_sucesor   = array(
 								'name'                       => 'codigo_cliente',
 								'id'                         => 'codigo_cliente',
-								'placeholder'                => 'Codigo CLiente',
+								'placeholder'                => 'Teléfono sucesor',
 								'type'                       => 'text',
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required',
@@ -303,18 +303,7 @@ $proceso   = $proceso->row();
                                               aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <?php echo form_input($correo_sucesor); ?>
-                                        <span class="fa fa-envelope form-control-feedback left"
-                                              aria-hidden="true"></span>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <?php echo form_input($telefono_sucesor); ?>
-                                        <span class="fa fa-mobile form-control-feedback left"
-                                              aria-hidden="true"></span>
-                                    </div>
-                                </div>
+
                                 <?php
 
                                echo  form_hidden('proceso_id', $proceso->id);

@@ -535,12 +535,12 @@ $this->layout('master', [
                                                 <!--
 <a href="#" class="btn btn-sm btn-primary">Ver Documento</a>
 <a href="#" class="btn btn-sm btn-primary">Crear Documentos</a>-->
-                                                <a href="http://paloviejosa.com/crm/index.php/proceso/crearProceso/<?php echo $prospecto->id; ?>"
+                                                <a href=<?php echo base_url()?>proceso/crearProceso/<?php echo $prospecto->id; ?>"
                                                    class="btn btn-sm btn-primary">crear proceso</a>
 
-                                                <a href="http://paloviejosa.com/crm/index.php/prospectos/prospectoCita/<?php echo $prospecto->id; ?>"
+                                                <a href="<?php echo base_url()?>prospectos/prospectoCita/<?php echo $prospecto->id; ?>"
                                                    class="btn btn-sm btn-primary">Agendar cita</a>
-                                                <a href="http://paloviejosa.com/crm/index.php/prospectos/prospectoTarea/<?php echo $prospecto->id; ?>"
+                                                <a href="<?php echo base_url()?>prospectos/prospectoTarea/<?php echo $prospecto->id; ?>"
                                                    class="btn btn-sm btn-primary">Agregar Tarea</a>
                                             </div>
                                         </div>

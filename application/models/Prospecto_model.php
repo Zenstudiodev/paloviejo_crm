@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Date: 11/04/2017
  * Time: 12:11 PM
  */
-class Prospecto extends CI_Model
+class Prospecto_model extends CI_Model
 {
 
     function __construct()
@@ -25,9 +25,9 @@ class Prospecto extends CI_Model
     {
         $fecha = new DateTime();
         $this->db->insert('prospecto', array(
-            'nombre' => $data['nombre'],
-            'celular' => $data['celular'],
-            'email' => $data['email'],
+            'nombre1' => $data['nombre'],
+            'celular1' => $data['celular'],
+            'email1' => $data['email'],
             'nombre2' => $data['nombre2'],
             'celular2' => $data['celular2'],
             'email2' => $data['email2'],

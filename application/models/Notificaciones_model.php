@@ -100,7 +100,7 @@ class Notificaciones_model extends CI_Model
 
         $this->db->select('*');
         $this->db->from('notificaciones');
-        $this->db->join('prospecto', 'prospecto.id = notificaciones.prospecto_id');
+        $this->db->join('ProspectoModel', 'prospecto.id = notificaciones.prospecto_id');
         $this->db->join('users', 'users.id = notificaciones.user_id');
         $this->db->where('notificacion_id', $id);
         $query = $this->db->get();

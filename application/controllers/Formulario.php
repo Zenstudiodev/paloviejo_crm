@@ -13,7 +13,7 @@ class Formulario extends Base_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('proceso');
-        $this->load->model('Prospecto');
+        $this->load->model('Prospecto_model');
         $this->load->model('Proceso_model');
         $this->load->model('Cita');
         $this->load->model('Tarea');
@@ -45,7 +45,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -78,7 +78,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
 
@@ -111,7 +111,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -138,7 +138,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_modelo->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
 
@@ -170,7 +170,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_modelo->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -197,7 +197,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_modelo->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
 
@@ -230,7 +230,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -287,7 +287,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
             //Formulario 1
@@ -371,7 +371,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
             //Formulario 1
@@ -479,7 +479,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1
@@ -506,7 +506,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1
@@ -533,7 +533,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1
@@ -560,7 +560,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1
@@ -587,7 +587,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1
@@ -614,7 +614,7 @@ class Formulario extends Base_Controller
         $data['segmento_proceso'] = $this->uri->segment(4);
 
         //pospecto
-        $data['prospecto'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+        $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
         $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
         //Formulario 1

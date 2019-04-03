@@ -45,7 +45,7 @@ $this->layout('master', [
                             </div>
                             <div class="x_content">
                                 <form class="form-horizontal form-label-left"
-                                      action="http://www.paloviejosa.com/crm/index.php/prospectos/guardarProspecto"
+                                      action="<?php echo base_url(); ?>prospectos/guardarProspecto"
                                       method="post" novalidate>
                                     <?php
                                     $nombre = array(

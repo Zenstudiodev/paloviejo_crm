@@ -297,7 +297,7 @@ $fecha = array(
                 {
                     title: '<?php echo rtrim($cita->observaciones); ?>',
                     start: '<?php echo $cita->fecha; ?>',
-                    url: 'http://paloviejosa.com/crm/index.php/prospectos/prospectoDetalle/<?php echo $cita->prospecto_id?> '
+                    url: '<?php echo base_url()?>prospectos/prospectoDetalle/<?php echo $cita->prospecto_id?> '
 
                 },
                 <?php } ?>

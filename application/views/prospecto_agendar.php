@@ -56,7 +56,7 @@ $this->layout('master', [
                                 <div class="x_content">
 
                                     <form class="form-horizontal form-label-left"
-                                          action="http://www.paloviejosa.com/crm/index.php/citas/guardarCita"
+                                          action="<?php echo base_url()?>citas/guardarCita"
                                           method="post">
 
                                         <?php
