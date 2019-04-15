@@ -146,7 +146,7 @@ $(document).ready(function () {
         var  notificacionId = $(this).find('.notificacionId').val();
         //llamada ajax para apagar la notificacion
         $.ajax({
-            url: "http://paloviejosa.com/crm/index.php/notificaciones/notificacionOff/"+notificacionId,
+            url: "https://crm.paloviejosa.com/notificaciones/notificacionOff/"+notificacionId,
         }).done(function() {
         });
     });

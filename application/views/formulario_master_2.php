@@ -13,11 +13,34 @@ $this->layout('master', [
 	'alertas_s'        => $alertas_supervisor
 ]);
 
+$fecha= New DateTime();
 $prospecto = $prospecto->row();
 $proceso   = $proceso->row();
 if($formulario_1){
     $formulario_1 = $formulario_1->row();
-    $fecha= New DateTime();
+}else{
+    $formulario_1->fm_1_proceso_id= '';
+    $formulario_1->fm_1_prospecto_id= '';
+    $formulario_1->fm_1_nombre= '';
+    $formulario_1->fm_1_edad= '';
+    $formulario_1->fm_1_nit= '';
+    $formulario_1->fm_1_dpi= '';
+    $formulario_1->fm_1_extendido_en= '';
+    $formulario_1->fm_1_nacionalidad= '';
+    $formulario_1->fm_1_estado_civil= '';
+    $formulario_1->fm_1_profesión= '';
+    $formulario_1->fm_1_direccion= '';
+    $formulario_1->fm_1_correo= '';
+    $formulario_1->fm_1_telefono_casa= '';
+    $formulario_1->fm_1_telefono_celular= '';
+    $formulario_1->fm_1_nombre_sucesor= '';
+    $formulario_1->fm_1_dpi_sucesor= '';
+    $formulario_1->fm_1_extendido_en_sucesor= '';
+    $formulario_1->fm_1_correo_sucesor= '';
+    $formulario_1->fm_1_telefono_sucesor= '';
+}
+if($formulario_2){
+    $formulario_2 = $formulario_2->row();
 }else{
 
 }

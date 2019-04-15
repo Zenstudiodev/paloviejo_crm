@@ -99,6 +99,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                     <li><a href="<?php echo base_url(); ?>cotizador/crear_items_acabado">Items para acabados</a>
                                     </li>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                    <li><a href="<?php echo base_url(); ?>admin/administrar_proyectos">Administrar proyectos</a>
+                                    </li>
+                                    <?php } ?>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_tipos_casas">Administrar tipos de casas</a>
+                                        </li>
+                                    <?php } ?>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_casas">Administrar casas</a>
+                                        </li>
+                                    <?php } ?>
                                 </ul>
                             </li>
                         </ul>

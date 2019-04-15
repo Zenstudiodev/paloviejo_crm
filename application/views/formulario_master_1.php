@@ -19,8 +19,8 @@ $proceso   = $proceso->row();
 if($formulario_1){
     $formulario_1 = $formulario_1->row();
 }else{
-
-
+    $formulario_1->fm_1_proceso_id= '';
+    $formulario_1->fm_1_prospecto_id= '';
     $formulario_1->fm_1_nombre= '';
     $formulario_1->fm_1_edad= '';
     $formulario_1->fm_1_nit= '';
@@ -38,26 +38,6 @@ if($formulario_1){
     $formulario_1->fm_1_extendido_en_sucesor= '';
     $formulario_1->fm_1_correo_sucesor= '';
     $formulario_1->fm_1_telefono_sucesor= '';
-    /*
-    [fm_1_proceso_id] => 1
-    [fm_1_prospecto_id] => 1
-    [] => Juan Lopez
-    [] => 28
-    [] => 2551343-5
-    [] => 4875009100101
-    [] => guatemala
-    [] => Guatemala
-    [] => soltero
-    [] => Comerciante
-    [] => 9av 1-11 z1
-    [] => carlossamayoa27@gmail.com
-    [] => 56315242
-    [] => 56315242
-    [] => Carlos Samayoa
-    [] => 89876456
-    [] => guatemala
-    [] => carlossamayoa27@gmail.com
-    [] => +50256315242*/
 }
 
 
