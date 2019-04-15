@@ -84,6 +84,11 @@ class Formularios_model extends CI_Model
 		$query = $this->db->get('formulario_master_2');
 		if ($query->num_rows() > 0) return $query;
 	}
+    function get_formulario_2_extras($proceso_id){
+        $this->db->where('fm_2_extra_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_2_extra');
+        if ($query->num_rows() > 0) return $query;
+    }
 
 	function get_formulario_3($proceso_id){
 		$this->db->where('fm_2_proceso_id', $proceso_id);

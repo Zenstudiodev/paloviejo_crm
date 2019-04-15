@@ -16,6 +16,50 @@ $this->layout('master', [
 $prospecto = $prospecto->row();
 $proceso   = $proceso->row();
 
+if($formulario_1){
+    $formulario_1 = $formulario_1->row();
+}else{
+
+
+    $formulario_1->fm_1_nombre= '';
+    $formulario_1->fm_1_edad= '';
+    $formulario_1->fm_1_nit= '';
+    $formulario_1->fm_1_dpi= '';
+    $formulario_1->fm_1_extendido_en= '';
+    $formulario_1->fm_1_nacionalidad= '';
+    $formulario_1->fm_1_estado_civil= '';
+    $formulario_1->fm_1_profesión= '';
+    $formulario_1->fm_1_direccion= '';
+    $formulario_1->fm_1_correo= '';
+    $formulario_1->fm_1_telefono_casa= '';
+    $formulario_1->fm_1_telefono_celular= '';
+    $formulario_1->fm_1_nombre_sucesor= '';
+    $formulario_1->fm_1_dpi_sucesor= '';
+    $formulario_1->fm_1_extendido_en_sucesor= '';
+    $formulario_1->fm_1_correo_sucesor= '';
+    $formulario_1->fm_1_telefono_sucesor= '';
+    /*
+    [fm_1_proceso_id] => 1
+    [fm_1_prospecto_id] => 1
+    [] => Juan Lopez
+    [] => 28
+    [] => 2551343-5
+    [] => 4875009100101
+    [] => guatemala
+    [] => Guatemala
+    [] => soltero
+    [] => Comerciante
+    [] => 9av 1-11 z1
+    [] => carlossamayoa27@gmail.com
+    [] => 56315242
+    [] => 56315242
+    [] => Carlos Samayoa
+    [] => 89876456
+    [] => guatemala
+    [] => carlossamayoa27@gmail.com
+    [] => +50256315242*/
+}
+
 
 ?>
 <?php $this->start('css_p') ?>
@@ -50,7 +94,6 @@ $proceso   = $proceso->row();
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>DATOS GENERALES PROMITENTE COMPRADOR</h2>
-
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -63,6 +106,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'nombre',
 								'placeholder'                => 'Nombre',
 								'type'                       => 'text',
+								'value'                       => $formulario_1->fm_1_nombre,
 								'class'                      => 'form-control has-feedback-left ',
 								'required'                   => 'required'
 							);
@@ -71,6 +115,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'edad',
 								'placeholder'                => 'Edad',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_edad,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -79,6 +124,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'nit',
 								'placeholder'                => 'Nit',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_nit,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -87,6 +133,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'dpi',
 								'placeholder'                => 'DPI',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_dpi,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -95,6 +142,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'extendido_en',
 								'placeholder'                => 'Extendido en ',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_extendido_en,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -103,6 +151,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'nacionalidad',
 								'placeholder'                => 'Nacionalidad',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_nacionalidad,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -111,6 +160,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'estado_civil',
 								'placeholder'                => 'Estado cilvil',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_estado_civil,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -119,6 +169,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'profesion',
 								'placeholder'                => 'Profesión',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_profesión,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -127,6 +178,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'direccion',
 								'placeholder'                => 'Dirección',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_direccion,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -135,6 +187,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'correo',
 								'placeholder'                => 'Correo eléctronico',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_correo,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -143,6 +196,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'telefono_casa',
 								'placeholder'                => 'Teléfono de casa',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_telefono_casa,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -151,6 +205,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'telefono_celular',
 								'placeholder'                => 'Teléfono celular',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_telefono_celular,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -159,6 +214,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'nombre_sucesor',
 								'placeholder'                => 'Nombre',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_nombre_sucesor,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -167,6 +223,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'dpi_sucesor',
 								'placeholder'                => 'DPI',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_dpi_sucesor,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -175,6 +232,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'extendido_en_sucesor',
 								'placeholder'                => 'Extendido en ',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_extendido_en_sucesor,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -183,6 +241,7 @@ $proceso   = $proceso->row();
 								'id'                         => 'correo_sucesor',
 								'placeholder'                => 'Correo elèctronico sucesor',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_correo_sucesor,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required'
 							);
@@ -191,9 +250,9 @@ $proceso   = $proceso->row();
 								'id'                         => 'codigo_cliente',
 								'placeholder'                => 'Teléfono sucesor',
 								'type'                       => 'text',
+                                'value'                       => $formulario_1->fm_1_telefono_sucesor,
 								'class'                      => 'form-control has-feedback-left',
 								'required'                   => 'required',
-								'value'                   => 'required'
 							);
 							?>
 

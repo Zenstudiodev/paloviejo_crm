@@ -233,6 +233,8 @@ class Formulario extends Base_Controller
             $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
+            //formulario_master 1
+            $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_prceso']);
 
         }
         $data['title'] = 'Detalle de prospecto';
@@ -292,8 +294,8 @@ class Formulario extends Base_Controller
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
             //Formulario 1
             $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_prceso']);
-
-
+            $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_prceso']);
+            $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_prceso']);
         }
         $data['title'] = 'Detalle de prospecto';
         echo $this->templates->render('formulario_master_2', $data);
