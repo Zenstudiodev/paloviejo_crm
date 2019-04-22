@@ -23,8 +23,10 @@ class Admin extends Base_Controller
     public function index()
     {
     }
+
     //proyectos
-    public function administrar_proyectos(){
+    public function administrar_proyectos()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -38,7 +40,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de proyectos';
         echo $this->templates->render('listado_proyectos', $data);
     }
-    public function administrar_proyectos_inactivos(){
+
+    public function administrar_proyectos_inactivos()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -52,7 +56,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de proyectos';
         echo $this->templates->render('listado_proyectos', $data);
     }
-    public function crear_proyecto(){
+
+    public function crear_proyecto()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -66,7 +72,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de proyectos';
         echo $this->templates->render('crear_proyecto', $data);
     }
-    public function guardar_proyecto(){
+
+    public function guardar_proyecto()
+    {
         $data = array(
             'nombre' => $this->input->post('nombre'),
             'tipo' => $this->input->post('tipo'),
@@ -77,7 +85,9 @@ class Admin extends Base_Controller
         $this->Admin_model->guardar_proyecto($data);
         redirect(base_url() . 'admin/administrar_proyectos/');
     }
-    public function editar_proyecto(){
+
+    public function editar_proyecto()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -93,7 +103,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Editar proyecto';
         echo $this->templates->render('editar_proyecto', $data);
     }
-    public function actualizar_proyecto(){
+
+    public function actualizar_proyecto()
+    {
         $data = array(
             'proyecto_id' => $this->input->post('proyecto_id'),
             'nombre' => $this->input->post('nombre'),
@@ -105,9 +117,14 @@ class Admin extends Base_Controller
         $this->Admin_model->actualizar_proyecto($data);
         redirect(base_url() . 'admin/administrar_proyectos/');
     }
-    public function desactivar_proyecto(){}
+
+    public function desactivar_proyecto()
+    {
+    }
+
     //tipos de casas
-    public function administrar_tipos_casas(){
+    public function administrar_tipos_casas()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -121,7 +138,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de tipos de casas';
         echo $this->templates->render('listado_tipos_casa', $data);
     }
-    public function crear_tipo_de_casa(){
+
+    public function crear_tipo_de_casa()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -135,13 +154,71 @@ class Admin extends Base_Controller
         $data['title'] = 'Crear tipo de casa';
         echo $this->templates->render('crear_tipo_casa', $data);
     }
-    public function guardar_tipo_de_casa(){}
-    public function editar_tipo_de_casa(){}
-    public function actualizar_tipo_de_casa(){}
-    public function desactivar_tipo_de_casa(){}
-    //porpiedades
-    public function administrar_casas(){}
 
+    public function guardar_tipo_de_casa()
+    {
+        //print_contenido($_POST);
+        $data = array(
+            'nombre' => $this->input->post('nombre'),
+            'proyecto' => $this->input->post('proyecto'),
+        );
+        $this->Admin_model->guardar_tipo_casa($data);
+        redirect(base_url() . 'admin/administrar_tipos_casas/');
+    }
+
+    public function editar_tipo_de_casa()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        $data['proyectos'] = $this->Admin_model->get_proyectos();
+        //tipo de casa
+        //datos del proyectop
+        $tipo_casa_id = $this->uri->segment(3);
+        //datos tipo_casa
+        $data['datos_tipo_casa'] = $this->Admin_model->get_info_tipo_casa_by_id($tipo_casa_id);
+        $data['title'] = 'Crear tipo de casa';
+        echo $this->templates->render('editar_tipo_casa', $data);
+    }
+
+    public function actualizar_tipo_de_casa()
+    {
+        $data = array(
+            'tipo_casa_id' => $this->input->post('tipo_casa_id'),
+            'nombre' => $this->input->post('nombre'),
+            'proyecto' => $this->input->post('proyecto'),
+            'estado' => $this->input->post('estado'),
+        );
+        $this->Admin_model->actualizar_tipo_casa($data);
+        redirect(base_url() . 'admin/administrar_tipos_casas/');
+    }
+
+    public function desactivar_tipo_de_casa()
+    {
+    }
+
+    //porpiedades
+    public function administrar_casas()
+    {
+    }
+    public function crear_casa(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        $data['proyectos'] = $this->Admin_model->get_proyectos();
+        $data['title'] = 'Crear tipo de casa';
+        echo $this->templates->render('crear_casa', $data);
+    }
 
 
 }

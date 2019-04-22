@@ -12,6 +12,10 @@ $this->layout('master', [
     'alertas' => $alertas,
     'alertas_s' => $alertas_supervisor
 ]);
+
+$datos_tipo_casa = $datos_tipo_casa->row();
+
+
 ?>
 <?php $this->start('css_p') ?>
 <!--cargamos css personalizado-->
@@ -45,7 +49,7 @@ $this->layout('master', [
                             </div>
                             <div class="x_content">
                                 <form class="form-horizontal form-label-left"
-                                      action="<?php echo base_url(); ?>admin/guardar_tipo_de_casa"
+                                      action="<?php echo base_url(); ?>admin/actualizar_tipo_de_casa"
                                       method="post" novalidate>
                                     <?php
                                     $nombre = array(
@@ -53,9 +57,8 @@ $this->layout('master', [
                                         'id' => 'nombre',
                                         'placeholder' => 'Nombre',
                                         'type' => 'text',
+                                        'value' => $datos_tipo_casa->nombre_casa,
                                         'class' => 'form-control col-md-7 col-xs-12',
-                                        'data-validate-length-range'=>'6',
-                                        'data-validate-words'=>'2',
                                         'required' => 'required'
                                     );
 
@@ -83,9 +86,8 @@ $this->layout('master', [
                                         'required' => 'required'
                                     );
                                     $estadoOptions = array(
-                                        'Activo' => 'activo',
-                                        'Vendido' => 'vendido',
-                                        'Inactivo' => 'Inactivo',
+                                        'activo' => 'activo',
+                                        'inactivo' => 'Inactivo',
                                     );
                                     ?>
                                     <div class="item form-group">
@@ -101,7 +103,7 @@ $this->layout('master', [
                                                     class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <?php echo form_dropdown($proyecto, $proyectoOptions) ?>
+                                            <?php echo form_dropdown($proyecto, $proyectoOptions, $datos_tipo_casa->proyecto_id) ?>
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -109,7 +111,7 @@ $this->layout('master', [
                                                     class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <?php echo form_dropdown($estado, $estadoOptions) ?>
+                                            <?php echo form_dropdown($estado, $estadoOptions, $datos_tipo_casa->estado_tipo_casa) ?>
                                         </div>
                                     </div>
 
@@ -117,6 +119,7 @@ $this->layout('master', [
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
+                                            <input type="hidden" name="tipo_casa_id" value="<?php echo $datos_tipo_casa->tipo_casa_id; ?>" >
                                             <button type="reset" class="btn btn-primary">Cancelar</button>
                                             <!--<a class="btn btn-success" href="<?php /*echo base_url(); */ ?>index.php/prospectos/prospectosList">Guardar</a>-->
                                             <button id="send" type="submit" class="btn btn-success">Guardar</button>

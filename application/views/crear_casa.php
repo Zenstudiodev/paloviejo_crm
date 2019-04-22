@@ -48,14 +48,12 @@ $this->layout('master', [
                                       action="<?php echo base_url(); ?>admin/guardar_tipo_de_casa"
                                       method="post" novalidate>
                                     <?php
-                                    $nombre = array(
-                                        'name' => 'nombre',
-                                        'id' => 'nombre',
-                                        'placeholder' => 'Nombre',
+                                    $lote = array(
+                                        'name' => 'lote',
+                                        'id' => 'lote',
+                                        'placeholder' => 'Lote',
                                         'type' => 'text',
                                         'class' => 'form-control col-md-7 col-xs-12',
-                                        'data-validate-length-range'=>'6',
-                                        'data-validate-words'=>'2',
                                         'required' => 'required'
                                     );
 
@@ -73,12 +71,10 @@ $this->layout('master', [
                                             $proyectoOptions[$proyecto_i->proyecto_id] = strtoupper($proyecto_i->nombre_proyecto);
                                         }
                                     }
-
-
-                                    $estado = array(
-                                        'name' => 'estado',
-                                        'id' => 'estado',
-                                        'placeholder' => 'estado',
+                                    $tipo_casa = array(
+                                        'name' => 'tipo_casa',
+                                        'id' => 'tipo_casa',
+                                        'placeholder' => 'Tipo de casa',
                                         'class' => 'form-control col-md-7 col-xs-12',
                                         'required' => 'required'
                                     );

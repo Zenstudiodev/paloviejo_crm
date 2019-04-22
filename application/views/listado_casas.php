@@ -38,7 +38,7 @@ setlocale(LC_ALL,"es_ES");
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Tipos de casas</h3>
+                <h3>Proyectos</h3>
             </div>
         </div>
 
@@ -48,7 +48,7 @@ setlocale(LC_ALL,"es_ES");
             <div class="col-md-12">
 
                 <div class="x_panel">
-                    <?php if ($tipos_de_casa){ ?>
+                    <?php if ($proyectos){ ?>
                     <div class="x_title">
                         <h2><?php echo $title;?></h2>
 
@@ -71,34 +71,43 @@ setlocale(LC_ALL,"es_ES");
                             </div>
                         </form>
                         <?php }?>
-                        <a class="btn btn-success" href="<?php echo base_url().'admin/crear_tipo_de_casa'?>">Crear tipo de casa</a>
+                        <a class="btn btn-success" href="<?php echo base_url().'admin/crear_proyecto'?>">Crear proyecto</a>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>proyecto</th>
+                                <th>tipo</th>
+                                <th>descripcion</th>
+                                <th>estado</th>
+                                <th>Accion</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($tipos_de_casa->result() as $casa) {
+                            foreach ($proyectos->result() as $proyecto) {
                                 ?>
                                 <tr>
                                     <td>
-                                        <?php echo $casa->tipo_casa_id; ?>
+                                        <?php echo $proyecto->proyecto_id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->nombre_casa; ?>
+                                        <?php echo $proyecto->nombre_proyecto; ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->proyecto_id; ?>
+                                        <?php echo $proyecto->tipo_proyecto; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/editar_tipo_de_casa/'.$casa->tipo_casa_id; ?>"
+                                        <?php echo $proyecto->descripcion_proyecto; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $proyecto->estado_proyecto; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo base_url().'admin/editar_proyecto/'.$proyecto->proyecto_id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
-                                        <a href="<?php echo base_url().'admin/desactivar_tipo_de_casa/'.$casa->tipo_casa_id; ?>"
+                                        <a href="<?php echo base_url().'admin/desactivar_proyecto/'.$proyecto->proyecto_id; ?>"
                                            class="btn btn-danger btn-xs"><i class="fa fa-file-text-o"></i> desactivar </a>
 
 
@@ -157,6 +166,99 @@ setlocale(LC_ALL,"es_ES");
             default:
                 window.location.replace('<?php echo base_url().'index.php/prospectos/prospectosList'?>');
         }
+    });
+
+    /* DATA TABLES */
+
+    function init_DataTables() {
+
+        console.log('run_datatables');
+
+        if (typeof ($.fn.DataTable) === 'undefined') {
+            return;
+        }
+        console.log('init_DataTables');
+
+        var handleDataTableButtons = function () {
+            if ($("#datatable-buttons").length) {
+                $("#datatable-buttons").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                        {
+                            extend: "copy",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "csv",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "excel",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "print",
+                            className: "btn-sm"
+                        },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+                {orderable: false, targets: [0]}
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('checkbox input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+
+    };
+
+    $(document).ready(function () {
+        init_DataTables();
     });
 
 </script>

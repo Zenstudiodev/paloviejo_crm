@@ -38,7 +38,7 @@ setlocale(LC_ALL,"es_ES");
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Tipos de casas</h3>
+                <h3>Prospectos</h3>
             </div>
         </div>
 
@@ -48,7 +48,7 @@ setlocale(LC_ALL,"es_ES");
             <div class="col-md-12">
 
                 <div class="x_panel">
-                    <?php if ($tipos_de_casa){ ?>
+                    <?php if ($prospectos){ ?>
                     <div class="x_title">
                         <h2><?php echo $title;?></h2>
 
@@ -56,7 +56,7 @@ setlocale(LC_ALL,"es_ES");
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                        <?php if(puede_ver($rol, array('0','1','2','3'))){;?>
                         <form class="form-horizontal form-label-left">
 
                             <div class="form-group">
@@ -71,39 +71,66 @@ setlocale(LC_ALL,"es_ES");
                             </div>
                         </form>
                         <?php }?>
-                        <a class="btn btn-success" href="<?php echo base_url().'admin/crear_tipo_de_casa'?>">Crear tipo de casa</a>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                <th>usuario</th>
+                                <?php }?>
                                 <th>Nombre</th>
-                                <th>proyecto</th>
+                                <th>Medio</th>
+                                <th>Creado</th>
+                                <th>Actualizado en</th>
+                                <th>Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($tipos_de_casa->result() as $casa) {
+
+                            foreach ($prospectos->result() as $prospecto) {
                                 ?>
                                 <tr>
                                     <td>
-                                        <?php echo $casa->tipo_casa_id; ?>
+                                        <?php echo $prospecto->id; ?>
+                                    </td>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                    <td>
+                                        <a href="<?php echo base_url().'Users/detalle/'.$prospecto->user_id;?>"><?php echo $prospecto->user_id; ?></a>
+                                    </td>
+                                    <?php }?>
+                                    <td>
+                                        <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"><?php echo $prospecto->nombre1; ?></a>
+                                    </td>
+                                    <td><?php echo $prospecto->medio ?></td>
+                                    <td>
+                                        <?php
+                                        $creado_en = new DateTime($prospecto->creado_en);
+                                        echo $creado_en->format('d-m-Y H:i:s') ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->nombre_casa; ?>
+                                        <?php
+
+                                        $ActualizadoEn = new DateTime($prospecto->actualizado_en);
+                                        echo $ActualizadoEn->format('d-m-Y') ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->proyecto_id; ?>
+                                        <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"
+                                           class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
+                                        <a href="prospectoCita/<?php echo $prospecto->id; ?>"
+                                           class="btn btn-info btn-xs"><i class="fa fa-calendar"></i> Cita </a>
+                                        <a href="prospectoTarea/<?php echo $prospecto->id; ?>"
+                                           class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Tarea </a>
+
+                                        <?php
+                                        // control de acciones
+                                        if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                            <a href="<?php echo base_url().'prospectos/prospectoEditar/'.$prospecto->id; ?>"
+                                               class="btn btn-warning btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
+                                        <?php } ?>
+
                                     </td>
-                                    <td>
-                                        <a href="<?php echo base_url().'admin/editar_tipo_de_casa/'.$casa->tipo_casa_id; ?>"
-                                           class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
-                                        <a href="<?php echo base_url().'admin/desactivar_tipo_de_casa/'.$casa->tipo_casa_id; ?>"
-                                           class="btn btn-danger btn-xs"><i class="fa fa-file-text-o"></i> desactivar </a>
-
-
-                                    </td>
-
                                 </tr>
                             <?php } ?>
                             </tbody>
@@ -157,6 +184,99 @@ setlocale(LC_ALL,"es_ES");
             default:
                 window.location.replace('<?php echo base_url().'index.php/prospectos/prospectosList'?>');
         }
+    });
+
+    /* DATA TABLES */
+
+    function init_DataTables() {
+
+        console.log('run_datatables');
+
+        if (typeof ($.fn.DataTable) === 'undefined') {
+            return;
+        }
+        console.log('init_DataTables');
+
+        var handleDataTableButtons = function () {
+            if ($("#datatable-buttons").length) {
+                $("#datatable-buttons").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                        {
+                            extend: "copy",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "csv",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "excel",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            className: "btn-sm"
+                        },
+                        {
+                            extend: "print",
+                            className: "btn-sm"
+                        },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+                {orderable: false, targets: [0]}
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('checkbox input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+
+    };
+
+    $(document).ready(function () {
+        init_DataTables();
     });
 
 </script>
