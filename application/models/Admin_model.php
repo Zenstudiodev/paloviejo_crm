@@ -57,6 +57,12 @@ class Admin_model extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    function get_tipos_casa_by_proyecto_id($proyecto_id){
+        $this->db->where('proyecto_id',$proyecto_id);
+        $query = $this->db->get('tipos_casa');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
     function guardar_tipo_casa($data){
         $tipo_casa= array(
             'nombre_casa'=>$data['nombre'],
@@ -81,5 +87,19 @@ class Admin_model extends CI_Model
         $this->db->where('tipo_casa_id', $data['tipo_casa_id']);
         $query = $this->db->update('tipos_casa',$tipo_casa);
     }
-
+    function guardar_casa($data){
+        $tipo_casa= array(
+            'lote'=>$data['lote'],
+            'proyecto_id'=>$data['proyecto'],
+            'tipo_casa_id'=>$data['tipo_casa']
+        );
+        $this->db->insert('control_casas', $tipo_casa);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    function get_casas(){
+        $query = $this->db->get('control_casas');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
 }

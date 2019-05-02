@@ -45,6 +45,42 @@ class Formularios_model extends CI_Model
 		$query = $this->db->get('formulario_master_1');
 		if ($query->num_rows() > 0) return $query;
 	}
+	function lleno_master_1($proceso_id){
+        $this->db->where('fm_1_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_1');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
+    function lleno_master_2($proceso_id){
+        $this->db->where('fm_2_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_2');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
+    function lleno_master_3($proceso_id){
+        $this->db->where('fm_3_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_3');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
+    function lleno_master_4($proceso_id){
+        $this->db->where('fm_4__proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_4');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
+    function lleno_master_5($proceso_id){
+        $this->db->where('fm_5_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_5');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
+    function lleno_master_6($proceso_id){
+        $this->db->where('fm_6_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_6');
+        if ($query->num_rows() > 0) return true;
+        else return false;
+    }
 	function guardar_master_2($fomrDdata){
 
 		$data= array(
@@ -89,12 +125,36 @@ class Formularios_model extends CI_Model
         $query = $this->db->get('formulario_master_2_extra');
         if ($query->num_rows() > 0) return $query;
     }
-
 	function get_formulario_3($proceso_id){
 		$this->db->where('fm_2_proceso_id', $proceso_id);
 		$query = $this->db->get('formulario_master_2');
 		if ($query->num_rows() > 0) return $query;
 	}
+	function guardar_formulario_3($formData){
+	    //
+        $data= array(
+            'fm_3_proceso_id'=>$formData['proceso_id'],
+            'fm_3_prospecto_id'=>$formData['prospecto_id'],
+            'fm_3_enganche'=>$formData['enganche'],
+            'fm_3_saldo'=>$formData['saldo'],
+            'fm_3_precio_total'=>$formData['preio_total'],
+        );
+        $this->db->insert('formulario_master_3', $data);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    function guardar_pagos_formulario_3($formData){
+        //
+        $data= array(
+            'fm_3_pago_id_formulario'=>$formData['formulario_id'],
+            'fm_3_pago_id_proceso'=>$formData['proceso_id'],
+            'fm_3_pago_id_prospecto'=>$formData['prospecto_id'],
+            'fm_3_pago_pago'=>$formData['pago'],
+            'fm_3_pago_fecha'=>$formData['fecha'],
+            'fm_3_pago_monto'=>$formData['monto'],
+        );
+        $this->db->insert('formulario_master_3_pagos', $data);
+    }
     function get_formulario_ive($datos){
         $this->db->where('five_proceso_id', $datos['proceso_id']);
         $this->db->where('five_prospecto_id', $datos['prospecto_id']);

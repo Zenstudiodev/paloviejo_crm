@@ -205,6 +205,17 @@ class Admin extends Base_Controller
     //porpiedades
     public function administrar_casas()
     {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        $data['casas'] = $this->Admin_model->get_casas();
+        $data['title'] = 'Listado de de casas';
+        echo $this->templates->render('listado_casas', $data);
     }
     public function crear_casa(){
         //comprobamos session desde el helper de sesion
@@ -218,6 +229,28 @@ class Admin extends Base_Controller
         $data['proyectos'] = $this->Admin_model->get_proyectos();
         $data['title'] = 'Crear tipo de casa';
         echo $this->templates->render('crear_casa', $data);
+    }
+    public function guardar_casa(){
+        $data = array(
+            'lote' => $this->input->post('lote'),
+            'proyecto' => $this->input->post('proyecto'),
+            'tipo_casa' => $this->input->post('tipo_casa'),
+        );
+
+        $this->Admin_model->guardar_casa($data);
+        redirect(base_url() . 'admin/administrar_casas/');
+
+    }
+    public function get_tipos_casa(){
+        header("Access-Control-Allow-Origin: *");
+        //datos del proyectop
+        $proyecto_id = $this->uri->segment(3);
+       // echo $proyecto_id;
+        $tipos_de_casa = $this->Admin_model->get_tipos_casa_by_proyecto_id($proyecto_id);
+        //imprimimos en formato json el resultado
+        if($tipos_de_casa) {
+            echo json_encode($tipos_de_casa->result_array());
+        }
     }
 
 

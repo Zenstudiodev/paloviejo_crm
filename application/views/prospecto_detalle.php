@@ -269,70 +269,92 @@ $this->layout('master', [
                                                                         DATOS GENERALES
 
                                                                     </a>
+                                                                    <?php if(lleno_master_1($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         DETALLES DE LA PROPIEDAD
 
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_2($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         FORMA DE PAGO
 
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_3($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         SI INCLUYE
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_4($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         NO INCLUYE
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_5($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         DATOS DE REGISTRO
                                                                     </a>
+                                                                    <?php }?>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
+                                                                    <?php if(lleno_master_1($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DATOS GENERALES
 
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_2($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DETALLES DE LA PROPIEDAD
 
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_3($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         FORMA DE PAGO
 
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_4($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         SI INCLUYE
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_5($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         NO INCLUYE
                                                                     </a>
+                                                                    <?php }?>
+                                                                    <?php if(lleno_master_6($proceso->id)){?>
                                                                     <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DATOS DE REGISTRO
                                                                     </a>
+                                                                    <?php }?>
                                                                 </div>
                                                             </div>
 

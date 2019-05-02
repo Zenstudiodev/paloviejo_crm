@@ -303,7 +303,6 @@ class Formulario extends Base_Controller
 
     public function guardar_master_2()
     {
-
         $form_2_data = array(
             'prospecto_id' => $this->input->post('prospecto_id'),
             'proceso_id' => $this->input->post('proceso_id'),
@@ -320,40 +319,29 @@ class Formulario extends Base_Controller
             'a_financiar' => $this->input->post('a_financiar'),
             'precio_total' => $this->input->post('precio_total'),
         );
-
         $formlario_id = $this->Formularios_model->guardar_master_2($form_2_data);
-
-
         $extra_fields_number = $this->input->post('extra_fields');
+        $extra_fields_number = $extra_fields_number -1;
         $i = 1;
         $extra_fields = array();
-
+        echo $extra_fields_number;
         while ($i <= $extra_fields_number) {
-
             $this->Formularios_model->guardar_master_2_extra($formlario_id, $form_2_data['proceso_id'], $form_2_data['prospecto_id'], $this->input->post('extra_d_' . $i), $this->input->post('extra_p_' . $i));
             $extra_fields['extra_detalle_' . $i] = $this->input->post('extra_d_' . $i);
             $extra_fields['extra_precio_' . $i] = $this->input->post('extra_p_' . $i);
-
+            //print_contenido($_POST);
             //echo 'accion a extra - '.$i;
-
-
-            $i++;  /* el valor presentado sería
-                   $i antes del incremento
-                   (post-incremento) */
+            $i++;
+            /* el valor presentado sería $i antes del incremento (post-incremento) */
         }
-
-
-        echo '<pre>';
+        /*echo '<pre>';
         print_r($form_2_data);
         echo '</pre>';
         echo '<pre>';
         print_r($extra_fields);
-        echo '</pre>';
-
-
-        //redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $data['prospecto_id']);
+        echo '</pre>';*/
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $form_2_data['prospecto_id']);
     }
-
     public function master_3()
     {
         //comprobamos session desde el helper de sesion
@@ -361,7 +349,7 @@ class Formulario extends Base_Controller
         //datos del prospecto
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
-        $data['segmento_prceso'] = $this->uri->segment(4);
+        $data['segmento_proceso'] = $this->uri->segment(4);
         if (!$data['segmento_prospecto']) {
             //redirect('prospectos/prospectosList', 'refresh');
         } else {
@@ -373,13 +361,13 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
-            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
+            $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_proceso']);
             //Formulario 1
-            $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_prceso']);
+            $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
             //Formulario 2
-            $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_prceso']);
+            $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
         }
         $data['title'] = 'Formulario 3';
         echo $this->templates->render('formulario_master_3', $data);
@@ -387,29 +375,45 @@ class Formulario extends Base_Controller
 
     public function guardar_master_3()
     {
-        echo '<pre>';
-        print_r($_POST);
-        echo '</pre>';
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
 
-        exit();
+        //guardar numero formulario 3
+        $datos_pago = array(
+            'proceso_id' => $proceso_id,
+            'prospecto_id' => $prospecto_id,
+            'enganche' => $this->input->post('enganche'),
+            'saldo' => $this->input->post('saldo_a_financiar'),
+            'preio_total' => $this->input->post('precio_total'),
+        );
+        //print_contenido($datos_pago);
+        $formlario_id = $this->Formularios_model->guardar_formulario_3($datos_pago);
 
+        //exit();
         $numero_de_pagos = $this->input->post('extra_fields');
         $i = 1;
+        // guardar pagos formulario 3
         $extra_fields = array();
-
         while ($i <= $numero_de_pagos) {
             //obtenemos los datos del pago
             $pago = $this->input->post('pago_' . $i);
             $fecha_pago = $this->input->post('fecha_pago_' . $i);
             $monto_pago = $this->input->post('monto_pago_' . $i);
-
-
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'formulario_id' => $formlario_id,
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'pago' => $pago,
+                'fecha' => $fecha_pago,
+                'monto' => $monto_pago,
+            );
+            $this->Formularios_model->guardar_pagos_formulario_3($datos_pagos);
             $i++;
         }
 
-        echo '<pre>';
-        //print_r($extra_fields);
-        echo '</pre>';
+       //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
 
     public function master_4()
@@ -425,8 +429,11 @@ class Formulario extends Base_Controller
         $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
 
-        $data['title'] = 'Formulario master 5';
+        $data['title'] = 'Formulario master 4';
         echo $this->templates->render('formulario_master_4', $data);
+    }
+    public function guardar_master_4(){
+
     }
 
     public function master_5()

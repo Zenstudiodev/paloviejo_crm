@@ -27,5 +27,47 @@ function tipo_casa_por_id($id){
 	$nombre_tipo_casa = $tipo_casa->row();
 	echo $nombre_tipo_casa->nombre_casa;
 }
+function lleno_master_1($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_1 = $CI->Formularios_model->lleno_master_1($proceso);
+    return $formulario_1;
+}
+function lleno_master_2($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_2 = $CI->Formularios_model->lleno_master_2($proceso);
+    return $formulario_2;
+}
+function lleno_master_3($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_3 = $CI->Formularios_model->lleno_master_3($proceso);
+    return $formulario_3;
+}
+function lleno_master_4($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_4 = $CI->Formularios_model->lleno_master_4($proceso);
+    return $formulario_4;
+}
+function lleno_master_5($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_5 = $CI->Formularios_model->lleno_master_5($proceso);
+    return $formulario_5;
+}
+function lleno_master_6($proceso){
+    // Get a reference to the controller object
+    $CI = get_instance();
+    // Call a function of the model
+    $formulario_6 = $CI->Formularios_model->lleno_master_6($proceso);
+    return $formulario_6;
+}
 
 ?>

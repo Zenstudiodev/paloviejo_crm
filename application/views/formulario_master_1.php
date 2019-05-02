@@ -226,8 +226,8 @@ if($formulario_1){
 								'required'                   => 'required'
 							);
 							$telefono_sucesor   = array(
-								'name'                       => 'codigo_cliente',
-								'id'                         => 'codigo_cliente',
+								'name'                       => 'telefono_sucesor',
+								'id'                         => 'telefono_sucesor',
 								'placeholder'                => 'Teléfono sucesor',
 								'type'                       => 'text',
                                 'value'                       => $formulario_1->fm_1_telefono_sucesor,

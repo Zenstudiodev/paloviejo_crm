@@ -142,7 +142,7 @@ $master_2 = $formulario_master_2->row();
                         */?>
                         </pre>-->
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
+                              action="<?php echo base_url(); ?>Formulario/guardar_master_4"
                               method="post" >
                             <div class="x_title">
                                 <h2>Si incluye</h2>

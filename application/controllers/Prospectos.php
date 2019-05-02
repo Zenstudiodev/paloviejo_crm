@@ -28,6 +28,7 @@ class Prospectos extends Base_Controller
         $this->load->model('Tarea');
         $this->load->model('User');
         $this->load->model('Proceso_model');
+        $this->load->model('Formularios_model');
         $this->load->model('Notificaciones_model');
         //Helpers
         $this->load->helper('notificaciones');

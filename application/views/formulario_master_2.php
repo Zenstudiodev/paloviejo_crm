@@ -88,7 +88,7 @@ if($formulario_2){
                     <div class="x_content">
 
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
+                              action="<?php echo base_url(); ?>formulario/guardar_master_2"
                               method="post" >
                             <!--<pre>
                                 <?php /*print_r($formulario_1);*/?>
@@ -198,7 +198,7 @@ if($formulario_2){
                                 <input type="hidden" name="extra_fields" id="extra_fields">
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control extra"
                                                placeholder="Detalle"
                                                value="Gabinetes de cocina" id="extra_d_1" name="extra_d_1" required>
                                     </div>
@@ -210,7 +210,7 @@ if($formulario_2){
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control extra"
                                                placeholder="Detalle"
                                                value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2" >
                                     </div>
@@ -222,7 +222,7 @@ if($formulario_2){
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control extra"
                                                placeholder="Detalle"
                                                value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli" id="extra_d_3" name="extra_d_3">
                                     </div>
@@ -237,6 +237,7 @@ if($formulario_2){
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
+                                        <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -337,19 +338,19 @@ if($formulario_2){
     var extra_count;
     $(document).ready(function () {
         //init_validator();
-        extra_count = 3;
+        extras = $(".extra").length;
+        extra_count = 4;
         $("#extra_fields").val(extra_count);
     });
     $("#add_extra").click(function () {
         console.log('antes de añadir ' +extra_count);
-
         var extra_field;
-        extra_field ='<div class="form-group">';
+        extra_field ='<div class="form-group" id="container_'+ extra_count +'">';
         extra_field +='<div class="col-md-6 col-sm-6 col-xs-12">';
-        extra_field +='<input type="text" class="form-control" placeholder="Detalle" value="" value="" id="extra_d_'+ extra_count +'" name="extra_d_'+extra_count+'">';
+        extra_field +='<input type="text" class="form-control" placeholder="Detalle"   id="extra_d_'+ extra_count +'" name="extra_d_'+extra_count+'">';
         extra_field +='</div>';
         extra_field +='<div class="col-md-6 col-sm-6 col-xs-12">';
-        extra_field +='<input type="text" class="form-control" placeholder="Precio" value="" id="extra_d_'+extra_count+'" name="extra_d_'+extra_count+'">';
+        extra_field +='<input type="text" class="form-control" placeholder="Precio" id="extra_p_'+extra_count+'" name="extra_p_'+extra_count+'">';
         extra_field +='</div>';
         extra_field +='</div>';
 
@@ -358,7 +359,15 @@ if($formulario_2){
         $("#extra_fields").val(extra_count);
         console.log('luego de añadir ' +extra_count);
     });
+    $("#delete_extra").click(function () {
+        console.log(extra_count);
+        extra_count -= 1;
 
+        console.log(extra_count);
+        container_d = "#container_"+extra_count;
+        console.log(container_d);
+        $(container_d).remove();
+    });
 
 </script>
 

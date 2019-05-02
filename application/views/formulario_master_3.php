@@ -109,7 +109,7 @@ $precio_total = array(
 
 
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_3"
+                              action="<?php echo base_url(); ?>formulario/guardar_master_3"
                               method="post">
                            <!-- <pre>
                                 <?php /*print_r($formulario_1); */?>
@@ -188,6 +188,8 @@ $precio_total = array(
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
+                                <input type="hidden" name="prospecto" value="<?php echo $prospecto->id;?>">
+                                <input type="hidden" name="proceso" value="<?php echo $proceso->id;?>">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                     <button type="submit" class="btn btn-success">Guardar</button>
                                 </div>

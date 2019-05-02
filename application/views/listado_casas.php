@@ -48,7 +48,7 @@ setlocale(LC_ALL,"es_ES");
             <div class="col-md-12">
 
                 <div class="x_panel">
-                    <?php if ($proyectos){ ?>
+                    <?php if ($casas){ ?>
                     <div class="x_title">
                         <h2><?php echo $title;?></h2>
 
@@ -77,7 +77,7 @@ setlocale(LC_ALL,"es_ES");
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
+                                <th>Lote</th>
                                 <th>tipo</th>
                                 <th>descripcion</th>
                                 <th>estado</th>
@@ -86,29 +86,29 @@ setlocale(LC_ALL,"es_ES");
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($proyectos->result() as $proyecto) {
+                            foreach ($casas->result() as $casa) {
                                 ?>
                                 <tr>
                                     <td>
-                                        <?php echo $proyecto->proyecto_id; ?>
+                                        <?php echo $casa->casa_id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $proyecto->nombre_proyecto; ?>
+                                        <?php echo $casa->lote; ?>
                                     </td>
                                     <td>
-                                        <?php echo $proyecto->tipo_proyecto; ?>
+                                        <?php echo $casa->proyecto_id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $proyecto->descripcion_proyecto; ?>
+                                        <?php echo $casa->tipo_casa_id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $proyecto->estado_proyecto; ?>
+                                        <?php echo $casa->estado; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/editar_proyecto/'.$proyecto->proyecto_id; ?>"
+                                        <a href="<?php echo base_url().'admin/editar_proyecto/'.$casa->casa_id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
-                                        <a href="<?php echo base_url().'admin/desactivar_proyecto/'.$proyecto->proyecto_id; ?>"
-                                           class="btn btn-danger btn-xs"><i class="fa fa-file-text-o"></i> desactivar </a>
+                                        <a href="<?php echo base_url().'admin/desactivar_proyecto/'.$casa->casa_id; ?>"
+                                           class="btn btn-success btn-xs"><i class="fa fa-file-text-o"></i> Reseervar </a>
 
 
                                     </td>
