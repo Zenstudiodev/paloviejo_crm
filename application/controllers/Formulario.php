@@ -350,7 +350,7 @@ class Formulario extends Base_Controller
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-        if (!$data['segmento_prospecto']) {
+         if (!$data['segmento_prospecto']) {
             //redirect('prospectos/prospectosList', 'refresh');
         } else {
             //alertas y notificaciones
@@ -424,18 +424,46 @@ class Formulario extends Base_Controller
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
+        if (!$data['segmento_prospecto']) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            //alertas y notificaciones
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
 
-        $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
-        $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
-        //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
+            //datos a pasar a vista
+            //pospecto
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            //proceso
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
+            //Formulario 1
+            $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+            $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_proceso']);
+        }
 
         $data['title'] = 'Formulario master 4';
         echo $this->templates->render('formulario_master_4', $data);
     }
     public function guardar_master_4(){
-
+        $datos_formulario = array(
+            'prospecto'=>$this->input->post('prospecto'),
+            'proceso'=>$this->input->post('proceso'),
+            'tipo_gavinete'=>$this->input->post('tipo_gavinete'),
+            'descuento_promocion'=>$this->input->post('descuento_promocion'),
+            'deposito_energia'=>$this->input->post('deposito_energia'),
+            'seguro_incendio_terremoto'=>$this->input->post('seguro_incendio_terremoto'),
+            'cuota_seguro'=>$this->input->post('cuota_seguro'),
+            'avaluo_bancario'=>$this->input->post('avaluo_bancario'),
+            'porcentage_banrural'=>$this->input->post('porcentage_banrural'),
+        );
+        //guardar formulario
+        $this->Formularios_model->guardar_formularios_4($datos_formulario);
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $datos_formulario['prospecto']);
     }
-
     public function master_5()
     {
         //comprobamos session desde el helper de sesion
@@ -444,11 +472,9 @@ class Formulario extends Base_Controller
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-
         $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
         $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
-
         $data['title'] = 'Formulario master 5';
         echo $this->templates->render('formulario_master_5', $data);
     }
@@ -461,11 +487,9 @@ class Formulario extends Base_Controller
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-
         $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
         $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
-
         $data['title'] = 'Formulario master 6';
         echo $this->templates->render('formulario_master_6', $data);
     }
@@ -474,19 +498,15 @@ class Formulario extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
-
-
         //alertas y notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-
         //datos del prospecto
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-
         //pospecto
         $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
@@ -529,18 +549,15 @@ class Formulario extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
-
         //alertas y notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-
         //datos del prospecto
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-
         //pospecto
         $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso
@@ -583,18 +600,15 @@ class Formulario extends Base_Controller
     {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
-
         //alertas y notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-
         //datos del prospecto
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-
         //pospecto
         $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
         //proceso

@@ -12,9 +12,10 @@ $this->layout('master', [
 	'alertas'          => $alertas,
 	'alertas_s'        => $alertas_supervisor
 ]);
-
-$master_1 = $formulario_master_1->row();
-$master_2 = $formulario_master_2->row();
+$prospecto = $prospecto->row();
+$proceso = $proceso->row();
+$master_1 = $formulario_1->row();
+$master_2 = $formulario_2->row();
 //$master_3 = $formulario_master_1->row();
 
 
@@ -212,6 +213,8 @@ $master_2 = $formulario_master_2->row();
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" name="prospecto" value="<?php echo $prospecto->id;?>">
+                                <input type="hidden" name="proceso" value="<?php echo $proceso->id;?>">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                     <button type="submit" class="btn btn-success">Guardar</button>
                                 </div>

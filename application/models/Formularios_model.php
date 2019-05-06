@@ -64,7 +64,7 @@ class Formularios_model extends CI_Model
         else return false;
     }
     function lleno_master_4($proceso_id){
-        $this->db->where('fm_4__proceso_id', $proceso_id);
+        $this->db->where('fm_4_proceso_id', $proceso_id);
         $query = $this->db->get('formulario_master_4');
         if ($query->num_rows() > 0) return true;
         else return false;
@@ -154,6 +154,22 @@ class Formularios_model extends CI_Model
             'fm_3_pago_monto'=>$formData['monto'],
         );
         $this->db->insert('formulario_master_3_pagos', $data);
+    }
+    function guardar_formularios_4($fomrDdata){
+        $data= array(
+            'fm_4_proceso_id'=>$fomrDdata['proceso'],
+            'fm_4_prospecto'=>$fomrDdata['prospecto'],
+            'fm_4_gabinete'=>$fomrDdata['tipo_gavinete'],
+            'fm_4_descuento'=>$fomrDdata['descuento_promocion'],
+            'fm_4_seguro'=>$fomrDdata['seguro_incendio_terremoto'],
+            'fm_4_cuota_seguro'=>$fomrDdata['cuota_seguro'],
+            'fm_4_avaluo'=>$fomrDdata['avaluo_bancario'],
+            'fm_4_porcentaje_banrural'=>$fomrDdata['porcentage_banrural'],
+            'fm_4_deposito_energia'=>$fomrDdata['deposito_energia'],
+        );
+        $this->db->insert('formulario_master_4', $data);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
     }
     function get_formulario_ive($datos){
         $this->db->where('five_proceso_id', $datos['proceso_id']);
