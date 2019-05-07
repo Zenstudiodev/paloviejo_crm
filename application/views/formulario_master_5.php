@@ -2,17 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //cargamos plantilla master y pasamos variables globales
 $this->layout('master', [
-	'title'            => $title,
-	'nombre'           => $nombre,
-	'user_id'          => $user_id,
-	'username'         => $username,
-	'rol'              => $rol,
-	'notificaciones'   => $notificaciones,
-	'notificaciones_s' => $notificaciones_supervisor,
-	'alertas'          => $alertas,
-	'alertas_s'        => $alertas_supervisor
+    'title' => $title,
+    'nombre' => $nombre,
+    'user_id' => $user_id,
+    'username' => $username,
+    'rol' => $rol,
+    'notificaciones' => $notificaciones,
+    'notificaciones_s' => $notificaciones_supervisor,
+    'alertas' => $alertas,
+    'alertas_s' => $alertas_supervisor
 ]);
-
+$prospecto = $prospecto->row();
+$proceso = $proceso->row();
 $master_1 = $formulario_master_1->row();
 $master_2 = $formulario_master_2->row();
 //$master_3 = $formulario_master_1->row();
@@ -59,106 +60,74 @@ $master_2 = $formulario_master_2->row();
                         <div class="clearfix"></div>
                     </div>
 
-					<?php
-					$tipo_gabinete             = array(
-						'name'        => 'tag',
-						'id'          => 'tag',
-						'placeholder' => 'Tag',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$descuento_promocion       = array(
-						'name'        => 'descuento_promocion',
-						'id'          => 'descuento_promocion',
-						'placeholder' => 'Descuento promoción',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$deposito_energia          = array(
-						'name'        => 'deposito_energia',
-						'id'          => 'deposito_energia',
-						'placeholder' => 'Depósito energia eléctrica',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$seguro_incendio_terremoto = array(
-						'name'        => 'seguro_incendio_terremoto',
-						'id'          => 'seguro_incendio_terremoto',
-						'placeholder' => 'Seguro contra incendio y terremoto por',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$cuota_seguro              = array(
-						'name'        => 'cuota_seguro',
-						'id'          => 'cuota_seguro',
-						'placeholder' => 'Cuota mensual de seguro',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$cuota_seguro              = array(
-						'name'        => 'cuota_seguro',
-						'id'          => 'cuota_seguro',
-						'placeholder' => 'Cuota mensual de seguro',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$avaluo_bancario           = array(
-						'name'        => 'avaluo_bancario',
-						'id'          => 'avaluo_bancario',
-						'placeholder' => 'Avaluo Bancario',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-
-					$avaluo_bancario     = array(
-						'name'        => 'avaluo_bancario',
-						'id'          => 'avaluo_bancario',
-						'placeholder' => 'Avaluo Bancario',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$pago_serivicio_agua = array(
-						'name'        => 'pago_agua',
-						'id'          => 'pago_agua',
-						'placeholder' => 'Pago agua',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$pago_seguridad = array(
-						'name'        => 'pago_seguridad ',
-						'id'          => 'pago_seguridad ',
-						'placeholder' => 'pago_seguridad ',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$pago_areas_verdes = array(
-						'name'        => 'pago_areas_verdes ',
-						'id'          => 'pago_areas_verdes ',
-						'placeholder' => 'Pago areas verdes ',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					?>
+                    <?php
+                    $extras = array(
+                        'name' => 'extras',
+                        'id' => 'extras',
+                        'placeholder' => 'extras',
+                        'type' => 'text',
+                        'class' => 'form-control has-feedback-left ',
+                        'required' => 'required'
+                    );
+                    $tipo_gabinete = array(
+                        'name' => 'tipo_gabinete',
+                        'id' => 'tipo_gabinete',
+                        'class' => 'form-control',
+                        'required' => 'required'
+                    );
+                    $tipo_gabinete_options = array(
+                        'Tipo catedral (laqueados)' => 'Tipo catedral (laqueados)',
+                        '-' => '-'
+                    );
+                    $ampliaciones_extras = array(
+                        'name' => 'ampliaciones_extras',
+                        'id' => 'ampliaciones_extras',
+                        'class' => 'form-control',
+                        'required' => 'required'
+                    );
+                    $ampliaciones_extras_options = array(
+                        ' Baño estandar para el dormitorio de atras' => ' Baño estandar para el dormitorio de atras',
+                        '-' => '-',
+                    );
+                    $cambio_ventanas = array(
+                        'name' => 'cambio_ventanas',
+                        'id' => 'cambio_ventanas',
+                        'class' => 'form-control ',
+                        'required' => 'required'
+                    );
+                    $cambio_ventanas_options = array(
+                        'Aluminio' => 'Aluminio',
+                        'PVC' => 'PVC',
+                        '-' => '-',
+                    );
+                    $pago_serivicio_agua = array(
+                        'name' => 'pago_agua',
+                        'id' => 'pago_agua',
+                        'placeholder' => 'Pago agua',
+                        'type' => 'text',
+                        'class' => 'form-control has-feedback-left ',
+                        'required' => 'required'
+                    );
+                    $pago_seguridad = array(
+                        'name' => 'pago_seguridad',
+                        'id' => 'pago_seguridad',
+                        'placeholder' => 'pago_seguridad ',
+                        'type' => 'text',
+                        'class' => 'form-control has-feedback-left ',
+                        'required' => 'required'
+                    );
+                    $pago_areas_verdes = array(
+                        'name' => 'pago_areas_verdes',
+                        'id' => 'pago_areas_verdes',
+                        'placeholder' => 'Pago areas verdes',
+                        'type' => 'text',
+                        'class' => 'form-control has-feedback-left ',
+                        'required' => 'required'
+                    );
+                    ?>
                     <div class="x_content">
-                       <!-- <pre>
-                        <?php
-/*                        print_r($master_1);
-                        print_r($master_2);
-                        */?>
-                        </pre>-->
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
+                              action="<?php echo base_url(); ?>formulario/guardar_master_5"
                               method="post">
                             <div class="x_title">
                                 <h2>No incluye</h2>
@@ -168,44 +137,28 @@ $master_2 = $formulario_master_2->row();
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-										<?php echo form_input($tipo_gabinete); ?>
+                                        <?php echo form_input($extras); ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">No incluye cambios de estilo de binete de
+                                        <label for="tipo_gabinete">No incluye cambios de estilo de gabinete de
                                             cocina</label>
-                                        <select class="form-control">
-                                            <option>
-                                                Tipo catedral (laqueados)
-                                            </option>
-                                            <option>-</option>
-                                        </select>
+                                        <?php echo form_dropdown($tipo_gabinete, $tipo_gabinete_options) ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">No incluye apliaciones extras mas allá
-                                            de </label>
-                                        <select class="form-control">
-                                            <option>
-                                                Baño estandar para el dormitorio de atras
-                                            </option>
-                                            <option>-</option>
-                                        </select>
+                                        <label for="ampliaciones_extras">No incluye apliaciones extras mas allá de </label>
+                                        <?php echo form_dropdown($ampliaciones_extras, $ampliaciones_extras_options) ?>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">No incluye cambio de las ventanas </label>
-                                        <select class="form-control">
-                                            <option>
-                                                Baño estandar para el dormitorio de atras
-                                            </option>
-                                            <option>-</option>
-                                        </select>
+                                        <label for="cambio_ventanas">No incluye cambio de las ventanas </label>
+                                            <?php echo form_dropdown($cambio_ventanas, $cambio_ventanas_options) ?>
                                     </div>
                                 </div>
                             </div>
@@ -217,26 +170,27 @@ $master_2 = $formulario_master_2->row();
                                         <div id="gender" class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-default" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="male"> &nbsp; Si &nbsp;
+                                                <input type="radio" name="ventanas_tipo_junta_hueso" value="si"> &nbsp; Si &nbsp;
                                             </label>
                                             <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="female"> No
+                                                <input type="radio" name="ventanas_tipo_junta_hueso" value="no"> No
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Azulejar de lavandería</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Azulejar de
+                                        lavandería</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div id="gender" class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-default" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="male"> &nbsp; Si &nbsp;
+                                                <input type="radio" name="azulejar_lavanderia" value="si"> &nbsp; Si &nbsp;
                                             </label>
                                             <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="female"> No
+                                                <input type="radio" name="azulejar_lavanderia" value="no"> No
                                             </label>
                                         </div>
                                     </div>
@@ -245,21 +199,23 @@ $master_2 = $formulario_master_2->row();
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                     <label for="exampleInputEmail1">Pago incial servicio de agua</label>
-		                            <?php echo form_input($pago_serivicio_agua); ?>
+                                    <?php echo form_input($pago_serivicio_agua); ?>
                                     <span class="fa fa-home form-control-feedback left"
                                           aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                    <label for="exampleInputEmail1">Cuota inicial de garita principal de seguridad</label>
-		                            <?php echo form_input($pago_seguridad); ?>
+                                    <label for="exampleInputEmail1">Cuota inicial de garita principal de
+                                        seguridad</label>
+                                    <?php echo form_input($pago_seguridad); ?>
                                     <span class="fa fa-home form-control-feedback left"
                                           aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class="row">
+
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                     <label for="exampleInputEmail1">Pago incial servicio de agua</label>
-			                        <?php echo form_input($pago_areas_verdes); ?>
+                                    <?php echo form_input($pago_areas_verdes); ?>
                                     <span class="fa fa-home form-control-feedback left"
                                           aria-hidden="true"></span>
                                 </div>
@@ -267,10 +223,11 @@ $master_2 = $formulario_master_2->row();
                     </div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                            <input type="hidden" name="prospecto" value="<?php echo $prospecto->id;?>">
+                            <input type="hidden" name="proceso" value="<?php echo $proceso->id;?>">
                             <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
-
                     </form>
                 </div>
             </div>
@@ -327,7 +284,7 @@ $master_2 = $formulario_master_2->row();
     };
 
     //TAGS
-    $('#tag').tagEditor({
+    $('#extras').tagEditor({
         autocomplete: {
             delay: 0, // show suggestions immediately
             position: {collision: 'flip'}, // automatic menu position up/down
@@ -337,6 +294,7 @@ $master_2 = $formulario_master_2->row();
                 , 'pestañas', 'voladizos', 'macetones', 'plantas', 'jetinas', 'balcones', 'lámparas', 'cortinas', 'muebles y electrodomésticos']
         },
         forceLowercase: false,
+        delimiter: ', ',
         placeholder: 'Opciones ...'
     });
 

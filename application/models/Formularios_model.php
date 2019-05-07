@@ -171,6 +171,24 @@ class Formularios_model extends CI_Model
         $insert_id = $this->db->insert_id();
         return  $insert_id;
     }
+    function guardar_formulario_5($fomrDdata){
+        $data= array(
+            'fm_5_proceso_id'=>$fomrDdata['proceso'],
+            'fm_5_prospecto_id'=>$fomrDdata['prospecto'],
+            'fm_5_proceso_extras'=>$fomrDdata['extras'],
+            'fm_5_proceso_tipo_gabinete'=>$fomrDdata['tipo_gabinete'],
+            'fm_5_proceso_ampliaciones_extras'=>$fomrDdata['ampliaciones_extras'],
+            'fm_5_proceso_cambio_ventanas'=>$fomrDdata['cambio_ventanas'],
+            'fm_5_proceso_ventanas_tipo_junta_hueso'=>$fomrDdata['ventanas_tipo_junta_hueso'],
+            'fm_5_proceso_azulejar_lavanderia'=>$fomrDdata['azulejar_lavanderia'],
+            'fm_5_proceso_pago_agua'=>$fomrDdata['pago_agua'],
+            'fm_5_proceso_pago_seguridad'=>$fomrDdata['pago_seguridad'],
+            'fm_5_proceso_pago_areas_verdes'=>$fomrDdata['deposito_energia'],
+        );
+        $this->db->insert('formulario_master_5', $data);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
     function get_formulario_ive($datos){
         $this->db->where('five_proceso_id', $datos['proceso_id']);
         $this->db->where('five_prospecto_id', $datos['prospecto_id']);
