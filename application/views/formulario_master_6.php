@@ -13,9 +13,11 @@ $this->layout('master', [
 	'alertas_s'        => $alertas_supervisor
 ]);
 
+$prospecto = $prospecto->row();
+$proceso = $proceso->row();
 $master_1 = $formulario_master_1->row();
 $master_2 = $formulario_master_2->row();
-//$master_3 = $formulario_master_1->row();
+
 
 
 ?>
@@ -59,75 +61,83 @@ $master_2 = $formulario_master_2->row();
                     </div>
 
 					<?php
-					$tipo_gabinete             = array(
-						'name'        => 'tipo_gavinete',
-						'id'          => 'tipo_gavinete',
-						'placeholder' => 'Tipo de gabinete',
+					$finca             = array(
+						'name'        => 'finca',
+						'id'          => 'finca',
+						'placeholder' => 'Finca',
+						'type'        => 'text',
+						'class'       => 'form-control has-feedback-left',
+						'required'    => 'required'
+					);
+					$folio       = array(
+						'name'        => 'folio',
+						'id'          => 'folio',
+						'placeholder' => 'Folio',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$descuento_promocion       = array(
-						'name'        => 'descuento_promocion',
-						'id'          => 'descuento_promocion',
-						'placeholder' => 'Descuento promoción',
+					$libro         = array(
+						'name'        => 'libro',
+						'id'          => 'libro',
+						'placeholder' => 'Libro',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$deposito_energia          = array(
-						'name'        => 'deposito_energia',
-						'id'          => 'deposito_energia',
-						'placeholder' => 'Depósito energia eléctrica',
+					$area = array(
+						'name'        => 'area',
+						'id'          => 'area',
+						'placeholder' => 'Area',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$seguro_incendio_terremoto = array(
-						'name'        => 'seguro_incendio_terremoto',
-						'id'          => 'seguro_incendio_terremoto',
-						'placeholder' => 'Seguro contra incendio y terremoto por',
+					$frente              = array(
+						'name'        => 'frente',
+						'id'          => 'frente',
+						'placeholder' => 'Frente',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$cuota_seguro              = array(
-						'name'        => 'cuota_seguro',
-						'id'          => 'cuota_seguro',
-						'placeholder' => 'Cuota mensual de seguro',
+					$fondo              = array(
+						'name'        => 'fondo',
+						'id'          => 'fondo',
+						'placeholder' => 'Fondo',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$cuota_seguro              = array(
-						'name'        => 'cuota_seguro',
-						'id'          => 'cuota_seguro',
-						'placeholder' => 'Cuota mensual de seguro',
-						'type'        => 'text',
-						'class'       => 'form-control has-feedback-left ',
-						'required'    => 'required'
-					);
-					$avaluo_bancario           = array(
-						'name'        => 'avaluo_bancario',
-						'id'          => 'avaluo_bancario',
-						'placeholder' => 'Avaluo Bancario',
+					$forma           = array(
+						'name'        => 'forma',
+						'id'          => 'forma',
+						'placeholder' => 'Forma',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
 
-					$avaluo_bancario     = array(
-						'name'        => 'avaluo_bancario',
-						'id'          => 'avaluo_bancario',
-						'placeholder' => 'Avaluo Bancario',
+					$metros_construccion  = array(
+						'name'        => 'metros_construccion',
+						'id'          => 'metros_construccion',
+						'placeholder' => 'Metros Construcción',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
 					);
-					$porcentage_banrural = array(
-						'name'        => 'porcentage_banrural',
-						'id'          => 'porcentage_banrural',
-						'placeholder' => 'Porcentage banrural',
+					$dias_de_entrega = array(
+						'name'        => 'dias_de_entrega',
+						'id'          => 'dias_de_entrega',
+						'placeholder' => 'Días de entrega',
+						'type'        => 'text',
+						'class'       => 'form-control has-feedback-left ',
+						'required'    => 'required'
+					);
+					$arras = array(
+						'name'        => 'arras',
+						'id'          => 'arras',
+						'placeholder' => 'Arras',
 						'type'        => 'text',
 						'class'       => 'form-control has-feedback-left ',
 						'required'    => 'required'
@@ -141,7 +151,7 @@ $master_2 = $formulario_master_2->row();
                         */?>
                         </pre>-->
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_2"
+                              action="<?php echo base_url(); ?>formulario/guardar_master_6"
                               method="post">
                             <div class="x_title">
                                 <h2>Registro</h2>
@@ -151,20 +161,20 @@ $master_2 = $formulario_master_2->row();
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Finca</label>
-                                        <input class="form-control">
+                                        <label for="finca">Finca</label>
+                                        <?php echo form_input($finca); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Folio</label>
-                                        <input class="form-control">
+                                        <label for="folio">Folio</label>
+                                        <?php echo form_input($folio); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Libro</label>
-                                        <input class="form-control">
+                                        <label for="libro">Libro</label>
+                                        <?php echo form_input($libro); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
@@ -174,25 +184,25 @@ $master_2 = $formulario_master_2->row();
                                 <div class="form-group">
                                     <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
                                         <label for="exampleInputEmail1">Área del terreno</label>
-                                        <input class="form-control">
+                                        <?php echo form_input($area); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Frente</label>
-                                        <input class="form-control">
+                                        <label for="frente">Frente</label>
+                                        <?php echo form_input($frente); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Fondo</label>
-                                        <input class="form-control">
+                                        <label for="fondo">Fondo</label>
+                                        <?php echo form_input($fondo); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
-                                        <label for="exampleInputEmail1">Forma</label>
-                                        <input class="form-control">
+                                        <label for="forma">Forma</label>
+                                        <?php echo form_input($forma); ?>
                                         <span class="fa fa-home form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
@@ -205,14 +215,14 @@ $master_2 = $formulario_master_2->row();
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                    <label for="exampleInputEmail1">Metros de construccion</label>
-                                    <input class="form-control">
+                                    <label for="metros_construccion">Metros de construccion</label>
+                                    <?php echo form_input($metros_construccion); ?>
                                     <span class="fa fa-bolt form-control-feedback left"
                                           aria-hidden="true"></span>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                    <label for="exampleInputEmail1">Dias de entrega </label>
-                                    <input class="form-control">
+                                    <label for="dias_entrega">Dias de entrega </label>
+                                    <?php echo form_input($dias_de_entrega); ?>
                                     <span class="fa fa-bolt form-control-feedback left"
                                           aria-hidden="true"></span>
                                 </div>
@@ -222,7 +232,7 @@ $master_2 = $formulario_master_2->row();
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                 <label for="exampleInputEmail1">Arras</label>
-								<input class="form-control">
+                                <?php echo form_input($arras); ?>
                                 <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
@@ -231,11 +241,11 @@ $master_2 = $formulario_master_2->row();
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary"
                                                data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male"> &nbsp; Si &nbsp;
+                                            <input type="radio" name="excepto_de_credito" value="si"> &nbsp; Si &nbsp;
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female"> No
+                                            <input type="radio" name="excepto_de_credito" value="no"> No
                                         </label>
                                     </div>
                                 </div>
@@ -244,6 +254,8 @@ $master_2 = $formulario_master_2->row();
                     </div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                            <input type="hidden" name="prospecto" value="<?php echo $prospecto->id;?>">
+                            <input type="hidden" name="proceso" value="<?php echo $proceso->id;?>">
                             <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                     </div>

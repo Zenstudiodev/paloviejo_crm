@@ -45,7 +45,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -56,6 +56,9 @@ class Formulario extends Base_Controller
 
     public function guardar_ive()
     {
+        print_contenido($_POST);
+
+
 
     }
 
@@ -270,6 +273,7 @@ class Formulario extends Base_Controller
         redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $data['prospecto_id']);
     }
 
+
     public function master_2()
     {
         //comprobamos session desde el helper de sesion
@@ -411,7 +415,6 @@ class Formulario extends Base_Controller
             $this->Formularios_model->guardar_pagos_formulario_3($datos_pagos);
             $i++;
         }
-
        //redirect
         redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
@@ -529,11 +532,49 @@ class Formulario extends Base_Controller
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
         $data['segmento_proceso'] = $this->uri->segment(4);
-        $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
-        $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+        if (!$data['segmento_prospecto']) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            //alertas y notificaciones
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+            //datos a pasar a vista
+            //pospecto
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            //proceso
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
+            //Formulario 1
+            $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+            $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+        }
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
         $data['title'] = 'Formulario master 6';
         echo $this->templates->render('formulario_master_6', $data);
+    }
+    public function guardar_master_6(){
+       // print_contenido($_POST);
+       $datos_formulario = array(
+            'prospecto'=>$this->input->post('prospecto'),
+            'proceso'=>$this->input->post('proceso'),
+            'finca'=>$this->input->post('finca'),
+            'folio'=>$this->input->post('folio'),
+            'libro'=>$this->input->post('libro'),
+            'area'=>$this->input->post('area'),
+            'frente'=>$this->input->post('frente'),
+            'fondo'=>$this->input->post('fondo'),
+            'forma'=>$this->input->post('forma'),
+            'metros_construccion'=>$this->input->post('metros_construccion'),
+            'dias_de_entrega'=>$this->input->post('dias_de_entrega'),
+            'arras'=>$this->input->post('arras'),
+            'excepto_de_credito'=>$this->input->post('excepto_de_credito'),
+        );
+       // print_contenido($datos_formulario);
+        //guardar formulario
+        $this->Formularios_model->guardar_formulario_6($datos_formulario);
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $datos_formulario['prospecto']);
     }
 
     public function imprimir_master_1()
