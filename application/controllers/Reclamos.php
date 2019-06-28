@@ -12,7 +12,7 @@ class Reclamos extends Base_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('ProspectoModel');
+        $this->load->model('Prospecto_model');
         $this->load->model('Proceso_model');
         $this->load->model('User');
         $this->load->model('Notificaciones_model');
@@ -24,6 +24,8 @@ class Reclamos extends Base_Controller {
        $this->load->view('lista_notificaciones');
     }
     public function crear_reclamo(){
+        //todo
+        $this->Notificacioneds_model->listar_notificaciones();
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //datos del prospecto
@@ -41,7 +43,7 @@ class Reclamos extends Base_Controller {
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 

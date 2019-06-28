@@ -114,7 +114,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -173,7 +173,7 @@ class Formulario extends Base_Controller
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto_modelo->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 

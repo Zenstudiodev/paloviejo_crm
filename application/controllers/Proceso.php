@@ -101,7 +101,7 @@ class Proceso extends Base_Controller {
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
@@ -185,7 +185,7 @@ class Proceso extends Base_Controller {
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['procesos'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina
@@ -264,6 +264,8 @@ class Proceso extends Base_Controller {
     public function hoja_de_acabados(){
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
+        //todo 1
+        $this->Prospectso_model->ListarProspectoyu();
         // Notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
@@ -278,9 +280,10 @@ class Proceso extends Base_Controller {
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
+
         //titulo de pagina
         $data['title'] = 'Avance de obra';
         echo $this->templates->render('hoja_acabados', $data);
@@ -302,7 +305,7 @@ class Proceso extends Base_Controller {
         if (!$data['segmento_p']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['proceso'] = $this->Proceso_model->get_proceso_by_id($data['segmento_pr']);
         }
         //titulo de pagina

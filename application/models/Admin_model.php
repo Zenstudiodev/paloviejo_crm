@@ -102,4 +102,11 @@ class Admin_model extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+
+    //ususarios
+    function get_usuarios(){
+        $query = $this->db->get('users');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
 }
