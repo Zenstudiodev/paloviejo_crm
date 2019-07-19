@@ -221,12 +221,12 @@ $this->layout('master', [
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/revisar_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-info btn-xs">
                                                                             <i class="fa fa-pencil"></i>
                                                                             Revisar Reclamo
                                                                         </a>
-                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/historial_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-info btn-xs">
                                                                             <i class="fa fa-pencil"></i>
                                                                             Historial de Reclamos

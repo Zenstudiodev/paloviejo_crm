@@ -14,8 +14,7 @@ $this->layout('master', [
 ]);
 
 $prospecto = $prospecto->row();
-$proceso   = $proceso->row();
-
+$proceso = $proceso->row();
 
 ?>
 <?php $this->start('css_p') ?>

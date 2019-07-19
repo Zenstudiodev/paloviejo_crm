@@ -25,7 +25,7 @@ class Reclamos extends Base_Controller {
     }
     public function crear_reclamo(){
         //todo
-        $this->Notificacioneds_model->listar_notificaciones();
+       // $this->Notificaciones_model->listar_notificaciones();
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //datos del prospecto
@@ -51,6 +51,9 @@ class Reclamos extends Base_Controller {
         $data['title'] = 'Crear reclamo';
         echo $this->templates->render('crear_reclamo', $data);
     }
+    public function guardar_reclamo(){
+
+    }
     public function revisar_reclamo(){
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
@@ -69,7 +72,7 @@ class Reclamos extends Base_Controller {
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -95,7 +98,7 @@ class Reclamos extends Base_Controller {
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -121,7 +124,7 @@ class Reclamos extends Base_Controller {
 
             //datos a pasar a vista
             //pospecto
-            $data['ProspectoModel'] = $this->Prospecto->ListarProspecto($data['segmento_prospecto']);
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
 
@@ -129,5 +132,6 @@ class Reclamos extends Base_Controller {
         $data['title'] = 'Item Historial reclamo';
         echo $this->templates->render('item_historial_reclamos', $data);
     }
+
 
 }

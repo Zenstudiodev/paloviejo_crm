@@ -264,8 +264,9 @@ class Proceso extends Base_Controller {
     public function hoja_de_acabados(){
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
+
         //todo 1
-        $this->Prospectso_model->ListarProspectoyu();
+        //$this->Prospecto_model->ListarProspecto();
         // Notificaciones
         $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);

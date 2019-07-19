@@ -55,7 +55,7 @@ $proceso = $proceso->row();
                     </div>
                     <div class="x_content">
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>/index.php/formulario/guardar_master_1"
+                              action="<?php echo base_url(); ?>/index.php/reclamos/guardar_reclamo"
                               method="post">
                             <?php
                             $nombre = array(

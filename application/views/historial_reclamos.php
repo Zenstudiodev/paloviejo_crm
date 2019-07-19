@@ -14,7 +14,7 @@ $this->layout('master', [
 ]);
 
 $prospecto = $prospecto->row();
-$proceso   = $proceso->row();
+$proceso = $proceso->row();
 
 
 ?>
