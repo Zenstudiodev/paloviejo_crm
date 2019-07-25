@@ -280,6 +280,26 @@ class Admin extends Base_Controller
         $data['title'] = 'Crear usuario';
         echo $this->templates->render('crear_usuario', $data);
     }
+    public function guardar_usuario(){
+       // print_contenido($_POST);
+        $data = array(
+            'username' => $this->input->post('username'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password'),
+            'nombre' => $this->input->post('nombre'),
+            'rol' => $this->input->post('rol'),
+        );
+        $this->Admin_model->guardar_usuario($data);
+        redirect(base_url() . 'admin/administrar_usuarios/');
+    }
+    public function desactivar_usuario(){
+        //datos del prospecto
+        $user_id = $this->uri->segment(3);
+        $this->Admin_model->desactivar_usuario($user_id);
+        redirect(base_url() . 'admin/administrar_usuarios/');
+    }
+    public function editar_usuario(){}
+    public function borar_usuario(){}
 
 
 }

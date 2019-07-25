@@ -22,16 +22,11 @@ $proceso   = $proceso->row();
 <!--cargamos css personalizado-->
 <!-- Datatables -->
 <link href="<?php echo base_url(); ?>ui/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-      rel="stylesheet">
+<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 <?php $this->stop() ?>
-
 
 <?php $this->start('page_content') ?>
 <!-- page content -->
@@ -43,7 +38,6 @@ $proceso   = $proceso->row();
             </div>
         </div>
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <!--Datos generales  pagina 1-->
@@ -59,7 +53,6 @@ $proceso   = $proceso->row();
                             <div class="col-md-6">
                                 <p>Fuga en el cifon de lava trastos	 <span class="badge">04-01-2019</span> </p>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-6">

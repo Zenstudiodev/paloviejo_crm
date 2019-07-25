@@ -109,4 +109,24 @@ class Admin_model extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    function guardar_usuario($data){
+        $ususario= array(
+            'username'=>$data['username'],
+            'email'=>$data['email'],
+            'nombre'=>$data['nombre'],
+            'rol'=>$data['rol'],
+            'password'=>$data['password']
+        );
+        $this->db->insert('users', $ususario);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    function desactivar_usuario($user_id){
+        $ususario= array(
+            'estado'=>'inactivo',
+        );
+        $this->db->where('id', $user_id);
+        $query = $this->db->update('users', $ususario);
+
+    }
 }

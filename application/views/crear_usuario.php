@@ -49,63 +49,91 @@ $this->layout('master', [
                     </div>
                     <div class="x_content">
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>admin/usuario"
+                              action="<?php echo base_url(); ?>admin/guardar_usuario"
                               method="post" novalidate>
                             <?php
-                            $lote = array(
-                                'name' => 'lote',
-                                'id' => 'lote',
-                                'placeholder' => 'Nombre',
+                            $username = array(
+                                'name' => 'username',
+                                'id' => 'username',
+                                'placeholder' => 'Nombre de usuario',
                                 'type' => 'text',
                                 'class' => 'form-control col-md-7 col-xs-12',
                                 'required' => 'required'
                             );
 
-                            $proyecto = array(
-                                'name' => 'proyecto',
-                                'id' => 'proyecto',
+                            $email = array(
+                                'name' => 'email',
+                                'id' => 'email',
+                                'placeholder' => 'Correo',
+                                'type' => 'email',
+                                'class' => 'form-control col-md-7 col-xs-12',
+                                'required' => 'required'
+                            );
+                            $password = array(
+                                'name' => 'password',
+                                'id' => 'password',
+                                'placeholder' => 'Clave',
+                                'type' => 'password',
+                                'class' => 'form-control col-md-7 col-xs-12',
+                                'required' => 'required'
+                            );
+                            $nombre = array(
+                                'name' => 'nombre',
+                                'id' => 'nombre',
+                                'placeholder' => 'Nombre',
+                                'type' => 'text',
+                                'class' => 'form-control col-md-7 col-xs-12',
+                                'required' => 'required'
+                            );
+                            $rol = array(
+                                'name' => 'rol',
+                                'id' => 'rol',
                                 'class' => 'form-control col-md-7 col-xs-12',
                             );
-
-                            $proyectoOptions = array(
-                                    ''=>'',
-                            );
-                            if ($proyectos) {
-                                foreach ($proyectos->result() as $proyecto_i) {
-                                    $proyectoOptions[$proyecto_i->proyecto_id] = strtoupper($proyecto_i->nombre_proyecto);
-                                }
-                            }
-
-                            $tipo_casa = array(
-                                'name' => 'tipo_casa',
-                                'id' => 'tipo_casa',
-                                'class' => 'form-control col-md-7 col-xs-12',
+                            $rolOptions = array(
+                                    'Vendedor'=>'Vendedor',
+                                    'Gerente'=>'Gerente',
                             );
 
-                            $tipo_casaOptions = array();
                             ?>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Lote <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre de usuario: <span
                                             class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <?php echo form_input($lote) ?>
+                                    <?php echo form_input($username) ?>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Proyecto <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Correo: <span
                                             class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <?php echo form_dropdown($proyecto, $proyectoOptions) ?>
+                                    <?php echo form_input($email) ?>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo de casa <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Clave: <span
                                             class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <?php echo form_dropdown($tipo_casa, $tipo_casaOptions) ?>
+                                    <?php echo form_input($password) ?>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre: <span
+                                            class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <?php echo form_input($nombre) ?>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rol <span
+                                            class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <?php echo form_dropdown($rol, $rolOptions) ?>
                                 </div>
                             </div>
 
