@@ -298,8 +298,49 @@ class Admin extends Base_Controller
         $this->Admin_model->desactivar_usuario($user_id);
         redirect(base_url() . 'admin/administrar_usuarios/');
     }
-    public function editar_usuario(){}
-    public function borar_usuario(){}
+    public function editar_usuario(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        //datos del prospecto
+        $user_id = $this->uri->segment(3);
+        $data['title'] = 'Editar usuario';
+        $data['usuario'] = $this->Admin_model->datos_usuario($user_id);
+        echo $this->templates->render('editar_usuario', $data);
+    }
+    public function borar_usuario(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        //datos del prospecto
+        $user_id = $this->uri->segment(3);
+
+        $data['title'] = 'Crear usuario';
+        echo $this->templates->render('crear_usuario', $data);
+    }
+    public function actualizar_usuario(){
+       // print_contenido($_POST);
+        $data = array(
+            'username' => $this->input->post('username'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password'),
+            'nombre' => $this->input->post('nombre'),
+            'rol' => $this->input->post('rol'),
+            'user_id' => $this->input->post('user_id'),
+        );
+       $this->Admin_model->actualizar_usuario($data);
+       redirect(base_url() . 'admin/administrar_usuarios/');
+    }
 
 
 }

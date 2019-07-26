@@ -109,15 +109,21 @@ class Admin_model extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    function datos_usuario($user_id){
+        $this->db->where('id',$user_id);
+        $query = $this->db->get('users');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
     function guardar_usuario($data){
-        $ususario= array(
+        $usuario= array(
             'username'=>$data['username'],
             'email'=>$data['email'],
             'nombre'=>$data['nombre'],
             'rol'=>$data['rol'],
             'password'=>$data['password']
         );
-        $this->db->insert('users', $ususario);
+        $this->db->insert('users', $usuario);
         $insert_id = $this->db->insert_id();
         return  $insert_id;
     }
@@ -128,5 +134,16 @@ class Admin_model extends CI_Model
         $this->db->where('id', $user_id);
         $query = $this->db->update('users', $ususario);
 
+    }
+    function actualizar_usuario($data){
+        $usuario= array(
+            'username'=>$data['username'],
+            'email'=>$data['email'],
+            'nombre'=>$data['nombre'],
+            'rol'=>$data['rol'],
+            'password'=>$data['password']
+        );
+        $this->db->where('id', $data['user_id']);
+        $query = $this->db->update('users', $usuario);
     }
 }

@@ -101,7 +101,7 @@ setlocale(LC_ALL,"es_ES");
                                         <?php echo $usuario->estado; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/editar_proyecto/'.$usuario->id; ?>"
+                                        <a href="<?php echo base_url().'admin/editar_usuario/'.$usuario->id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
                                         <a href="<?php echo base_url().'admin/desactivar_usuario/'.$usuario->id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> desactivar usuario </a>
