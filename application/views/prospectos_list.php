@@ -71,70 +71,88 @@ setlocale(LC_ALL,"es_ES");
                             </div>
                         </form>
                         <?php }?>
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
-                               cellspacing="0" width="100%">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                <th>usuario</th>
-                                <?php }?>
-                                <th>Nombre</th>
-                                <th>Medio</th>
-                                <th>Creado</th>
-                                <th>Actualizado en</th>
-                                <th>Acciones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-
-                            foreach ($prospectos->result() as $prospecto) {
-                                ?>
+                        <div class="table-responsive">
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+                                   cellspacing="0" width="100%">
+                                <thead>
                                 <tr>
-                                    <td>
-                                        <?php echo $prospecto->id; ?>
-                                    </td>
+                                    <th>ID</th>
                                     <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                    <td>
-                                        <a href="<?php echo base_url().'Users/detalle/'.$prospecto->user_id;?>"><?php echo $prospecto->user_id; ?></a>
-                                    </td>
+                                        <th>usuario</th>
                                     <?php }?>
-                                    <td>
-                                        <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"><?php echo $prospecto->nombre1; ?></a>
-                                    </td>
-                                    <td><?php echo $prospecto->medio ?></td>
-                                    <td>
-                                        <?php
-                                        $creado_en = new DateTime($prospecto->creado_en);
-                                        echo $creado_en->format('d-m-Y H:i:s') ?>
-                                    </td>
-                                    <td>
-                                        <?php
-
-                                        $ActualizadoEn = new DateTime($prospecto->actualizado_en);
-                                        echo $ActualizadoEn->format('d-m-Y') ?>
-                                    </td>
-                                    <td>
-                                        <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"
-                                           class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
-                                        <a href="prospectoCita/<?php echo $prospecto->id; ?>"
-                                           class="btn btn-info btn-xs"><i class="fa fa-calendar"></i> Cita </a>
-                                        <a href="prospectoTarea/<?php echo $prospecto->id; ?>"
-                                           class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Tarea </a>
-
-                                        <?php
-                                        // control de acciones
-                                        if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                            <a href="<?php echo base_url().'prospectos/prospectoEditar/'.$prospecto->id; ?>"
-                                               class="btn btn-warning btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
-                                        <?php } ?>
-
-                                    </td>
+                                    <th>Nombre</th>
+                                    <th>Medio</th>
+                                    <th>Creado</th>
+                                    <th>Actualizado en</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                        <th>usuario</th>
+                                    <?php }?>
+                                    <th>Nombre</th>
+                                    <th>Medio</th>
+                                    <th>Creado</th>
+                                    <th>Actualizado en</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <?php
+
+                                foreach ($prospectos->result() as $prospecto) {
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $prospecto->id; ?>
+                                        </td>
+                                        <?php if(puede_ver($rol, array('0','1','2','3','4','5','6'))){ ?>
+                                            <td>
+                                                <?php echo id_to_nombre($prospecto->user_id); ?>
+                                            </td>
+                                        <?php }?>
+                                        <td>
+                                            <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"><?php echo $prospecto->nombre1; ?></a>
+                                        </td>
+                                        <td><?php echo $prospecto->medio ?></td>
+                                        <td>
+                                            <?php
+                                            $creado_en = new DateTime($prospecto->creado_en);
+                                            echo $creado_en->format('d-m-Y H:i:s') ?>
+                                        </td>
+                                        <td>
+                                            <?php
+
+                                            $ActualizadoEn = new DateTime($prospecto->actualizado_en);
+                                            echo $ActualizadoEn->format('d-m-Y') ?>
+                                        </td>
+                                        <td>
+                                            <a href="prospectoDetalle/<?php echo $prospecto->id; ?>"
+                                               class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver </a>
+                                            <a href="prospectoCita/<?php echo $prospecto->id; ?>"
+                                               class="btn btn-info btn-xs"><i class="fa fa-calendar"></i> Cita </a>
+                                            <a href="prospectoTarea/<?php echo $prospecto->id; ?>"
+                                               class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Tarea </a>
+
+                                            <?php
+                                            // control de acciones
+                                            if(puede_ver($rol, array('0','1','2','3'))){ ?>
+                                                <a href="<?php echo base_url().'prospectos/prospectoEditar/'.$prospecto->id; ?>"
+                                                   class="btn btn-warning btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
+                                            <?php } ?>
+
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
                         <?php
                         } else {
                             echo 'Aun no hay prospectos';
@@ -188,95 +206,29 @@ setlocale(LC_ALL,"es_ES");
 
     /* DATA TABLES */
 
-    function init_DataTables() {
 
-        console.log('run_datatables');
-
-        if (typeof ($.fn.DataTable) === 'undefined') {
-            return;
-        }
-        console.log('init_DataTables');
-
-        var handleDataTableButtons = function () {
-            if ($("#datatable-buttons").length) {
-                $("#datatable-buttons").DataTable({
-                    dom: "Bfrtip",
-                    buttons: [
-                        {
-                            extend: "copy",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "csv",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "excel",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "pdfHtml5",
-                            className: "btn-sm"
-                        },
-                        {
-                            extend: "print",
-                            className: "btn-sm"
-                        },
-                    ],
-                    responsive: true
-                });
-            }
-        };
-
-        TableManageButtons = function () {
-            "use strict";
-            return {
-                init: function () {
-                    handleDataTableButtons();
-                }
-            };
-        }();
-
-        $('#datatable').dataTable();
-
-        $('#datatable-keytable').DataTable({
-            keys: true
-        });
-
-        $('#datatable-responsive').DataTable();
-
-        $('#datatable-scroller').DataTable({
-            ajax: "js/datatables/json/scroller-demo.json",
-            deferRender: true,
-            scrollY: 380,
-            scrollCollapse: true,
-            scroller: true
-        });
-
-        $('#datatable-fixed-header').DataTable({
-            fixedHeader: true
-        });
-
-        var $datatable = $('#datatable-checkbox');
-
-        $datatable.dataTable({
-            'order': [[1, 'asc']],
-            'columnDefs': [
-                {orderable: false, targets: [0]}
-            ]
-        });
-        $datatable.on('draw.dt', function () {
-            $('checkbox input').iCheck({
-                checkboxClass: 'icheckbox_flat-green'
-            });
-        });
-
-        TableManageButtons.init();
-
-    };
 
     $(document).ready(function () {
-        init_DataTables();
+        // Setup - add a text input to each footer cell
+        $('#datatable-responsive tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Buscar ' + title + '" />');
+        });
+
+        // DataTable
+        var table = $('#datatable-responsive').DataTable();
+
+        // Apply the search
+        table.columns().every(function () {
+            var that = this;
+            $('input', this.footer()).on('keyup change', function () {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
     });
 
 </script>

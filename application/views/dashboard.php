@@ -291,14 +291,29 @@ $fecha = array(
             },
             editable: false,
             <?php
+
+
             if($citas){ ?>
             events: [
-                <?php    foreach ($citas->result() as $cita) { ?>
+                <?php    foreach ($citas->result() as $cita) {
+                    //colores de citas
+                    $color_cita = '#3a87ad';
+                    //cita
+                if($cita->tipo_cita =='Cierre'){
+                    $color_cita = '#F6FF00';
+                }
+                if($cita->tipo_cita =='firma'){
+                    $color_cita = '#FF8C05';
+                }
+                    //cierre
+                    //firma
+
+                    ?>
                 {
                     title: '<?php echo rtrim($cita->observaciones); ?>',
                     start: '<?php echo $cita->fecha; ?>',
+                    backgroundColor : '<?php echo $color_cita; ?>',
                     url: '<?php echo base_url()?>prospectos/prospectoDetalle/<?php echo $cita->prospecto_id?> '
-
                 },
                 <?php } ?>
             ]

@@ -22,7 +22,7 @@ class Tareas extends Base_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('ProspectoModel');
+        $this->load->model('Prospecto_model');
         $this->load->model('Tarea');
     }
     public function index()
@@ -58,7 +58,7 @@ class Tareas extends Base_Controller {
         if(!$data['segmento_p']){
             redirect('prospectos/prospectosList', 'refresh');
         }else{
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento_p']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
             $data['tareas'] = $this->Tarea->datosTareaProspecto($data['segmento_p'], $data['segmento_t']);
         }
 
@@ -67,13 +67,14 @@ class Tareas extends Base_Controller {
     }
     public function guardarResultadoTarea()
     {
+        //print_contenido($_POST);
         $data= array(
             'resultado'=>$this->input->post('resultado'),
             'prospecto_id'=>$this->input->post('prospecto_id'),
             'tarea_id'=>$this->input->post('tarea_id')
         );
         $this->Tarea->guardar_resultado_tarea($data);
-        $this->Prospecto->actualizado($data['prospecto_id']);
+        $this->Prospecto_model->actualizado($data['prospecto_id']);
         redirect('prospectos/prospectoDetalle/'.$data['prospecto_id'], 'refresh');
 
         echo 'desde el controlador';

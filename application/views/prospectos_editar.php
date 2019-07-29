@@ -55,8 +55,7 @@ $this->layout('master', [
 
 
                                 <form class="form-horizontal form-label-left"
-                                      action="http://www.paloviejosa.com/crm/index.php/prospectos/actualizarProspecto"
-                                      method="post">
+                                      action="<?php echo base_url() . 'prospectos/actualizarProspecto/'?>" method="post">
                                     <?php
                                     $estado = array(
                                         'name' => 'estado',
@@ -161,7 +160,7 @@ $this->layout('master', [
                                             </div>
                                         </div>
                                     <?php }?>
-                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>?>
+                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
 
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Vendedor asignado<span

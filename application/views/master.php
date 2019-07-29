@@ -93,28 +93,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-cog"></i> Configuración <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="<?php echo base_url(); ?>admin/administrar_usuarios">Administrar usuarios</a>
-                                    </li>
-                                    <li><a href="<?php echo base_url(); ?>cotizador/crear_items">Items para cotizador</a>
-                                    </li>
-                                    <li><a href="<?php echo base_url(); ?>cotizador/crear_items_acabado">Items para acabados</a>
-                                    </li>
-                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                    <li><a href="<?php echo base_url(); ?>admin/administrar_proyectos">Administrar proyectos</a>
-                                    </li>
-                                    <?php } ?>
-                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                        <li><a href="<?php echo base_url(); ?>admin/administrar_tipos_casas">Administrar tipos de casas</a>
+                            <?php if (puede_ver($rol, array('0', '1'))) { ?>
+                                <li><a><i class="fa fa-cog"></i> Configuración <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_usuarios">Administrar
+                                                usuarios</a>
                                         </li>
-                                    <?php } ?>
-                                    <?php if(puede_ver($rol, array('0','1','2','3'))){ ?>
-                                        <li><a href="<?php echo base_url(); ?>admin/administrar_casas">Administrar casas</a>
+                                        <li><a href="<?php echo base_url(); ?>cotizador/crear_items">Items para
+                                                cotizador</a>
                                         </li>
-                                    <?php } ?>
-                                </ul>
-                            </li>
+                                        <li><a href="<?php echo base_url(); ?>cotizador/crear_items_acabado">Items para
+                                                acabados</a>
+                                        </li>
+
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_proyectos">Administrar
+                                                proyectos</a>
+                                        </li>
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_tipos_casas">Administrar
+                                                tipos de casas</a>
+                                        </li>
+                                        <li><a href="<?php echo base_url(); ?>admin/administrar_casas">Administrar
+                                                casas</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -188,7 +191,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($alertas_s->result() as $alerta_s) { ?>
 
                                                 <li>
-                                                    <a href="<?php echo base_url() . '/index.php/Notificaciones/resultadoAlertas/' . $alerta_s->notificacion_id ?>"
+                                                    <a href="<?php echo base_url() . 'Notificaciones/resultadoAlertas/' . $alerta_s->notificacion_id ?>"
                                                        class="">
                                                         <input type="hidden" class="notificacionId"
                                                                value="<?php echo $alerta_s->notificacion_id ?>"
@@ -210,7 +213,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($alertas->result() as $alerta) { ?>
                                                 <li>
                                                     <a href="<?php echo base_url() . 'index.php/prospectos/prospectoDetalle/' . $alerta->prospecto_id ?>"
-                                                       >
+                                                    >
                                                         <input type="hidden" class="notificacionId"
                                                                value="<?php echo $alerta->notificacion_id ?>"
                                                                name="notificacion_id_<?php $alerta->notificacion_id ?>">
@@ -268,54 +271,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!--Notificaciones propias-->
                                     <?php if ($notificaciones) { ?>
                                         <?php foreach ($notificaciones->result() as $notificacion) { ?>
-                                                <li>
-                                                    <a href="<?php echo base_url() . 'index.php/prospectos/prospectoDetalle/' . $notificacion->prospecto_id ?>"
-                                                       class="notificacionA">
-                                                        <input type="hidden" class="notificacionId"
-                                                               value="<?php echo $notificacion->notificacion_id ?>"
-                                                               name="notificacion_id_<?php $notificacion->notificacion_id ?>">
-                                                        <p>
-                                                            <span class="time"><?php echo $notificacion->fecha; ?></span>
-                                                        </p>
-                                                        <p>
-                                                            <br>
-                                                            <span><?php echo $notificacion->titulo ?></span>
-                                                        </p>
-                                                        <span class="message">
+                                            <li>
+                                                <a href="<?php echo base_url() . 'index.php/prospectos/prospectoDetalle/' . $notificacion->prospecto_id ?>"
+                                                   class="notificacionA">
+                                                    <input type="hidden" class="notificacionId"
+                                                           value="<?php echo $notificacion->notificacion_id ?>"
+                                                           name="notificacion_id_<?php $notificacion->notificacion_id ?>">
+                                                    <p>
+                                                        <span class="time"><?php echo $notificacion->fecha; ?></span>
+                                                    </p>
+                                                    <p>
+                                                        <br>
+                                                        <span><?php echo $notificacion->titulo ?></span>
+                                                    </p>
+                                                    <span class="message">
                                                             <?php echo $notificacion->contenido ?>
                                                         </span>
-                                                    </a>
-                                                </li>
-                                            <?php } ?>
+                                                </a>
+                                            </li>
                                         <?php } ?>
+                                    <?php } ?>
                                     <!--Notificaciones propias END-->
 
                                     <?php if ($notificaciones_s) { ?>
                                         <!--Notificaciones subordinados-->
                                         <?php foreach ($notificaciones_s->result() as $notificacions) { ?>
-                                                <li>
-                                                    <a href="<?php echo base_url() . 'index.php/prospectos/prospectoDetalle/' . $notificacions->prospecto_id ?>"
-                                                       class="notificacionA">
-                                                        <input type="hidden" class="notificacionId"
-                                                               value="<?php echo $notificacions->notificacion_id ?>"
-                                                               name="notificacion_id_<?php $notificacions->notificacion_id ?>">
-                                                        <p>
+                                            <li>
+                                                <a href="<?php echo base_url() . 'index.php/prospectos/prospectoDetalle/' . $notificacions->prospecto_id ?>"
+                                                   class="notificacionA">
+                                                    <input type="hidden" class="notificacionId"
+                                                           value="<?php echo $notificacions->notificacion_id ?>"
+                                                           name="notificacion_id_<?php $notificacions->notificacion_id ?>">
+                                                    <p>
                                                             <span class="time">
                                                                 <?php echo $notificacions->fecha; ?>
                                                             </span>
-                                                        </p>
-                                                        <p><br>
-                                                            <span>
+                                                    </p>
+                                                    <p><br>
+                                                        <span>
                                                                 <?php echo $notificacions->titulo ?>
                                                             </span>
-                                                        </p>
-                                                        <span class="message">
+                                                    </p>
+                                                    <span class="message">
                                                             <?php echo $notificacions->contenido ?>
                                                         </span>
-                                                    </a>
-                                                </li>
-                                            <?php } ?>
+                                                </a>
+                                            </li>
                                         <?php } ?>
+                                    <?php } ?>
                                     <!--Notificaciones subordinados END-->
                                 </ul>
                             </li>

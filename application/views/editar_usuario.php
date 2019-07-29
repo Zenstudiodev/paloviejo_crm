@@ -99,19 +99,19 @@ $usuario = $usuario->row();
                                 'class' => 'form-control col-md-7 col-xs-12',
                             );
                             $rolOptions = array(
-                                    'Vendedor'=>'Vendedor',
-                                    'Gerente'=>'Gerente',
-                                    'gerente de ventas'=>'Grente de ventas',
-                                    'creditos'=>'Creditos',
-                                    'pagos'=>'Pagos',
-                                    'coordinacion de operaciones'=>'Coordinador de operaciones',
-                                    'planificación'=>'Planificacion',
-                                    'gerente de operacoiones'=>'Gerente de operaciones',
-                                    'gerente de planificacion'=>'Gerente de planificación',
-                                    'gerente de construccion'=>'Gerente de construcción',
-                                    'administrador'=>'administrador',
-                                    'gerente general'=>'Gerente general',
-                                    'developer'=>'developer',
+                                'Vendedor'=>'Vendedor',
+                                'Gerente'=>'Gerente',
+                                'gerente de ventas'=>'Grente de ventas',
+                                'creditos'=>'Creditos',
+                                'pagos'=>'Pagos',
+                                'coordinacion de operaciones'=>'Coordinador de operaciones',
+                                'planificación'=>'Planificacion',
+                                'gerente de operaciones'=>'Gerente de operaciones',
+                                'gerente de planificacion'=>'Gerente de planificación',
+                                'gerente de construccion'=>'Gerente de construcción',
+                                'administrador'=>'administrador',
+                                'gerente general'=>'Gerente general',
+                                'developer'=>'developer',
                             );
 
                             ?>

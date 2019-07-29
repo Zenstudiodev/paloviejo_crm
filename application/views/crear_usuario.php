@@ -91,10 +91,20 @@ $this->layout('master', [
                                 'class' => 'form-control col-md-7 col-xs-12',
                             );
                             $rolOptions = array(
-                                    'Vendedor'=>'Vendedor',
-                                    'Gerente'=>'Gerente',
+                                'Vendedor'=>'Vendedor',
+                                'Gerente'=>'Gerente',
+                                'gerente de ventas'=>'Grente de ventas',
+                                'creditos'=>'Creditos',
+                                'pagos'=>'Pagos',
+                                'coordinacion de operaciones'=>'Coordinador de operaciones',
+                                'planificación'=>'Planificacion',
+                                'gerente de operaciones'=>'Gerente de operaciones',
+                                'gerente de planificacion'=>'Gerente de planificación',
+                                'gerente de construccion'=>'Gerente de construcción',
+                                'administrador'=>'administrador',
+                                'gerente general'=>'Gerente general',
+                                'developer'=>'developer',
                             );
-
                             ?>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre de usuario: <span

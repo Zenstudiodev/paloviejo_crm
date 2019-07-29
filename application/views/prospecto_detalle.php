@@ -101,18 +101,18 @@ $this->layout('master', [
                                                                 </button>
                                                                 <ul role="menu" class="dropdown-menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/documentos/subirDocumento/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                        <a href="<?php echo base_url(); ?>documentos/subirDocumento/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
                                                                             <i class="fa fa-pencil"></i>Subir Documentos</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/documentos/verDocumentos/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                        <a href="<?php echo base_url(); ?>documentos/verDocumentos/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
                                                                                     class="fa fa-folder "></i>
                                                                             ver documentos</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
 
-                                                            <a href="<?php echo base_url(); ?>index.php/documentos/subirPlano/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                            <a href="<?php echo base_url(); ?>documentos/subirPlano/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                class="btn btn-primary btn-xs">
                                                                 <i class="fa fa-pencil"></i>
                                                                 Subir plano o cotización
@@ -132,11 +132,11 @@ $this->layout('master', [
                                                                 </button>
                                                                 <ul role="menu" class="dropdown-menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                        <a href="<?php echo base_url(); ?>formulario/llenar_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
                                                                             <i class="fa fa-pencil"></i> Llenar Ive</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                        <a href="<?php echo base_url(); ?>formulario/imprimir_ive/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
                                                                                     class="fa fa-print"></i> imprimir
                                                                             ive</a>
                                                                     </li>
@@ -150,23 +150,23 @@ $this->layout('master', [
                                                                 </button>
                                                                 <ul role="menu" class="dropdown-menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                        <a href="<?php echo base_url(); ?>formulario/llenar_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
                                                                             <i class="fa fa-pencil"></i> Llenar SIB
                                                                             1</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                        <a href="<?php echo base_url(); ?>formulario/imprimir_sib/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
                                                                                     class="fa fa-print"></i> imprimir
                                                                             SIB 1</a>
                                                                     </li>
                                                                     <li class="divider"></li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/llenar_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                        <a href="<?php echo base_url(); ?>formulario/llenar_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
                                                                             <i class="fa fa-pencil"></i> Llenar SIB
                                                                             2</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                        <a href="<?php echo base_url(); ?>formulario/imprimir_sib2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
                                                                                     class="fa fa-print"></i> imprimir
                                                                             SIB 2</a>
                                                                     </li>
@@ -181,28 +181,28 @@ $this->layout('master', [
                                                                 </button>
                                                                 <ul role="menu" class="dropdown-menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/proceso/cotizador/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
+                                                                        <a href="<?php echo base_url(); ?>proceso/cotizador/<?php echo $prospecto->id . '/' . $proceso->id; ?>">
                                                                             <i class="fa fa-pencil"></i> Cotizador</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/proceso/ver_cotizaciones_proceso/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
+                                                                        <a href="<?php echo base_url(); ?>proceso/ver_cotizaciones_proceso/<?php echo $prospecto->id . '/' . $proceso->id; ?>"><i
                                                                                     class="fa fa-print"></i> Cotizaciones</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
 
 
-                                                            <a href="<?php echo base_url(); ?>index.php/proceso/avance_obra/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                            <a href="<?php echo base_url(); ?>proceso/avance_obra/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                class="btn btn-info btn-xs">
                                                                 <i class="fa fa-pencil"></i>
                                                                 Avance de obra
                                                             </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/proceso/hoja_de_acabados/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                            <a href="<?php echo base_url(); ?>proceso/hoja_de_acabados/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                class="btn btn-warning btn-xs">
                                                                 <i class="fa fa-pencil"></i>
                                                                 Hoja de acabados
                                                             </a>
-                                                            <a href="<?php echo base_url(); ?>index.php/proceso/lista_revision/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                            <a href="<?php echo base_url(); ?>proceso/lista_revision/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                class="btn btn-info btn-xs">
                                                                 <i class="fa fa-pencil"></i>
                                                                 Hoja de entrega
@@ -214,19 +214,19 @@ $this->layout('master', [
                                                                 </button>
                                                                 <ul role="menu" class="dropdown-menu">
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                        <a href="<?php echo base_url(); ?>Reclamos/crear_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-info btn-xs">
                                                                             <i class="fa fa-pencil"></i>
                                                                             Crear Reclamo
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/revisar_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                        <a href="<?php echo base_url(); ?>Reclamos/revisar_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-info btn-xs">
                                                                             <i class="fa fa-pencil"></i>
                                                                             Revisar Reclamo
                                                                         </a>
-                                                                        <a href="<?php echo base_url(); ?>index.php/Reclamos/historial_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                        <a href="<?php echo base_url(); ?>Reclamos/historial_reclamo/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-info btn-xs">
                                                                             <i class="fa fa-pencil"></i>
                                                                             Historial de Reclamos
@@ -263,14 +263,14 @@ $this->layout('master', [
                                                             <h4>Seleccione la sección que desea llenar</h4>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         DATOS GENERALES
 
                                                                     </a>
                                                                     <?php if(lleno_master_1($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         DETALLES DE LA PROPIEDAD
@@ -278,7 +278,7 @@ $this->layout('master', [
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_2($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         FORMA DE PAGO
@@ -286,21 +286,21 @@ $this->layout('master', [
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_3($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         SI INCLUYE
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_4($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         NO INCLUYE
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_5($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-primary btn-xs">
                                                                         <i class="fa fa-pencil"></i>
                                                                         DATOS DE REGISTRO
@@ -311,7 +311,7 @@ $this->layout('master', [
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <?php if(lleno_master_1($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_1/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DATOS GENERALES
@@ -319,7 +319,7 @@ $this->layout('master', [
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_2($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_2/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DETALLES DE LA PROPIEDAD
@@ -327,7 +327,7 @@ $this->layout('master', [
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_3($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_3/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         FORMA DE PAGO
@@ -335,21 +335,21 @@ $this->layout('master', [
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_4($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_4/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         SI INCLUYE
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_5($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_5/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         NO INCLUYE
                                                                     </a>
                                                                     <?php }?>
                                                                     <?php if(lleno_master_6($proceso->id)){?>
-                                                                    <a href="<?php echo base_url(); ?>index.php/formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                    <a href="<?php echo base_url(); ?>formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                        class="btn btn-success btn-xs" target="_blank">
                                                                         <i class="fa fa-print"></i>
                                                                         DATOS DE REGISTRO
@@ -427,9 +427,18 @@ $this->layout('master', [
 
 
                                                             <p>
-                                                                <a href="<?php echo base_url() . 'index.php/citas/ResultadoCita/' . $prospecto->id . '/' . $cita->id; ?>"
+                                                                <?if($cita->tipo_cita =='Cierre'){
+                                                                    if(puede_ver($rol, array('0','1','2','3','4','5','6'))){?>
+                                                                        <a href="<?php echo base_url() . 'citas/ResultadoCita/' . $prospecto->id . '/' . $cita->id; ?>"
+                                                                   class="btn  btn-success">Resultado de
+                                                                    reunión</a>
+                                                                 <?php   } ?>
+
+                                                                <?php }else{?>
+                                                                <a href="<?php echo base_url() . 'citas/ResultadoCita/' . $prospecto->id . '/' . $cita->id; ?>"
                                                                    class="btn  btn-success">Resultado de
                                                                     reunión</a></p>
+                                                                    <?php }?>
                                                     </div>
                                                 </li>
                                             <?php }
@@ -460,7 +469,7 @@ $this->layout('master', [
                                                                         $date = date_create($tarea->fecha);
                                                                         echo $tarea->tarea . ' | ' . date_format($date, 'd/n ') . ' | ' . date_format($date, 'g A') . ' | ' . $tarea->observaciones;
                                                                         ?>
-                                                                        <a href="<?php echo base_url() . 'index.php/tareas/ResultadoTarea/' . $prospecto->id . '/' . $tarea->id; ?>"
+                                                                        <a href="<?php echo base_url() . 'tareas/ResultadoTarea/' . $prospecto->id . '/' . $tarea->id; ?>"
                                                                            class="btn  btn-success btn-xs pull-right tarea">Resultado
                                                                             de tarea</a>
                                                                     </p>
@@ -512,7 +521,7 @@ $this->layout('master', [
                                             <h3 class="green"><i
                                                         class="fa fa-user"></i> <?php echo $prospecto->nombre1 ?>
                                             </h3>
-                                            <a href="<?php echo base_url() . 'index.php/prospectos/prospectoEditar/' . $prospecto->id ?>"
+                                            <a href="<?php echo base_url() . 'prospectos/prospectoEditar/' . $prospecto->id ?>"
                                                class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"> </i> Editar prospecto
                                             </a>

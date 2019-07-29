@@ -55,7 +55,7 @@ class Prospectos extends Base_Controller
         $data['title'] = 'Listado de prospectos';
         // nivel de acceso de usuario
         // comprobar si puede ver todos los prospectos
-        if (puede_ver($data['rol'], array('0', '1', '2','3'))) {
+        if (puede_ver($data['rol'], array('0', '1', '2','6'))) {
             //recojemos los listados de prospectos asociados al usuario
             $data['prospectos'] = $this->Prospecto_model->ListarPsopectosGeneral();
         } else {
@@ -109,7 +109,7 @@ class Prospectos extends Base_Controller
 	            $prospecto = $data['prospectos']->row_array();
 	            //comprobar que el prospecto que se desea ver pertenesca a al usuario loguado
 	            //TODO si el usuario es administrador pasar
-	            if (puede_ver($data['rol'], array('0','1','2','3'))){
+	            if (puede_ver($data['rol'], array('0','1','2','6'))){
 
 	            }else{
 	                if ($prospecto['user_id'] == $data['user_id']) {
@@ -208,7 +208,7 @@ class Prospectos extends Base_Controller
         if (!$data['segmento']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
         }
         //usuarios
         $data['vendedores'] = $this->User->listado_de_vendedores();
