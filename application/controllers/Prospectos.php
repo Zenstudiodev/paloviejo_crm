@@ -55,7 +55,7 @@ class Prospectos extends Base_Controller
         $data['title'] = 'Listado de prospectos';
         // nivel de acceso de usuario
         // comprobar si puede ver todos los prospectos
-        if (puede_ver($data['rol'], array('0', '1', '2','6'))) {
+        if (puede_ver($data['rol'], array('0', '1', '2', '6'))) {
             //recojemos los listados de prospectos asociados al usuario
             $data['prospectos'] = $this->Prospecto_model->ListarPsopectosGeneral();
         } else {
@@ -85,46 +85,50 @@ class Prospectos extends Base_Controller
     public function prospectoDetalle()
     {
 
-	        //comprobamos session desde el helper de sesion
-	        $data = compobarSesion();
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
 
-	        $data['segmento'] = $this->uri->segment(3);
 
-	        if (!$data['segmento']) {
-	            //redirect('prospectos/prospectosList', 'refresh');
-	        } else {
-	            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
-	            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
-	            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
-	            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-	            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
-	            $data['citas'] = $this->Cita->ListarCitasProspecto($data['segmento']);
-	            $data['resultado_citas'] = $this->Cita->ResultadoCitas($data['segmento']);
-	            $data['tareas'] = $this->Tarea->ListarTareasProspecto($data['segmento']);
-	            $data['resultado_tareas'] = $this->Tarea->ResultadoTareas($data['segmento']);
-	            $data['procesos'] = $this->Proceso_model->ListarProcesos($data['segmento']);
-	        }
-	        //datos de prospecto antes de pasar a la vista
-	        if ($data['prospectos']) {
-	            $prospecto = $data['prospectos']->row_array();
-	            //comprobar que el prospecto que se desea ver pertenesca a al usuario loguado
-	            //TODO si el usuario es administrador pasar
-	            if (puede_ver($data['rol'], array('0','1','2','6'))){
+        //prospecto id
+        $data['prospecto_id'] = $this->uri->segment(3);
+        $prospecto_id = $data['prospecto_id'];
 
-	            }else{
-	                if ($prospecto['user_id'] == $data['user_id']) {
-	                    //echo 'lo puede ver';
-	                } else {
-	                    echo 'Este prospecto no le pertenece';
-	                    redirect('/prospectos/prospectosList', 'refresh');
-	                }
-	            }
+        if (!$prospecto_id) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($prospecto_id);
+            $data['citas'] = $this->Cita->ListarCitasProspecto($prospecto_id);
+            $data['resultado_citas'] = $this->Cita->ResultadoCitas($prospecto_id);
+            $data['tareas'] = $this->Tarea->ListarTareasProspecto($prospecto_id);
+            $data['resultado_tareas'] = $this->Tarea->ResultadoTareas($prospecto_id);
+            $data['procesos'] = $this->Proceso_model->ListarProcesos($prospecto_id);
+        }
+        //datos de prospecto antes de pasar a la vista
+        if ($data['prospectos']) {
+            $prospecto = $data['prospectos']->row_array();
+            //comprobar que el prospecto que se desea ver pertenesca a al usuario loguado
+            //TODO si el usuario es administrador pasar
+            if (puede_ver($data['rol'], array('0', '1', '2', '6'))) {
 
-	        }
+            } else {
+                if ($prospecto['user_id'] == $data['user_id']) {
+                    //echo 'lo puede ver';
+                } else {
+                    echo 'Este prospecto no le pertenece';
+                    redirect('/prospectos/prospectosList', 'refresh');
+                }
+            }
 
-	        $data['title'] = 'Detalle de prospecto';
-	        echo $this->templates->render('prospecto_detalle', $data);
+        }
+
+        $data['title'] = 'Detalle de prospecto';
+        echo $this->templates->render('prospecto_detalle', $data);
     }
+
     public function crearProspecto()
     {
         //comprobamos session desde el helper de sesion
@@ -137,6 +141,7 @@ class Prospectos extends Base_Controller
         $data['title'] = 'Crear un prospecto';
         echo $this->templates->render('prospectos', $data);
     }
+
     public function guardarProspecto()
     {
         //comprobamos session desde el helper de sesion

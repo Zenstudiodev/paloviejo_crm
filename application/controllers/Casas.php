@@ -19,11 +19,20 @@ class Casas extends Base_Controller
     {
         $this->load->view('prospectos');
     }
-    public function casa_de_proyecto(){
+    public function tipo_de_casa_de_proyecto(){
         //get from URL
         $proyecto = $this->input->get('proyecto');
 
         $proyecto_id = $this->casas_model->tipo_de_casa($proyecto);
+
+        echo json_encode($proyecto_id->result());
+
+    }
+    public function casa_de_proyecto(){
+        //get from URL
+        $proyecto = $this->input->get('proyecto');
+
+        $proyecto_id = $this->casas_model->lotes($proyecto);
 
         echo json_encode($proyecto_id->result());
 

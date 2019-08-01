@@ -298,9 +298,12 @@ $fecha = array(
                 <?php    foreach ($citas->result() as $cita) {
                     //colores de citas
                     $color_cita = '#3a87ad';
+                    $color_texto_cita = '#fff';
                     //cita
                 if($cita->tipo_cita =='Cierre'){
-                    $color_cita = '#F6FF00';
+                    //amarillo
+                    $color_cita = '#f8ff45';
+                    $color_texto_cita = '#000';
                 }
                 if($cita->tipo_cita =='firma'){
                     $color_cita = '#FF8C05';
@@ -313,6 +316,7 @@ $fecha = array(
                     title: '<?php echo rtrim($cita->observaciones); ?>',
                     start: '<?php echo $cita->fecha; ?>',
                     backgroundColor : '<?php echo $color_cita; ?>',
+                    textColor  : '<?php echo $color_texto_cita; ?>',
                     url: '<?php echo base_url()?>prospectos/prospectoDetalle/<?php echo $cita->prospecto_id?> '
                 },
                 <?php } ?>

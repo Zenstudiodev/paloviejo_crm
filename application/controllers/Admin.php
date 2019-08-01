@@ -341,6 +341,33 @@ class Admin extends Base_Controller
        $this->Admin_model->actualizar_usuario($data);
        redirect(base_url() . 'admin/administrar_usuarios/');
     }
+    public function subir_foto_usuario(){
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        //datos del prospecto
+        $user_id = $this->uri->segment(3);
+        $data['title'] = 'Editar usuario';
+        $data['usuario'] = $this->Admin_model->datos_usuario($user_id);
+        echo $this->templates->render('subir_foto_usuario', $data);
+    }
+    public function procesar_foto(){
+        echo '<pre>';
+         print_r($_FILES);
+         echo '</pre>';
+         echo '<pre>';
+         print_r($_POST);
+         echo '</pre>';
+        $image = file_get_contents($_FILES['imagen']['tmp_name']);
+        $id_usuario = $_POST['id_usuario'];
+        $numero_foto = $_POST['img_number'];
+        file_put_contents('/home5/destino7/public_html/pv/crm/uploads/fotos_perfil/' . $id_usuario . '.jpg', $image);
+    }
 
 
 }

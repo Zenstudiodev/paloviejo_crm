@@ -30,8 +30,15 @@ class casas_model extends CI_Model
                 break;
         }
 
-        $this->db->where('proyecto_id',$proyecto_id);
+        $this->db->where('proyecto_id',$proyecto);
         $query = $this->db->get('tipos_casa');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
+    public function lotes($proyecto)
+    {
+        $this->db->where('proyecto_id',$proyecto);
+        $query = $this->db->get('control_casas');
         if($query->num_rows() > 0) return $query;
         else return false;
     }

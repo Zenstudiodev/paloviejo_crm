@@ -63,8 +63,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>ui/build/images/pic.jpg" alt="..."
-                             class="img-circle profile_img">
+                        <?php if(file_exists('/home5/destino7/public_html/pv/crm/uploads/fotos_perfil/' . $this->e($user_id) . '.jpg')){ ?>
+                            <img src="<?php echo base_url() . 'uploads/fotos_perfil/' . $this->e($user_id) . '.jpg' ?>" alt="..."
+                                 class="img-circle profile_img">
+                        <?php }else{ ?>
+                            <img src="<?php echo base_url(); ?>ui/build/images/user-admin.png" alt="..." class="img-circle profile_img">
+                        <?php }?>
                     </div>
                     <div class="profile_info">
                         <span>Bienvenido,</span>

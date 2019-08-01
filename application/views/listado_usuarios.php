@@ -101,7 +101,7 @@ setlocale(LC_ALL,"es_ES");
                                         <?php echo $usuario->estado; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/subir_foto/'.$usuario->id; ?>"
+                                        <a href="<?php echo base_url().'admin/subir_foto_usuario/'.$usuario->id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Subir foto </a>
                                         <a href="<?php echo base_url().'admin/editar_usuario/'.$usuario->id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>

@@ -71,7 +71,7 @@ setlocale(LC_ALL,"es_ES");
                             </div>
                         </form>
                         <?php }?>
-                        <a class="btn btn-success" href="<?php echo base_url().'admin/crear_proyecto'?>">Crear proyecto</a>
+                        <a class="btn btn-success" href="<?php echo base_url().'admin/crear_casa'?>">Crear casa</a>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                cellspacing="0" width="100%">
                             <thead>

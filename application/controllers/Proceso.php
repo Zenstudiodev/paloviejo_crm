@@ -13,6 +13,7 @@ class Proceso extends Base_Controller {
         $this->load->model('Notificaciones_model');
         $this->load->model('casas_model');
         $this->load->model('Cotizador_model');
+        $this->load->model('Admin_model');
     }
     public function index()
 	{
@@ -28,7 +29,6 @@ class Proceso extends Base_Controller {
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
 
-
         //Id de prospecto
         $data['segmento_p']=$this->uri->segment(3);
 
@@ -39,31 +39,17 @@ class Proceso extends Base_Controller {
             $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento_p']);
         }
 
-        $data['title'] = 'Resultado de cita';
+        $data['proyectos'] = $this->Admin_model->get_proyectos();
+        $data['title'] = 'Creas Proceso';
         echo $this->templates->render('crear_proceso', $data);
         //$this->load->view('crear_proceso', $data);
     }
     public function guardarProceso()
     {
-        $proyecto='';
-        switch ($this->input->post('proyecto')) {
-            case 0:
-                $proyecto = '1';
-                break;
-            case 1:
-                $proyecto = '1';
-                break;
-            case 2:
-                $proyecto = '1';
-                break;
-            case 3:
-                $proyecto = '2';
-                break;
-        }
         $data= array(
             'casa'=>$this->input->post('casa'),
             'tipo_casa_id' =>$this->input->post('tipo_casa'),
-            'proyecto_id'=> $proyecto,
+            'proyecto_id'=> $this->input->post('proyecto'),
             'etapa'=>'Fase Firma y crédito',
             'prospecto_id'=>$this->input->post('prospecto_id'),
             'codigo'=>$this->input->post('codigo')

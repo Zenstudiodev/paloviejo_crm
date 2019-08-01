@@ -55,7 +55,7 @@ $this->layout('master', [
                                         $casaOptions = array(
                                             '' => ''
                                         );
-                                        $proyecto = array(
+                                        $proyecto_select = array(
                                             'name' => 'proyecto',
                                             'class' => 'form-control col-md-7 col-xs-12',
                                             'required' => 'required',
@@ -63,11 +63,10 @@ $this->layout('master', [
 
                                         );
                                         $proyectoOptions = array(
-                                            '0' => 'Seleccione un proyecto',
-                                            '1' => 'Choacorral 10',
-                                            '2' => 'Choacorral 11',
-                                            '3' => 'Arcos de Santa Maria'
                                         );
+                                        foreach ($proyectos->result() as $proyecto) {
+                                            $proyectoOptions[$proyecto->proyecto_id] = $proyecto->nombre_proyecto;
+                                        }
                                         $tipo_casa = array(
                                             'name' => 'tipo_casa',
                                             'id' =>'tipo_casa',
@@ -86,7 +85,7 @@ $this->layout('master', [
                                                         class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <?php echo form_dropdown($proyecto, $proyectoOptions); ?>
+                                                <?php echo form_dropdown($proyecto_select, $proyectoOptions, ''); ?>
                                             </div>
                                         </div>
                                         <div class="item form-group">
@@ -104,7 +103,7 @@ $this->layout('master', [
                                                         class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <?php echo form_dropdown($tipo_casa, $tipo_casa_Options); ?>
+                                                <?php echo form_dropdown($tipo_casa, $tipo_casa_Options, ''); ?>
                                             </div>
                                         </div>
                                         <div class="ln_solid">
@@ -143,17 +142,17 @@ $this->layout('master', [
             $("#casa").html('');
             $("#tipo_casa").html('');
             //hacemos llamada a app2.0 para obtener un listado de tipos de casa
-            $.getJSON("https://paloviejosa.com/app2.0/casas_crm.php?proyecto=" + proyecto, function (obj) {
+            $.getJSON("<?php echo base_url();?>casas/casa_de_proyecto?proyecto=" + proyecto, function (obj) {
                 //print de objeto json proviniente de app 2.0
                 //console.log(obj);
                 $.each(obj, function (key, value) {
                     //estructura para llamado de propiedades de objeto json proviniente de app2.0
-                    // console.log(obj[key].id);
-                    $("#casa").append("<option value='"+obj[key].numero_casa+"'>" +"# " +obj[key].numero_casa + "- Disponible</option>");
+                     console.log(obj);
+                    $("#casa").append("<option value='"+obj[key].casa_id+"'>" +"# " +obj[key].lote + "- Disponible</option>");
                 });
             });
             // cargar los tipos de casa
-            $.getJSON("<?php echo base_url();?>index.php/casas/casa_de_proyecto?proyecto=" + proyecto, function (obj) {
+            $.getJSON("<?php echo base_url();?>casas/tipo_de_casa_de_proyecto?proyecto=" + proyecto, function (obj) {
                 //print de objeto json proviniente de app 2.0
                 //console.log(obj);
                 $.each(obj, function (key, value) {

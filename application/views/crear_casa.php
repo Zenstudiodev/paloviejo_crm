@@ -34,7 +34,7 @@ $this->layout('master', [
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Proyectos</h3>
+                <h3>Casas</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -43,7 +43,7 @@ $this->layout('master', [
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Crear proyecto</h2>
+                        <h2>Crear casa</h2>
 
                         <div class="clearfix"></div>
                     </div>
@@ -56,6 +56,14 @@ $this->layout('master', [
                                 'name' => 'lote',
                                 'id' => 'lote',
                                 'placeholder' => 'Lote',
+                                'type' => 'text',
+                                'class' => 'form-control col-md-7 col-xs-12',
+                                'required' => 'required'
+                            );
+                            $descripcion = array(
+                                'name' => 'descripcion',
+                                'id' => 'descripcion',
+                                'placeholder' => 'Descripción',
                                 'type' => 'text',
                                 'class' => 'form-control col-md-7 col-xs-12',
                                 'required' => 'required'
@@ -90,6 +98,14 @@ $this->layout('master', [
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <?php echo form_input($lote) ?>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Descripción <span
+                                            class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <?php echo form_input($descripcion) ?>
                                 </div>
                             </div>
                             <div class="item form-group">

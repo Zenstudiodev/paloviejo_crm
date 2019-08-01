@@ -38,9 +38,15 @@ class Dashboard extends Base_Controller {
         $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
         $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
-        $data['citas'] = $this->Cita->ListarCitas($data['user_id']);
+        if (puede_ver($data['rol'], array('0','1','2','3','4','5','6'))) {
+            $data['citas'] = $this->Cita->listar_citas_generales();
+        }else{
 
-        if (puede_ver($data['rol'], array('0', '1', '2','3'))) {
+            $data['citas'] = $this->Cita->ListarCitas($data['user_id']);
+        }
+
+
+        if (puede_ver($data['rol'], array('0','1','2','3','4','5','6'))) {
             //recojemos los listados de prospectos asociados al usuario
             $data['prospectos'] = $this->Prospecto_model->ListarPsopectosGeneral();
         } else {

@@ -37,6 +37,12 @@ class Cita extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    function listar_citas_generales(){
+        $query = $this->db->get('citas');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
+
     function ListarCitasProspecto($id){
         $this->db->where('prospecto_id',$id);
         $this->db->order_by("fecha ASC  ");
