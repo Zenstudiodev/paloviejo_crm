@@ -74,14 +74,17 @@ $this->layout('master', [
                                                 </thead>
                                                 <tbody>
 
-                                                <tr>
+                                                <tr class="<?php echo color_estado_proceso($proceso->id); ?>">
                                                     <td><?php echo $proceso->id ?></td>
 
                                                     <td>
-                                                        <?php echo $proceso->casa ?>
+                                                        <?php echo id_casa_to_lote($proceso->casa); ?>
                                                     </td>
                                                     <td style="width: 20%">
                                                         <?php echo $proceso->nombre_proyecto ?>
+                                                        <button type="button" class="btn btn-info btn-xs">
+                                                            <?php echo $proceso->proceso_estado ?>
+                                                        </button>
                                                     </td>
                                                     <td>
                                                         <div class="pull-right">
@@ -440,9 +443,11 @@ $this->layout('master', [
                                                                 if ($cita->tipo_cita == 'Cierre') {
                                                                     if (puede_ver($rol, array('0', '1', '2', '3', '4', '5', '6'))) {
                                                                         ?>
-                                                                        <a href="<?php echo base_url() . 'citas/ResultadoCita/' . $prospecto->id . '/' . $cita->id; ?>"
-                                                                           class="btn  btn-success">Resultado de
-                                                                            reunión</a>
+                                                                        <?php if ($cita->cita_cerrado == '0') { ?>
+                                                                            <a href="<?php echo base_url() . 'citas/ResultadoCita/' . $prospecto->id . '/' . $cita->id; ?>"
+                                                                               class="btn  btn-success">Resultado de
+                                                                                reunión</a>
+                                                                        <?php } ?>
                                                                     <?php } ?>
 
                                                                 <?php } elseif ($cita->tipo_cita == 'firma') {

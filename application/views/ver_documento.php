@@ -115,6 +115,7 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
         <!-- page content -->
         <div class="right_col" role="main">
 
+
             <?php
 
             if ($prospectos) {
@@ -127,12 +128,8 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                     <small> <?php echo $prospecto->nombre1; ?></small>
                                 </h3>
                             </div>
-
-
                         </div>
-
                         <div class="clearfix"></div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <!--Prominente Compador-->
@@ -161,11 +158,13 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                                                 <div class="mask">
 
 
-                                                                    <p>Ver</p>
+                                                                    <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_P->id; ?>">
+                                                                        <p>Ver</p>
+                                                                    </a>
+
                                                                     <div class="tools tools-bottom">
                                                                         <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_P->id; ?>"><i
                                                                                     class="fa fa-link"></i></a>
-                                                                        <a href="#"><i class="fa fa-pencil"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -239,7 +238,6 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-
                                             <div class="row">
                                                 <?php
                                                 foreach ($propietario->result() as $documento_Pro) {
@@ -247,20 +245,17 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                                     <div class="col-md-55">
                                                         <div class="thumbnail">
                                                             <div class="image view view-first">
-
-
                                                                 <img>
                                                                 <img style="width: 100%; display: block;"
                                                                      src="<?php echo base_url() . 'uploads/images/' . $documento_Pro->src; ?>"
                                                                      alt="image"/>
                                                                 <div class="mask">
-
-
-                                                                    <p>Ver</p>
+                                                                    <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_Pro->id; ?>">
+                                                                        <p>Ver</p>
+                                                                    </a>
                                                                     <div class="tools tools-bottom">
-                                                                        <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_Pro->id; ?>"><i
-                                                                                    class="fa fa-link"></i></a>
-                                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_Pro->id; ?>">
+                                                                            <i class="fa fa-link"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -270,8 +265,6 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -350,11 +343,12 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                                                                 <div class="mask">
 
 
-                                                                    <p>Ver</p>
+                                                                    <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_G->id; ?>">
+                                                                        <p>Ver</p>
+                                                                    </a>
                                                                     <div class="tools tools-bottom">
                                                                         <a href="<?php echo base_url() . 'index.php/documentos/detalleDocumento/' .$prospecto->id.'/'.$documento_G->id; ?>"><i
                                                                                     class="fa fa-link"></i></a>
-                                                                        <a href="#"><i class="fa fa-pencil"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -424,7 +418,8 @@ setlocale(LC_ALL, 'es_ES.UTF-8');
                         </div>
                     </div>
                     <div class="actionBar">
-                        <a href="<?php echo base_url().'index.php/prospectos/prospectoDetalle/'.$prospecto->id;?>" class="buttonNext btn btn-success">Volver</a>
+                        <a href="<?php echo base_url().'prospectos/prospectoDetalle/'.$prospecto->id;?>" class="buttonNext btn btn-success">Volver</a>
+                        <a href="<?php echo base_url().'documentos/subirDocumento/'.$prospecto->id.'/'.$segmento_d;?>" class="buttonNext btn btn-success">Subir mas</a>
                     </div>
 
                 <?php }

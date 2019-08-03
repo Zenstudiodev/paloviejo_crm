@@ -46,6 +46,10 @@ class Proceso extends Base_Controller {
     }
     public function guardarProceso()
     {
+
+       /* print_contenido($_POST);
+        exit();*/
+
         $data= array(
             'casa'=>$this->input->post('casa'),
             'tipo_casa_id' =>$this->input->post('tipo_casa'),
@@ -55,6 +59,8 @@ class Proceso extends Base_Controller {
             'codigo'=>$this->input->post('codigo')
         );
         $this->Proceso_model->crear_proceso($data);
+        //appartar casa
+        $this->Admin_model->reservar_casa($data['casa']);
         //redirect('prospectos/prospectosList', 'refresh');
         redirect('prospectos/prospectoDetalle/'.$data['prospecto_id'], 'refresh');
 

@@ -78,7 +78,7 @@ setlocale(LC_ALL,"es_ES");
                             <tr>
                                 <th>ID</th>
                                 <th>Lote</th>
-                                <th>tipo</th>
+                                <th>Proyecto</th>
                                 <th>descripcion</th>
                                 <th>estado</th>
                                 <th>Accion</th>
@@ -96,19 +96,21 @@ setlocale(LC_ALL,"es_ES");
                                         <?php echo $casa->lote; ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->proyecto_id; ?>
+                                        <?php echo id_proyecto_to_nombre($casa->proyecto_id); ?>
                                     </td>
                                     <td>
-                                        <?php echo $casa->tipo_casa_id; ?>
+                                        <?php echo $casa->control_casas_descripcion; ?>
                                     </td>
                                     <td>
                                         <?php echo $casa->estado; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/editar_proyecto/'.$casa->casa_id; ?>"
+                                        <a href="<?php echo base_url().'admin/editar_casa/'.$casa->casa_id; ?>"
                                            class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i> Editar </a>
-                                        <a href="<?php echo base_url().'admin/desactivar_proyecto/'.$casa->casa_id; ?>"
+                                        <a href="<?php echo base_url().'admin/reservar_casa/'.$casa->casa_id; ?>"
                                            class="btn btn-success btn-xs"><i class="fa fa-file-text-o"></i> Reseervar </a>
+                                        <a href="<?php echo base_url().'admin/liberar_casa/'.$casa->casa_id; ?>"
+                                           class="btn btn-success btn-xs"><i class="fa fa-file-text-o"></i> Liberar </a>
 
 
                                     </td>

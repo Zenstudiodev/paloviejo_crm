@@ -143,20 +143,35 @@ class Citas extends Base_Controller
     }
     public function guardarResultadoCita()
     {
-        $data = array(
-            'resultado' => $this->input->post('resultado'),
-            'prospecto_id' => $this->input->post('prospecto_id'),
-            'cita_id' => $this->input->post('cita_id')
-        );
 
-
-        $this->Cita->guardar_resultado_cita($data);
-        //actualizamos la actividad del prospecto
-        $this->Prospecto_model->actualizado($data['prospecto_id']);
         if ($this->input->post('cerrado')) {
+            $data = array(
+                'resultado' => $this->input->post('resultado'),
+                'prospecto_id' => $this->input->post('prospecto_id'),
+                'cita_id' => $this->input->post('cita_id'),
+            );
+
+            $this->Cita->guardar_resultado_cita($data);
+            //actualizamos la actividad del prospecto
+            $this->Prospecto_model->actualizado($data['prospecto_id']);
+            //cerramos la cita
+            $this->Cita->cita_cerrada($this->input->post('cita_id'));
             redirect('proceso/crearProceso/' . $data['prospecto_id'], 'refresh');
+        }else{
+            $data = array(
+                'resultado' => $this->input->post('resultado'),
+                'prospecto_id' => $this->input->post('prospecto_id'),
+                'cita_id' => $this->input->post('cita_id'),
+                'cerrado' => '0'
+            );
+            $this->Cita->guardar_resultado_cita($data);
+            //actualizamos la actividad del prospecto
+            $this->Prospecto_model->actualizado($data['prospecto_id']);
+
+            redirect('prospectos/prospectoDetalle/' . $data['prospecto_id'], 'refresh');
         }
-        redirect('prospectos/prospectoDetalle/' . $data['prospecto_id'], 'refresh');
+
+
     }
 
 

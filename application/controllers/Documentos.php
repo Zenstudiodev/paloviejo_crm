@@ -75,7 +75,7 @@ class Documentos extends Base_Controller
                 $nombreArchivo = $this->input->post('tipo_documento') . '-' . $this->input->post('prospecto_id') . '-' . $this->input->post('proceso_id');
 
                 $config['upload_path'] = './uploads/images';
-                $config['allowed_types'] = 'gif|jpg|png|PDF';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png|PDF';
                 $config['file_name'] = $nombreArchivo;
                 $config['overwrite'] = TRUE;
                 //$config['max_size']      = 100;
@@ -85,7 +85,8 @@ class Documentos extends Base_Controller
 
                 if (!$this->upload->do_upload('documento')) {
                     $error = array('error' => $this->upload->display_errors());
-                    $this->load->view('subir_documento', $error);
+                    $data['error'] =$error;
+                    echo $this->templates->render('subir_documento', $data);
                 } else {
                     $data = array('upload_data' => $this->upload->data());
                     //$this->load->view('subir_documento', $data);
@@ -232,6 +233,7 @@ class Documentos extends Base_Controller
         $data['segmento_p'] = $this->uri->segment(3);
         //id de documento
         $data['segmento_d'] = $this->uri->segment(4);
+
 
         if (!$data['segmento_p']) {
             //redirect('prospectos/prospectosList', 'refresh');

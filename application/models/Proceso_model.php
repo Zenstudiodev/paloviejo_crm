@@ -94,8 +94,21 @@ class Proceso_model extends CI_Model
 		if ($query->num_rows() > 0) return $query;
 		else return false;
 	}
+	function get_proceso_by_lote_id($id){
+		$this->db->where('casa', $id);
+		$query = $this->db->get('proceso');
+		if ($query->num_rows() > 0) return $query;
+		else return false;
+	}
 	function guardar_imagen_avance_obra($data){
 
+    }
+    function desactivar_proceso($id){
+        $proceso= array(
+            'proceso_estado'=>'inactivo',
+        );
+        $this->db->where('id', $id);
+        $query = $this->db->update('proceso', $proceso);
     }
 
 

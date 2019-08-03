@@ -148,7 +148,7 @@ $this->layout('master', [
                 $.each(obj, function (key, value) {
                     //estructura para llamado de propiedades de objeto json proviniente de app2.0
                      console.log(obj);
-                    $("#casa").append("<option value='"+obj[key].casa_id+"'>" +"# " +obj[key].lote + "- Disponible</option>");
+                    $("#casa").append("<option value='"+obj[key].casa_id+"'>" +"# " +obj[key].lote +"-"+obj[key].estado+"</option>");
                 });
             });
             // cargar los tipos de casa

@@ -70,4 +70,20 @@ function lleno_master_6($proceso){
     return $formulario_6;
 }
 
+
+function color_estado_proceso($id){
+    $ci =& get_instance();
+    $ci->load->model('Proceso_model');
+    $proceso =$ci->Proceso_model->get_proceso_by_id($id);
+    $proceso = $proceso->row();
+    $color_class="";
+    if($proceso->proceso_estado =='activo'){
+        $color_class = "success";
+    }
+    if($proceso->proceso_estado  =='inactivo'){
+        $color_class = "danger";
+    }
+
+    return $color_class;
+}
 ?>

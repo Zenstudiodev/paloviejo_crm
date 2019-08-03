@@ -91,16 +91,49 @@ class Admin_model extends CI_Model
         $tipo_casa= array(
             'lote'=>$data['lote'],
             'proyecto_id'=>$data['proyecto'],
-            'tipo_casa_id'=>$data['tipo_casa']
+            'tipo_casa_id'=>$data['tipo_casa'],
+            'control_casas_descripcion'=>$data['descripcion']
         );
+        $query = $this->db->update('control_casas', $tipo_casa);
         $this->db->insert('control_casas', $tipo_casa);
         $insert_id = $this->db->insert_id();
         return  $insert_id;
+    }
+    function actualizar_casa($data){
+        $tipo_casa= array(
+            'lote'=>$data['lote'],
+            'proyecto_id'=>$data['proyecto'],
+            'tipo_casa_id'=>$data['tipo_casa'],
+            'control_casas_descripcion'=>$data['descripcion']
+        );
+        $this->db->where('casa_id',$data['casa_id']);
+        $query = $this->db->update('control_casas', $tipo_casa);
+
     }
     function get_casas(){
         $query = $this->db->get('control_casas');
         if($query->num_rows() > 0) return $query;
         else return false;
+    }
+    function get_casa_by_id($id){
+        $this->db->where('casa_id',$id);
+        $query = $this->db->get('control_casas');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
+    function reservar_casa($casa_id){
+        $tipo_casa= array(
+            'estado'=>'apartado',
+        );
+        $this->db->where('casa_id',$casa_id);
+        $query = $this->db->update('control_casas', $tipo_casa);
+    }
+    function liberar_casa($casa_id){
+        $tipo_casa= array(
+            'estado'=>'disponible',
+        );
+        $this->db->where('casa_id',$casa_id);
+        $query = $this->db->update('control_casas', $tipo_casa);
     }
 
     //ususarios

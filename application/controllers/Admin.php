@@ -217,7 +217,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de de casas';
         echo $this->templates->render('listado_casas', $data);
     }
-    public function crear_casa(){
+
+    public function crear_casa()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -230,31 +232,101 @@ class Admin extends Base_Controller
         $data['title'] = 'Crear tipo de casa';
         echo $this->templates->render('crear_casa', $data);
     }
-    public function guardar_casa(){
+
+    public function editar_casa()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //alertas y notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+        //proyectos
+        $data['proyectos'] = $this->Admin_model->get_proyectos();
+        //datos de la casa
+        $casa_id = $this->uri->segment(3);
+        $data['casa'] = $this->Admin_model->get_casa_by_id($casa_id);
+        $data['title'] = 'Crear tipo de casa';
+        echo $this->templates->render('editar_casa', $data);
+    }
+
+    public function reservar_casa()
+    {
+        //datos de la casa
+        $casa_id = $this->uri->segment(3);
+
+        $this->Admin_model->reservar_casa($casa_id);
+        redirect(base_url() . 'admin/administrar_casas/');
+    }
+    public function liberar_casa()
+    {
+        //datos de la casa
+        $casa_id = $this->uri->segment(3);
+
+        //$this->Admin_model->liberar_casa($casa_id);
+
+        //procesos con esa casa
+        $proceso = $this->Proceso_model->get_proceso_by_lote_id($casa_id);
+
+        if ($proceso){
+            $proceso =$proceso->row();
+            print_contenido($proceso);
+            //pasamos el proceso a inactivo
+            $this->Proceso_model->desactivar_proceso($proceso->id);
+            $this->Admin_model->liberar_casa($casa_id);
+        }else{
+            $this->Admin_model->liberar_casa($casa_id);
+        }
+        redirect(base_url() . 'admin/administrar_casas/');
+    }
+
+    public function guardar_casa()
+    {
         $data = array(
             'lote' => $this->input->post('lote'),
             'proyecto' => $this->input->post('proyecto'),
             'tipo_casa' => $this->input->post('tipo_casa'),
+            'descripcion' => $this->input->post('descripcion'),
         );
 
         $this->Admin_model->guardar_casa($data);
         redirect(base_url() . 'admin/administrar_casas/');
 
     }
-    public function get_tipos_casa(){
+
+    public function actualizar_casa()
+    {
+        $data = array(
+            'lote' => $this->input->post('lote'),
+            'proyecto' => $this->input->post('proyecto'),
+            'tipo_casa' => $this->input->post('tipo_casa'),
+            'descripcion' => $this->input->post('descripcion'),
+            'casa_id' => $this->input->post('casa_id'),
+        );
+
+        $this->Admin_model->actualizar_casa($data);
+        redirect(base_url() . 'admin/administrar_casas/');
+
+    }
+
+
+    public function get_tipos_casa()
+    {
         header("Access-Control-Allow-Origin: *");
         //datos del proyectop
         $proyecto_id = $this->uri->segment(3);
-       // echo $proyecto_id;
+        // echo $proyecto_id;
         $tipos_de_casa = $this->Admin_model->get_tipos_casa_by_proyecto_id($proyecto_id);
         //imprimimos en formato json el resultado
-        if($tipos_de_casa) {
+        if ($tipos_de_casa) {
             echo json_encode($tipos_de_casa->result_array());
         }
     }
 
     //usuarios
-    public function administrar_usuarios(){
+    public function administrar_usuarios()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -267,7 +339,9 @@ class Admin extends Base_Controller
         $data['title'] = 'Listado de usuarios';
         echo $this->templates->render('listado_usuarios', $data);
     }
-    public function crear_usuario(){
+
+    public function crear_usuario()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -280,8 +354,10 @@ class Admin extends Base_Controller
         $data['title'] = 'Crear usuario';
         echo $this->templates->render('crear_usuario', $data);
     }
-    public function guardar_usuario(){
-       // print_contenido($_POST);
+
+    public function guardar_usuario()
+    {
+        // print_contenido($_POST);
         $data = array(
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
@@ -292,13 +368,17 @@ class Admin extends Base_Controller
         $this->Admin_model->guardar_usuario($data);
         redirect(base_url() . 'admin/administrar_usuarios/');
     }
-    public function desactivar_usuario(){
+
+    public function desactivar_usuario()
+    {
         //datos del prospecto
         $user_id = $this->uri->segment(3);
         $this->Admin_model->desactivar_usuario($user_id);
         redirect(base_url() . 'admin/administrar_usuarios/');
     }
-    public function editar_usuario(){
+
+    public function editar_usuario()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -313,7 +393,9 @@ class Admin extends Base_Controller
         $data['usuario'] = $this->Admin_model->datos_usuario($user_id);
         echo $this->templates->render('editar_usuario', $data);
     }
-    public function borar_usuario(){
+
+    public function borar_usuario()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -328,8 +410,10 @@ class Admin extends Base_Controller
         $data['title'] = 'Crear usuario';
         echo $this->templates->render('crear_usuario', $data);
     }
-    public function actualizar_usuario(){
-       // print_contenido($_POST);
+
+    public function actualizar_usuario()
+    {
+        // print_contenido($_POST);
         $data = array(
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
@@ -338,10 +422,12 @@ class Admin extends Base_Controller
             'rol' => $this->input->post('rol'),
             'user_id' => $this->input->post('user_id'),
         );
-       $this->Admin_model->actualizar_usuario($data);
-       redirect(base_url() . 'admin/administrar_usuarios/');
+        $this->Admin_model->actualizar_usuario($data);
+        redirect(base_url() . 'admin/administrar_usuarios/');
     }
-    public function subir_foto_usuario(){
+
+    public function subir_foto_usuario()
+    {
         //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //alertas y notificaciones
@@ -356,13 +442,15 @@ class Admin extends Base_Controller
         $data['usuario'] = $this->Admin_model->datos_usuario($user_id);
         echo $this->templates->render('subir_foto_usuario', $data);
     }
-    public function procesar_foto(){
+
+    public function procesar_foto()
+    {
         echo '<pre>';
-         print_r($_FILES);
-         echo '</pre>';
-         echo '<pre>';
-         print_r($_POST);
-         echo '</pre>';
+        print_r($_FILES);
+        echo '</pre>';
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
         $image = file_get_contents($_FILES['imagen']['tmp_name']);
         $id_usuario = $_POST['id_usuario'];
         $numero_foto = $_POST['img_number'];

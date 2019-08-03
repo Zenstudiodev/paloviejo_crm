@@ -31,6 +31,7 @@ class Casas extends Base_Controller
     public function casa_de_proyecto(){
         //get from URL
         $proyecto = $this->input->get('proyecto');
+        $this->db->where('estado','disponible');
 
         $proyecto_id = $this->casas_model->lotes($proyecto);
 

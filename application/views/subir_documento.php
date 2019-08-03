@@ -88,7 +88,17 @@ $this->layout('master', [
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-
+                            <?php if (isset($mensaje)) { ?>
+                                <div class="row">
+                                    <div class="col s12 m12">
+                                        <div class="card  orange lighten-1">
+                                            <div class="card-content black-text">
+                                                <?php echo $mensaje?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             <?php if ($prospectos) {
                             foreach ($prospectos->result() as $prospecto) { ?>
 

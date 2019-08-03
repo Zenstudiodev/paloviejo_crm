@@ -72,6 +72,13 @@ class Cita extends CI_Model
             'cita_id' => $data['cita_id'],
         ));
     }
+    function cita_cerrada($cita_id){
+        $tipo_casa= array(
+            'cita_cerrado'=>'1',
+        );
+        $this->db->where('id',$cita_id);
+        $query = $this->db->update('citas', $tipo_casa);
+    }
     function CitasActivas(){
         $where = "estado='1'";
         $this->db->where($where);
