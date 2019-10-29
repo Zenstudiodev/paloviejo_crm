@@ -38,6 +38,7 @@ class casas_model extends CI_Model
     public function lotes($proyecto)
     {
         $this->db->where('proyecto_id',$proyecto);
+        $this->db->order_by('lote', 'ASC');
         $query = $this->db->get('control_casas');
         if($query->num_rows() > 0) return $query;
         else return false;

@@ -2,66 +2,55 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //cargamos plantilla master y pasamos variables globales
 $this->layout('master', [
-	'title'            => $title,
-	'nombre'           => $nombre,
-	'user_id'          => $user_id,
-	'username'         => $username,
-	'rol'              => $rol,
-	'notificaciones'   => $notificaciones,
-	'notificaciones_s' => $notificaciones_supervisor,
-	'alertas'          => $alertas,
-	'alertas_s'        => $alertas_supervisor
+    'title' => $title,
+    'nombre' => $nombre,
+    'user_id' => $user_id,
+    'username' => $username,
+    'rol' => $rol,
+    'notificaciones' => $notificaciones,
+    'notificaciones_s' => $notificaciones_supervisor,
+    'alertas' => $alertas,
+    'alertas_s' => $alertas_supervisor
 ]);
 
-$fecha= New DateTime();
+$fecha = New DateTime();
 $prospecto = $prospecto->row();
-$proceso   = $proceso->row();
-if($formulario_1){
+$proceso = $proceso->row();
+if ($formulario_1) {
     $formulario_1 = $formulario_1->row();
-}else{
-    $formulario_1->fm_1_proceso_id= '';
-    $formulario_1->fm_1_prospecto_id= '';
-    $formulario_1->fm_1_nombre= '';
-    $formulario_1->fm_1_edad= '';
-    $formulario_1->fm_1_nit= '';
-    $formulario_1->fm_1_dpi= '';
-    $formulario_1->fm_1_extendido_en= '';
-    $formulario_1->fm_1_nacionalidad= '';
-    $formulario_1->fm_1_estado_civil= '';
-    $formulario_1->fm_1_profesión= '';
-    $formulario_1->fm_1_direccion= '';
-    $formulario_1->fm_1_correo= '';
-    $formulario_1->fm_1_telefono_casa= '';
-    $formulario_1->fm_1_telefono_celular= '';
-    $formulario_1->fm_1_nombre_sucesor= '';
-    $formulario_1->fm_1_dpi_sucesor= '';
-    $formulario_1->fm_1_extendido_en_sucesor= '';
-    $formulario_1->fm_1_correo_sucesor= '';
-    $formulario_1->fm_1_telefono_sucesor= '';
+} else {
+    $formulario_1->fm_1_proceso_id = '';
+    $formulario_1->fm_1_prospecto_id = '';
+    $formulario_1->fm_1_nombre = '';
+    $formulario_1->fm_1_edad = '';
+    $formulario_1->fm_1_nit = '';
+    $formulario_1->fm_1_dpi = '';
+    $formulario_1->fm_1_extendido_en = '';
+    $formulario_1->fm_1_nacionalidad = '';
+    $formulario_1->fm_1_estado_civil = '';
+    $formulario_1->fm_1_profesión = '';
+    $formulario_1->fm_1_direccion = '';
+    $formulario_1->fm_1_correo = '';
+    $formulario_1->fm_1_telefono_casa = '';
+    $formulario_1->fm_1_telefono_celular = '';
+    $formulario_1->fm_1_nombre_sucesor = '';
+    $formulario_1->fm_1_dpi_sucesor = '';
+    $formulario_1->fm_1_extendido_en_sucesor = '';
+    $formulario_1->fm_1_correo_sucesor = '';
+    $formulario_1->fm_1_telefono_sucesor = '';
 }
-if($formulario_2){
+if ($formulario_2) {
     $formulario_2 = $formulario_2->row();
-}else{
+} else {
 
 }
-
-
-
 
 
 ?>
 <?php $this->start('css_p') ?>
 <!--cargamos css personalizado-->
 <!-- Datatables -->
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-      rel="stylesheet">
-<link href="<?php echo base_url(); ?>ui/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-      rel="stylesheet">
+
 <?php $this->stop() ?>
 
 
@@ -89,21 +78,24 @@ if($formulario_2){
 
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>formulario/guardar_master_2"
-                              method="post" >
+                              method="post">
                             <!--<pre>
-                                <?php /*print_r($formulario_1);*/?>
+                                <?php /*print_r($formulario_1);*/ ?>
                             </pre>-->
 
                             <div class="form-group">
                                 <div class="row">
-                                    <input type="hidden" name="prospecto_id" value="<?php echo $formulario_1->fm_1_prospecto_id?>">
-                                    <input type="hidden" name="proceso_id" value="<?php echo $formulario_1->fm_1_proceso_id?>">
+                                    <input type="hidden" name="prospecto_id"
+                                           value="<?php echo $formulario_1->fm_1_prospecto_id ?>">
+                                    <input type="hidden" name="proceso_id"
+                                           value="<?php echo $formulario_1->fm_1_proceso_id ?>">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Proyecto: </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control"
                                                    placeholder="Proyecto"
-                                                   value="<?php proyecto_por_id($proceso->proyecto_id); ?>" name="proyecto" required>
+                                                   value="<?php proyecto_por_id($proceso->proyecto_id); ?>"
+                                                   name="proyecto" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -120,14 +112,16 @@ if($formulario_2){
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control"
                                                    placeholder="tipo"
-                                                   value="<?php tipo_casa_por_id($proceso->tipo_casa_id); ?>" name="tipo" required>
+                                                   value="<?php tipo_casa_por_id($proceso->tipo_casa_id); ?>"
+                                                   name="tipo" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente:</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control"
-                                                   placeholder="Cliente" value="<?php echo $formulario_1->fm_1_nombre; ?>" required>
+                                                   placeholder="Cliente"
+                                                   value="<?php echo $formulario_1->fm_1_nombre; ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -135,7 +129,7 @@ if($formulario_2){
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control"
                                                    placeholder="Fecha de "
-                                                   value="<?php echo $fecha->format('Y-m-d')?>" name="fecha" required>
+                                                   value="<?php echo $fecha->format('Y-m-d') ?>" name="fecha" required>
                                         </div>
                                     </div>
                                 </div>
@@ -145,8 +139,11 @@ if($formulario_2){
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Precio"
-                                               value="" name="precio" required>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Q.</span>
+                                            <input type="text" class="form-control money" placeholder="Precio"
+                                                   value="0" name="precio" id="precio" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -154,8 +151,12 @@ if($formulario_2){
                                         de
                                         promoción:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Descuento " value="" name="descuento" required>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Q.</span>
+                                            <input type="text" class="form-control money"
+                                                   placeholder="Descuento " value="0" name="descuento" id="descuento"
+                                                   required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -163,9 +164,13 @@ if($formulario_2){
                                         de la casa con
                                         descuento:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="precio con descuento "
-                                               value="" name="precio_descuento" required>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Q.</span>
+                                            <input type="text" class="form-control"
+                                                   placeholder="precio con descuento "
+                                                   name="precio_descuento" id="precio_descuento" required
+                                                   readonly>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="x_title">
@@ -175,16 +180,16 @@ if($formulario_2){
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Precio"
-                                               value="" name="precio_2" id="precio_2" required>
+                                        <input type="text" class="form-control money" placeholder="Precio"
+                                               value="0" name="precio_2" id="precio_2" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">(+)
                                         Gastos:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Gastos"
-                                               value="" name="gastos" id="gastos" required>
+                                        <input type="text" class="form-control money" placeholder="Gastos"
+                                               value="0" name="gastos" id="gastos" required>
                                     </div>
                                 </div>
 
@@ -212,19 +217,20 @@ if($formulario_2){
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control extra"
                                                placeholder="Detalle"
-                                               value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2" >
+                                               value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2">
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control"
                                                placeholder="Precio"
-                                               value="Sin costo" id="extra_p_2" name="extra_p_2" >
+                                               value="Sin costo" id="extra_p_2" name="extra_p_2">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control extra"
                                                placeholder="Detalle"
-                                               value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli" id="extra_d_3" name="extra_d_3">
+                                               value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli"
+                                               id="extra_d_3" name="extra_d_3">
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" class="form-control"
@@ -235,9 +241,20 @@ if($formulario_2){
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
                                         <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
                                         <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Q.</span>
+                                                    <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -251,23 +268,23 @@ if($formulario_2){
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Enganche:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Precio"
-                                               value="" name="enganche" id="enganche">
+                                        <input type="text" class="form-control money" placeholder="Precio"
+                                               value="0" name="enganche" id="enganche">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Saldo a
                                         financiar:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Precio"
-                                               value="" name="a_financiar" id="a_financiar" required>
+                                        <input type="text" class="form-control money" placeholder="Precio"
+                                               value="0" name="a_financiar" id="a_financiar" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
                                         total:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="Precio"
+                                        <input type="text" class="form-control money" placeholder="Precio"
                                                value="" name="precio_total" id="precio_total" required>
                                     </div>
                                 </div>
@@ -296,8 +313,19 @@ if($formulario_2){
 <?php $this->start('js_p') ?>
 <!-- validator -->
 <script src="<?php echo base_url(); ?>ui/vendors/validator/validator.js"></script>
+<script src="<?php echo base_url(); ?>ui/vendors/jQuery-Mask/jquery.mask.min.js"></script>
 <script>
     /* VALIDATOR */
+
+
+    var extra_count;
+    var precio;
+    var descuento_promoción;
+    var precio_casa_descuento;
+    var total_extras;
+    var enganche;
+    var saldo_financiar;
+    var precio_total;
 
     function init_validator() {
 
@@ -335,39 +363,102 @@ if($formulario_2){
         });
 
     };
-    var extra_count;
+
+
+
     $(document).ready(function () {
+        //mask dinero
+        $('.money').mask('000,000,000,000,000.00', {reverse: true});
         //init_validator();
         extras = $(".extra").length;
         extra_count = 4;
         $("#extra_fields").val(extra_count);
     });
+    //extras
     $("#add_extra").click(function () {
-        console.log('antes de añadir ' +extra_count);
+        console.log('antes de añadir ' + extra_count);
         var extra_field;
-        extra_field ='<div class="form-group" id="container_'+ extra_count +'">';
-        extra_field +='<div class="col-md-6 col-sm-6 col-xs-12">';
-        extra_field +='<input type="text" class="form-control" placeholder="Detalle"   id="extra_d_'+ extra_count +'" name="extra_d_'+extra_count+'">';
-        extra_field +='</div>';
-        extra_field +='<div class="col-md-6 col-sm-6 col-xs-12">';
-        extra_field +='<input type="text" class="form-control" placeholder="Precio" id="extra_p_'+extra_count+'" name="extra_p_'+extra_count+'">';
-        extra_field +='</div>';
-        extra_field +='</div>';
+        extra_field = '<div class="form-group" id="container_' + extra_count + '">';
+        extra_field += '<div class="col-md-6 col-sm-6 col-xs-12">';
+        extra_field += '<input type="text" class="form-control" placeholder="Detalle"   id="extra_d_' + extra_count + '" name="extra_d_' + extra_count + '">';
+        extra_field += '</div>';
+        extra_field += '<div class="col-md-6 col-sm-6 col-xs-12">';
+        extra_field += '<input type="text" class="form-control money extra_precio" placeholder="Precio" id="extra_p_' + extra_count + '" name="extra_p_' + extra_count + '" value="0">';
+        extra_field += '</div>';
+        extra_field += '</div>';
 
         $("#extras_row").append(extra_field);
         extra_count += 1;
         $("#extra_fields").val(extra_count);
-        console.log('luego de añadir ' +extra_count);
+        console.log('luego de añadir ' + extra_count);
+
+        function calcular_total_extras(){
+            total_extras = 0;
+            $('#total_extras').unmask();
+            $( ".extra_precio" ).each(function() {
+
+                extra_val = parseFloat($(this).cleanVal());
+                console.log(extra_val);
+                total_extras = parseFloat(total_extras + extra_val);
+                console.log('total extras'+ total_extras);
+                $( "#total_extras" ).val(total_extras);
+
+            });
+        }
+        $(".extra_precio").change(function () {
+            console.log('sumar extras');
+            calcular_total_extras();
+            $('#total_extras').mask('000,000,000,000,000.00', {reverse: true});
+        });
+
     });
     $("#delete_extra").click(function () {
         console.log(extra_count);
         extra_count -= 1;
 
         console.log(extra_count);
-        container_d = "#container_"+extra_count;
+        container_d = "#container_" + extra_count;
         console.log(container_d);
         $(container_d).remove();
     });
+
+    //precio descuento
+    function calcular_precio_con_descuento() {
+        precio = $("#precio").cleanVal();
+        descuento_promoción = $("#descuento").cleanVal();
+        precio_casa_descuento = precio - descuento_promoción;
+        $('#precio_descuento').unmask();
+        $("#precio_descuento").val(precio_casa_descuento);
+        console.log(precio_casa_descuento);
+    }
+    $("#precio").change(function () {
+        calcular_precio_con_descuento();
+        $('#precio_descuento').mask('000,000,000,000,000.00', {reverse: true});
+    });
+    $("#descuento").change(function () {
+        calcular_precio_con_descuento();
+        $('#precio_descuento').mask('000,000,000,000,000.00', {reverse: true});
+    });
+
+    //precio total
+    function calcular_precio_total() {
+        enganche = parseInt($("#enganche").cleanVal());
+        saldo_financiar = parseInt($("#a_financiar").cleanVal());
+        precio_total = parseInt(enganche + saldo_financiar);
+        $('#precio_total').unmask();
+        $("#precio_total").val(precio_total);
+        console.log(precio_total);
+    }
+    $("#enganche").change(function () {
+        calcular_precio_total();
+        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
+    });
+    $("#a_financiar").change(function () {
+        calcular_precio_total();
+        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
+    });
+
+
 
 </script>
 

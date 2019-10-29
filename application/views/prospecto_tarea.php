@@ -121,12 +121,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <?php
                 foreach ($prospectos->result() as $prospecto) {
+
+                    
                     ?>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Crear Tarea para prospecto #: <?php echo $prospecto->id .' - '. $prospecto->nombre ?></h2>
+                                    <h2>Crear Tarea para prospecto #: <?php echo $prospecto->id .' - '. $prospecto->nombre1 ?></h2>
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -134,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="x_content">
 
                                     <form class="form-horizontal form-label-left"
-                                          action="http://www.paloviejosa.com/crm/index.php/tareas/guardarTarea"
+                                          action="<?php echo base_url()?>tareas/guardarTarea"
                                           method="post">
                                         <?php
                                         $fecha = array(
@@ -143,28 +145,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             'type' => 'datetime-local',
                                             'class' => 'form-control col-md-7 col-xs-12',
                                             'required' => 'required'
-
                                         );
                                         $observaciones = array(
                                             'name' => 'observaciones',
                                             'placeholder' => 'Observaciones',
                                             'class' => 'form-control col-md-7 col-xs-12',
                                             'required' => 'required'
-
                                         );
                                         $tarea = array(
                                             'name' => 'tarea',
                                             'class' => 'form-control col-md-7 col-xs-12',
                                             'required' => 'required'
-
                                         );
                                         $tareaOptions = array(
                                             'LLamar' => 'Llamar',
                                             'Email' => 'Escribir email',
                                             'Visita' => 'Visita'
                                         );
-
-
                                         ?>
 
                                         <div class="item form-group">
@@ -216,7 +213,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <!-- /page content -->
-
         <!-- footer content -->
         <footer>
             <div class="pull-right">
@@ -229,7 +225,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /footer content -->
     </div>
 </div>
-
 <!-- calendar modal -->
 <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -269,13 +264,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
             </div>
             <div class="modal-body">
-
                 <div id="testmodal2" style="padding: 5px 20px;">
                     <form id="antoform2" class="form-horizontal calender" role="form">
                         <div class="form-group">
@@ -290,7 +283,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -305,7 +297,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
 <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 <!-- /calendar modal -->
-
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>ui/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->

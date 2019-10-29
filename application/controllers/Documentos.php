@@ -29,12 +29,10 @@ class Documentos extends Base_Controller
         $this->load->model('User');
         $this->load->model('Notificaciones_model');
     }
-
     public function index()
     {
         $this->load->view('prospectos');
     }
-
     public function subirDocumento()
     {
         //comprobamos session desde el helper de sesion
@@ -63,17 +61,15 @@ class Documentos extends Base_Controller
 
         //$this->load->view('subir_documento', $data);
     }
-
     public function guardarDocumento()
     {
-
+        $fecha_hora= New DateTime();
         if ($this->input->post('guardarDocumento')) {
             //Check whether user upload picture
-            echo $_FILES['documento']['name'];
+            //echo $_FILES['documento']['name'];
 
             if (!empty($_FILES['documento']['name'])) {
-                $nombreArchivo = $this->input->post('tipo_documento') . '-' . $this->input->post('prospecto_id') . '-' . $this->input->post('proceso_id');
-
+                $nombreArchivo = $this->input->post('tipo_documento') . '-' .$this->input->post('tipo_actor'). '-' .$this->input->post('prospecto_id') . '-' . $this->input->post('proceso_id'). '-' .$fecha_hora->format('Y-m-d H:i:s');
                 $config['upload_path'] = './uploads/images';
                 $config['allowed_types'] = 'gif|jpg|jpeg|png|PDF';
                 $config['file_name'] = $nombreArchivo;
@@ -90,8 +86,8 @@ class Documentos extends Base_Controller
                 } else {
                     $data = array('upload_data' => $this->upload->data());
                     //$this->load->view('subir_documento', $data);
-                    echo $this->upload->data('file_name');
-                    echo $this->upload->data('file_size');
+                    //echo $this->upload->data('file_name');
+                    //echo $this->upload->data('file_size');
                 }
             } else {
                 $picture = '';
@@ -125,7 +121,6 @@ class Documentos extends Base_Controller
 
 
     }
-
     public function subirPlano()
     {
         //comprobamos session desde el helper de sesion
@@ -226,9 +221,16 @@ class Documentos extends Base_Controller
 
 
     }
-
     public function verDocumentos()
     {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        // Notificaciones
+        $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+        $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+        $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+        $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+
         //id de prospecto
         $data['segmento_p'] = $this->uri->segment(3);
         //id de documento
@@ -246,12 +248,11 @@ class Documentos extends Base_Controller
             $data['gestor'] = $this->Documentos_model->ListarDocumentosPromitenteGestor($data['segmento_d']);
             $data['plano_cotizacion'] = $this->Documentos_model->ListarDocumentosPlanosCotizaciones($data['segmento_d']);
 
-            //$data['documentos'] = $this->Documentos_model->ListarDocumentosProceso($data['segmento_d']);
+            $data['documentos'] = $this->Documentos_model->ListarDocumentosProceso($data['segmento_d']);
         }
+        echo $this->templates->render('ver_documento', $data);
 
-        $this->load->view('ver_documento', $data);
     }
-
     public function detalleDocumento()
     {
         $data['segmento_p'] = $this->uri->segment(3);

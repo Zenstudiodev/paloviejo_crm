@@ -97,9 +97,9 @@ $usuario = $usuario->row();
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="reset" class="btn btn-primary">Cancelar</button>
+                                    <a href="<?php echo base_url()?>admin/administrar_usuarios" class="btn btn-primary">Volver</a>
                                     <!--<a class="btn btn-success" href="<?php /*echo base_url(); */ ?>index.php/prospectos/prospectosList">Guardar</a>-->
-                                    <button id="send" type="submit" class="btn btn-success">Guardar</button>
+                                    <a id="send"  class="btn btn-success" href="<?php echo base_url()?>admin/administrar_usuarios">Guardar</a>
                                 </div>
                             </div>
                         </form>
@@ -167,9 +167,7 @@ $usuario = $usuario->row();
 
 
     function open_modal() {
-
     }
-
     function detectBrowser() {
         var N = navigator.appName;
         var UA = navigator.userAgent;
@@ -181,23 +179,19 @@ $usuario = $usuario->row();
         return browserVersion;
     };
 
-
     $(document).ready(function () {
-
         $(".iframe-container-bottom").remove();
         console.log('removido');
         detectBrowser();
         $(".progress").hide();
         $(".alert").hide();
     });
-
     window.addEventListener('DOMContentLoaded', function () {
         var img_1 = document.getElementById('img_1_placeholder');
         var input_1 = document.getElementById('input_img_1');
         var progress_img_1 = $('#progress_img_1');
         var progress_bar_img_1 = $('#progress_bar_img_1');
         var alert_img_1 = $('#alert_img_1');
-
 
         var avatar = document.getElementById('avatar');
         var image = document.getElementById('image');
@@ -219,9 +213,7 @@ $usuario = $usuario->row();
             cropper.rotate(90);
         });
 
-
         $('[data-toggle="tooltip"]').tooltip();
-
         //img 1 event listener
         input_1.addEventListener('change', function (e) {
             img_placeholder = 'img_1_placeholder';

@@ -90,6 +90,15 @@ $this->layout('master', [
                                         </div>
                                         <div class="item form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                   for="name">Tipo de casa<span
+                                                        class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <?php echo form_dropdown($tipo_casa, $tipo_casa_Options, ''); ?>
+                                            </div>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                    for="name">Lote<span
                                                         class="required">*</span>
                                             </label>
@@ -99,13 +108,13 @@ $this->layout('master', [
                                         </div>
                                         <div class="item form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                   for="name">Tipo de casa<span
-                                                        class="required">*</span>
+                                                   for="name">Descripción
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <?php echo form_dropdown($tipo_casa, $tipo_casa_Options, ''); ?>
+                                               <input type="text" id="descripcion_lote" name="descripcion_lote" readonly class="form-control">
                                             </div>
                                         </div>
+
                                         <div class="ln_solid">
                                             <?php
                                             echo form_hidden('prospecto_id', $prospecto->id);
@@ -147,8 +156,8 @@ $this->layout('master', [
                 //console.log(obj);
                 $.each(obj, function (key, value) {
                     //estructura para llamado de propiedades de objeto json proviniente de app2.0
-                     console.log(obj);
-                    $("#casa").append("<option value='"+obj[key].casa_id+"'>" +"# " +obj[key].lote +"-"+obj[key].estado+"</option>");
+                     //console.log(obj);
+                    $("#casa").append("<option value='"+obj[key].casa_id+"' descripcion='"+obj[key].control_casas_descripcion+"'>" +"# " +obj[key].lote +"-"+obj[key].estado+"</option>");
                 });
             });
             // cargar los tipos de casa
@@ -163,6 +172,11 @@ $this->layout('master', [
             });
 
 
+        });
+
+        $("#casa").change(function () {
+            descripcion = $("#casa option:selected").attr('descripcion');
+            $("#descripcion_lote").val(descripcion);
         });
     });
 </script>

@@ -193,7 +193,7 @@ class Prospectos extends Base_Controller
         if (!$data['segmento']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
-            $data['prospectos'] = $this->Prospecto->ListarProspecto($data['segmento']);
+            $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
         }
         $this->load->view('prospecto_tarea', $data);
     }

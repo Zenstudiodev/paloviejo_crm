@@ -94,7 +94,7 @@ class Admin_model extends CI_Model
             'tipo_casa_id'=>$data['tipo_casa'],
             'control_casas_descripcion'=>$data['descripcion']
         );
-        $query = $this->db->update('control_casas', $tipo_casa);
+        //$query = $this->db->update('control_casas', $tipo_casa);
         $this->db->insert('control_casas', $tipo_casa);
         $insert_id = $this->db->insert_id();
         return  $insert_id;

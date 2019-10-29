@@ -39,8 +39,8 @@ class Tareas extends Base_Controller {
         );
         $this->Tarea->crear_tarea($data);
         //actualizamos la actividad del prospecto
-        $this->Prospecto->actualizado($data['prospecto_id']);
-        redirect('dashboard', 'refresh');
+        $this->Prospecto_model->actualizado($data['prospecto_id']);
+        redirect('prospectos/prospectoDetalle/'.$data['prospecto_id'], 'refresh');
         $this->load->view('dashboard');
 
     }
