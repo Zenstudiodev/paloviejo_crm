@@ -42,7 +42,7 @@ if ($formulario_1) {
 if ($formulario_2) {
     $formulario_2 = $formulario_2->row();
 } else {
-
+    $formulario_2->fm_2_precio = '0';
 }
 
 
@@ -75,6 +75,7 @@ if ($formulario_2) {
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <?php print_contenido($formulario_2)?>
 
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>formulario/guardar_master_2"
@@ -142,7 +143,7 @@ if ($formulario_2) {
                                         <div class="input-group">
                                             <span class="input-group-addon">Q.</span>
                                             <input type="text" class="form-control money" placeholder="Precio"
-                                                   value="0" name="precio" id="precio" required>
+                                                   value="<?php echo $formulario_2->fm_2_precio; ?>" name="precio" id="precio" required>
                                         </div>
                                     </div>
                                 </div>
