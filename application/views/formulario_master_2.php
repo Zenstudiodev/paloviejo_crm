@@ -42,8 +42,16 @@ if ($formulario_1) {
 if ($formulario_2) {
     $formulario_2 = $formulario_2->row();
 } else {
-
+    $formulario_2->fm_2_precio = '0';
+    $formulario_2->fm_2_descuento = '0';
+    $formulario_2->fm_2_precio_descuento = '0';
+    $formulario_2->fm_2_precio_desglose = '0';
+    $formulario_2->fm_2_gastos = '0';
+    $formulario_2->fm_2_enganche = '0';
+    $formulario_2->fm_2_saldo_fiannciar = '0';
+    $formulario_2->fm_2_precio_total = '0';
 }
+
 
 
 ?>
@@ -75,6 +83,8 @@ if ($formulario_2) {
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <?php print_contenido($formulario_2)?>
+                        <?php //print_contenido($formulario_2_extras)?>
 
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>formulario/guardar_master_2"
@@ -142,7 +152,7 @@ if ($formulario_2) {
                                         <div class="input-group">
                                             <span class="input-group-addon">Q.</span>
                                             <input type="text" class="form-control money" placeholder="Precio"
-                                                   value="0" name="precio" id="precio" required>
+                                                   value="<?php echo $formulario_2->fm_2_precio; ?>" name="precio" id="precio" required>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +164,7 @@ if ($formulario_2) {
                                         <div class="input-group">
                                             <span class="input-group-addon">Q.</span>
                                             <input type="text" class="form-control money"
-                                                   placeholder="Descuento " value="0" name="descuento" id="descuento"
+                                                   placeholder="Descuento " value="<?php echo $formulario_2->fm_2_descuento; ?>" name="descuento" id="descuento"
                                                    required>
                                         </div>
                                     </div>
@@ -168,7 +178,7 @@ if ($formulario_2) {
                                             <span class="input-group-addon">Q.</span>
                                             <input type="text" class="form-control"
                                                    placeholder="precio con descuento "
-                                                   name="precio_descuento" id="precio_descuento" required
+                                                   name="precio_descuento" id="precio_descuento" value="<?php echo $formulario_2->fm_2_precio_descuento; ?>" required
                                                    readonly>
                                         </div>
                                     </div>
@@ -181,7 +191,7 @@ if ($formulario_2) {
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input type="text" class="form-control money" placeholder="Precio"
-                                               value="0" name="precio_2" id="precio_2" required>
+                                               value="<?php echo $formulario_2->fm_2_precio_desglose; ?>" name="precio_2" id="precio_2" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -189,7 +199,7 @@ if ($formulario_2) {
                                         Gastos:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input type="text" class="form-control money" placeholder="Gastos"
-                                               value="0" name="gastos" id="gastos" required>
+                                               value="<?php echo $formulario_2->fm_2_gastos; ?>" name="gastos" id="gastos" required>
                                     </div>
                                 </div>
 
@@ -199,65 +209,87 @@ if ($formulario_2) {
                                 <h2>Extras</h2>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="row" id="extras_row">
-                                <input type="hidden" name="extra_fields" id="extra_fields">
-                                <div class="form-group">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control extra"
-                                               placeholder="Detalle"
-                                               value="Gabinetes de cocina" id="extra_d_1" name="extra_d_1" required>
+
+                            <?php if($formulario_2_extras){?>
+                                <?php  foreach ($formulario_2_extras->result() as $extra) {  ?>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control extra"
+                                                   placeholder="Detalle"
+                                                   value="<?php echo $extra->fm_2_extra_detalle;?>" id="extra_d_1" name="extra_d_1" required>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Precio"
+                                                   value="<?php echo $extra->fm_2_extra_valor;?>" id="extra_p_1" name="extra_p_1" required>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Precio"
-                                               value="Sin costo" id="extra_p_1" name="extra_p_1" required>
+
+                                <?php //print_contenido($extra); ?>
+                                <?php } ?>
+                            <?php }
+                            else{ ?>
+                                <div class="row" id="extras_row">
+                                    <input type="hidden" name="extra_fields" id="extra_fields">
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control extra"
+                                                   placeholder="Detalle"
+                                                   value="Gabinetes de cocina" id="extra_d_1" name="extra_d_1" required>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Precio"
+                                                   value="Sin costo" id="extra_p_1" name="extra_p_1" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control extra"
+                                                   placeholder="Detalle"
+                                                   value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2">
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Precio"
+                                                   value="Sin costo" id="extra_p_2" name="extra_p_2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control extra"
+                                                   placeholder="Detalle"
+                                                   value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli"
+                                                   id="extra_d_3" name="extra_d_3">
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Precio"
+                                                   value="Sin costo" id="extra_p_3" name="extra_p_3">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control extra"
-                                               placeholder="Detalle"
-                                               value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2">
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Precio"
-                                               value="Sin costo" id="extra_p_2" name="extra_p_2">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control extra"
-                                               placeholder="Detalle"
-                                               value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli"
-                                               id="extra_d_3" name="extra_d_3">
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control"
-                                               placeholder="Precio"
-                                               value="Sin costo" id="extra_p_3" name="extra_p_3">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
-                                        <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
-                                        <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">Q.</span>
-                                                    <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+                                            <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
+                                            <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Q.</span>
+                                                        <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php }?>
+
 
                             <div class="x_title">
                                 <h2>Forma de pago</h2>
@@ -269,7 +301,7 @@ if ($formulario_2) {
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Enganche:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input type="text" class="form-control money" placeholder="Precio"
-                                               value="0" name="enganche" id="enganche">
+                                               value="<?php echo $formulario_2->fm_2_enganche; ?>" name="enganche" id="enganche">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -277,7 +309,7 @@ if ($formulario_2) {
                                         financiar:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input type="text" class="form-control money" placeholder="Precio"
-                                               value="0" name="a_financiar" id="a_financiar" required>
+                                               value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>" name="a_financiar" id="a_financiar" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -285,7 +317,7 @@ if ($formulario_2) {
                                         total:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input type="text" class="form-control money" placeholder="Precio"
-                                               value="" name="precio_total" id="precio_total" required>
+                                               value="<?php echo $formulario_2->fm_2_precio_total; ?>" name="precio_total" id="precio_total" required>
                                     </div>
                                 </div>
                             </div>

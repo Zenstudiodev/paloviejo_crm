@@ -189,13 +189,15 @@ class Prospectos extends Base_Controller
 
     public function prospectoTarea()
     {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
         $data['segmento'] = $this->uri->segment(3);
         if (!$data['segmento']) {
             redirect('prospectos/prospectosList', 'refresh');
         } else {
             $data['prospectos'] = $this->Prospecto_model->ListarProspecto($data['segmento']);
         }
-        $this->load->view('prospecto_tarea', $data);
+        echo $this->templates->render('prospecto_tarea', $data);
     }
 
     public function prospectoEditar()
