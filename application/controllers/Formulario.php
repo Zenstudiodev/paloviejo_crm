@@ -301,7 +301,7 @@ class Formulario extends Base_Controller
             $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_prceso']);
             $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_prceso']);
         }
-        $data['title'] = 'Detalle de prospecto';
+        $data['title'] = 'Foarmulario master 2';
         echo $this->templates->render('formulario_master_2', $data);
     }
 
@@ -317,7 +317,7 @@ class Formulario extends Base_Controller
             'precio' => $this->input->post('precio'),
             'descuento' => $this->input->post('descuento'),
             'precio_descuento' => $this->input->post('precio_descuento'),
-            'precio_2' => $this->input->post('precio_2'),
+            'precio_desglose' => $this->input->post('precio_2'),
             'gastos' => $this->input->post('gastos'),
             'enganche' => $this->input->post('enganche'),
             'a_financiar' => $this->input->post('a_financiar'),
@@ -328,7 +328,7 @@ class Formulario extends Base_Controller
         $extra_fields_number = $extra_fields_number -1;
         $i = 1;
         $extra_fields = array();
-        echo $extra_fields_number;
+        //echo $extra_fields_number;
         while ($i <= $extra_fields_number) {
             $this->Formularios_model->guardar_master_2_extra($formlario_id, $form_2_data['proceso_id'], $form_2_data['prospecto_id'], $this->input->post('extra_d_' . $i), $this->input->post('extra_p_' . $i));
             $extra_fields['extra_detalle_' . $i] = $this->input->post('extra_d_' . $i);
@@ -338,6 +338,56 @@ class Formulario extends Base_Controller
             $i++;
             /* el valor presentado sería $i antes del incremento (post-incremento) */
         }
+        /*echo '<pre>';
+        print_r($form_2_data);
+        echo '</pre>';
+        echo '<pre>';
+        print_r($extra_fields);
+        echo '</pre>';*/
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $form_2_data['prospecto_id']);
+    }
+    public function actualizar_master_2(){
+       // print_contenido($_POST);
+
+        $form_2_data = array(
+            'form_2_id' => $this->input->post('form_2_id'),
+            'prospecto_id' => $this->input->post('prospecto_id'),
+            'proceso_id' => $this->input->post('proceso_id'),
+            'proyecto' => $this->input->post('proyecto'),
+            'casa' => $this->input->post('casa'),
+            'tipo' => $this->input->post('tipo'),
+            'fecha' => $this->input->post('fecha'),
+            'precio' => $this->input->post('precio'),
+            'descuento' => $this->input->post('descuento'),
+            'precio_descuento' => $this->input->post('precio_descuento'),
+            'precio_2' => $this->input->post('precio_2'),
+            'gastos' => $this->input->post('gastos'),
+            'enganche' => $this->input->post('enganche'),
+            'a_financiar' => $this->input->post('a_financiar'),
+            'precio_total' => $this->input->post('precio_total'),
+        );
+       // print_contenido($form_2_data);
+
+        $formlario_id = $this->Formularios_model->actualizar_master_2($form_2_data);
+        $extra_fields_number = $this->input->post('extra_fields');
+        $extra_fields_number = $extra_fields_number -1;
+        $i = 1;
+        $extra_fields = array();
+        //echo $extra_fields_number;
+        //borrar extras anterires
+        //guardar extras nuevos
+        $this->Formularios_model->borrar_extras_formulario_2($form_2_data['proceso_id']);
+        
+        while ($i <= $extra_fields_number) {
+            $this->Formularios_model->guardar_master_2_extra($formlario_id, $form_2_data['proceso_id'], $form_2_data['prospecto_id'], $this->input->post('extra_d_' . $i), $this->input->post('extra_p_' . $i));
+            $extra_fields['extra_detalle_' . $i] = $this->input->post('extra_d_' . $i);
+            $extra_fields['extra_precio_' . $i] = $this->input->post('extra_p_' . $i);
+            //print_contenido($_POST);
+            //echo 'accion a extra - '.$i;
+            $i++;
+            /* el valor presentado sería $i antes del incremento (post-incremento) */
+        }
+        //echo $extra_fields_number;
         /*echo '<pre>';
         print_r($form_2_data);
         echo '</pre>';

@@ -93,6 +93,7 @@ class Formularios_model extends CI_Model
 			'fm_2_precio'=>$fomrDdata['precio'],
 			'fm_2_descuento'=>$fomrDdata['descuento'],
 			'fm_2_precio_descuento'=>$fomrDdata['precio_descuento'],
+			'fm_2_precio_desglose'=>$fomrDdata['precio_desglose'],
 			'fm_2_gastos'=>$fomrDdata['gastos'],
 			'fm_2_enganche'=>$fomrDdata['enganche'],
 			'fm_2_saldo_fiannciar'=>$fomrDdata['a_financiar'],
@@ -102,6 +103,10 @@ class Formularios_model extends CI_Model
 		$insert_id = $this->db->insert_id();
 		return  $insert_id;
 	}
+	function borrar_extras_formulario_2($proceso_id){
+        $this->db->where('fm_2_extra_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_2_extra');
+    }
 	function guardar_master_2_extra($form_id, $proceso_id, $prospecto_id, $detalle, $valor){
 		$data= array(
 			'fm_2_extra_fm_2_id'=>$form_id,
@@ -115,6 +120,27 @@ class Formularios_model extends CI_Model
 		return  $insert_id;
 
 	}
+	function actualizar_master_2($fomrData){
+        $data= array(
+            'fm_2_proceso_id'=>$fomrData['proceso_id'],
+            'fm_2_prospecto_id'=>$fomrData['prospecto_id'],
+            'fm_2_proyecto'=>$fomrData['proyecto'],
+            'fm_2_casa_no'=>$fomrData['casa'],
+            'fm_2_tipo_casa'=>$fomrData['tipo'],
+            'fm_2_fecha'=>$fomrData['fecha'],
+            'fm_2_precio'=>$fomrData['precio'],
+            'fm_2_descuento'=>$fomrData['descuento'],
+            'fm_2_precio_descuento'=>$fomrData['precio_descuento'],
+            'fm_2_gastos'=>$fomrData['gastos'],
+            'fm_2_enganche'=>$fomrData['enganche'],
+            'fm_2_saldo_fiannciar'=>$fomrData['a_financiar'],
+            'fm_2_precio_total'=>$fomrData['precio_total'],
+        );
+        $this->db->where('fm_2_id', $fomrData['form_2_id']);
+        $this->db->update('formulario_master_2', $data);
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
 	function get_formulario_2($proceso_id){
 		$this->db->where('fm_2_proceso_id', $proceso_id);
 		$query = $this->db->get('formulario_master_2');

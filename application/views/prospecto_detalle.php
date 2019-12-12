@@ -514,8 +514,6 @@ $this->layout('master', [
 
 
                                                                             <?php } ?>
-
-
                                                                         </div>
                                                                         <?php
                                                                     } ?>

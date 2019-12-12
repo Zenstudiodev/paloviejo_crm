@@ -83,12 +83,16 @@ if ($formulario_2) {
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <?php print_contenido($formulario_2)?>
+                        <?php //print_contenido($formulario_2)?>
                         <?php //print_contenido($formulario_2_extras)?>
 
-                        <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>formulario/guardar_master_2"
-                              method="post">
+                        <?php if($formulario_2->fm_2_precio != '0'){?>
+                        <form class="form-horizontal form-label-left" action="<?php echo base_url(); ?>formulario/actualizar_master_2" method="post">
+                            <input type="hidden" name="form_2_id" id="form_2_id" value="<?php echo $formulario_2->fm_2_id; ?>">
+                        <?php }else{?>
+                        <form class="form-horizontal form-label-left" action="<?php echo base_url(); ?>formulario/guardar_master_2" method="post">
+                        <?php }?>
+
                             <!--<pre>
                                 <?php /*print_r($formulario_1);*/ ?>
                             </pre>-->
@@ -211,22 +215,45 @@ if ($formulario_2) {
                             </div>
 
                             <?php if($formulario_2_extras){?>
-                                <?php  foreach ($formulario_2_extras->result() as $extra) {  ?>
+                                <?php
+                                $extra_number = 1;
+                                foreach ($formulario_2_extras->result() as $extra) {  ?>
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" class="form-control extra"
                                                    placeholder="Detalle"
-                                                   value="<?php echo $extra->fm_2_extra_detalle;?>" id="extra_d_1" name="extra_d_1" required>
+                                                   value="<?php echo $extra->fm_2_extra_detalle;?>" id="extra_d_<?php echo $extra_number;?>" name="extra_d_<?php echo $extra_number;?>" required>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" class="form-control"
                                                    placeholder="Precio"
-                                                   value="<?php echo $extra->fm_2_extra_valor;?>" id="extra_p_1" name="extra_p_1" required>
+                                                   value="<?php echo $extra->fm_2_extra_valor;?>" id="extra_p_<?php echo $extra_number;?>" name="extra_p_<?php echo $extra_number;?>" required>
                                         </div>
                                     </div>
 
-                                <?php //print_contenido($extra); ?>
+                                <?php $extra_number = $extra_number+1; //print_contenido($extra); ?>
+                                    <input type="hidden" name="extra_fields" id="extra_fields" value="<?php echo $extra_number;?>">
+
                                 <?php } ?>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+                                            <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
+                                            <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Q.</span>
+                                                        <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php }
                             else{ ?>
                                 <div class="row" id="extras_row">
