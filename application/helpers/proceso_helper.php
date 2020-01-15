@@ -86,4 +86,12 @@ function color_estado_proceso($id){
 
     return $color_class;
 }
+
+function no_formatear_extra($valor_extra){
+    if($valor_extra == 'Sin costo'){
+        echo '';
+    }else{
+        echo 'extra_precio money';
+    }
+}
 ?>

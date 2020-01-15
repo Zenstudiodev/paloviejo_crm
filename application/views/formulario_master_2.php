@@ -53,7 +53,6 @@ if ($formulario_2) {
 }
 
 
-
 ?>
 <?php $this->start('css_p') ?>
 <!--cargamos css personalizado-->
@@ -86,280 +85,311 @@ if ($formulario_2) {
                         <?php //print_contenido($formulario_2)?>
                         <?php //print_contenido($formulario_2_extras)?>
 
-                        <?php if($formulario_2->fm_2_precio != '0'){?>
-                        <form class="form-horizontal form-label-left" action="<?php echo base_url(); ?>formulario/actualizar_master_2" method="post">
-                            <input type="hidden" name="form_2_id" id="form_2_id" value="<?php echo $formulario_2->fm_2_id; ?>">
-                        <?php }else{?>
-                        <form class="form-horizontal form-label-left" action="<?php echo base_url(); ?>formulario/guardar_master_2" method="post">
-                        <?php }?>
+                        <?php if ($formulario_2->fm_2_precio != '0'){ ?>
+                        <form class="form-horizontal form-label-left"
+                              action="<?php echo base_url(); ?>formulario/actualizar_master_2" method="post">
+                            <input type="hidden" name="form_2_id" id="form_2_id"
+                                   value="<?php echo $formulario_2->fm_2_id; ?>">
+                            <?php }else{ ?>
+                            <form class="form-horizontal form-label-left"
+                                  action="<?php echo base_url(); ?>formulario/guardar_master_2" method="post">
+                                <?php } ?>
 
-                            <!--<pre>
+                                <!--<pre>
                                 <?php /*print_r($formulario_1);*/ ?>
                             </pre>-->
 
-                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <input type="hidden" name="prospecto_id"
+                                               value="<?php echo $formulario_1->fm_1_prospecto_id ?>">
+                                        <input type="hidden" name="proceso_id"
+                                               value="<?php echo $formulario_1->fm_1_proceso_id ?>">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Proyecto: </label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Proyecto"
+                                                       value="<?php proyecto_por_id($proceso->proyecto_id); ?>"
+                                                       name="proyecto" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Casa
+                                                No:</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="casa"
+                                                       value="<?php echo $proceso->casa; ?>" name="casa">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo:</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="tipo"
+                                                       value="<?php tipo_casa_por_id($proceso->tipo_casa_id); ?>"
+                                                       name="tipo" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente:</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Cliente"
+                                                       value="<?php echo $formulario_1->fm_1_nombre; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha:</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Fecha de "
+                                                       value="<?php echo $fecha->format('Y-m-d') ?>" name="fecha"
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
                                 <div class="row">
-                                    <input type="hidden" name="prospecto_id"
-                                           value="<?php echo $formulario_1->fm_1_prospecto_id ?>">
-                                    <input type="hidden" name="proceso_id"
-                                           value="<?php echo $formulario_1->fm_1_proceso_id ?>">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Proyecto: </label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Proyecto"
-                                                   value="<?php proyecto_por_id($proceso->proyecto_id); ?>"
-                                                   name="proyecto" required>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Q.</span>
+                                                <input type="text" class="form-control money" placeholder="Precio"
+                                                       value="<?php echo $formulario_2->fm_2_precio; ?>" name="precio"
+                                                       id="precio" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Casa
-                                            No:</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="casa"
-                                                   value="<?php echo $proceso->casa; ?>" name="casa">
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">(-)Descuento
+                                            de
+                                            promoción:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Q.</span>
+                                                <input type="text" class="form-control money"
+                                                       placeholder="Descuento "
+                                                       value="<?php echo $formulario_2->fm_2_descuento; ?>"
+                                                       name="descuento" id="descuento"
+                                                       required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo:</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="tipo"
-                                                   value="<?php tipo_casa_por_id($proceso->tipo_casa_id); ?>"
-                                                   name="tipo" required>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
+                                            de la casa con
+                                            descuento:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Q.</span>
+                                                <input type="text" class="form-control"
+                                                       placeholder="precio con descuento "
+                                                       name="precio_descuento" id="precio_descuento"
+                                                       value="<?php echo $formulario_2->fm_2_precio_descuento; ?>"
+                                                       required
+                                                       readonly>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="x_title">
+                                        <h2>Desglose de precio</h2>
+                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente:</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Cliente"
-                                                   value="<?php echo $formulario_1->fm_1_nombre; ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha:</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Fecha de "
-                                                   value="<?php echo $fecha->format('Y-m-d') ?>" name="fecha" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">Q.</span>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" class="form-control money" placeholder="Precio"
-                                                   value="<?php echo $formulario_2->fm_2_precio; ?>" name="precio" id="precio" required>
+                                                   value="<?php echo $formulario_2->fm_2_precio_desglose; ?>"
+                                                   name="precio_2" id="precio_2" required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">(-)Descuento
-                                        de
-                                        promoción:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">Q.</span>
-                                            <input type="text" class="form-control money"
-                                                   placeholder="Descuento " value="<?php echo $formulario_2->fm_2_descuento; ?>" name="descuento" id="descuento"
-                                                   required>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">(+)
+                                            Gastos:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control money" placeholder="Gastos"
+                                                   value="<?php echo $formulario_2->fm_2_gastos; ?>" name="gastos"
+                                                   id="gastos" required>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
-                                        de la casa con
-                                        descuento:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">Q.</span>
-                                            <input type="text" class="form-control"
-                                                   placeholder="precio con descuento "
-                                                   name="precio_descuento" id="precio_descuento" value="<?php echo $formulario_2->fm_2_precio_descuento; ?>" required
-                                                   readonly>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="x_title">
-                                    <h2>Desglose de precio</h2>
+                                    <h2>Extras</h2>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control money" placeholder="Precio"
-                                               value="<?php echo $formulario_2->fm_2_precio_desglose; ?>" name="precio_2" id="precio_2" required>
+
+                                <?php if ($formulario_2_extras) { ?>
+                                    <div class="row" id="extras_row">
+                                        <?php
+                                        $extra_number = 1;
+                                        foreach ($formulario_2_extras->result() as $extra) { ?>
+                                            <div class="form-group" id="container_<?php echo $extra_number; ?>">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control extra"
+                                                           placeholder="Detalle"
+                                                           value="<?php echo $extra->fm_2_extra_detalle; ?>"
+                                                           id="extra_d_<?php echo $extra_number; ?>"
+                                                           name="extra_d_<?php echo $extra_number; ?>" required>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text"
+                                                           class="form-control <?php no_formatear_extra($extra->fm_2_extra_valor); ?> "
+                                                           placeholder="Precio"
+                                                           value="<?php echo $extra->fm_2_extra_valor; ?>"
+                                                           id="extra_p_<?php echo $extra_number; ?>"
+                                                           name="extra_p_<?php echo $extra_number; ?>" required>
+                                                </div>
+                                            </div>
+
+                                            <?php $extra_number = $extra_number + 1; //print_contenido($extra); ?>
+
+                                        <?php } ?>
+                                        <input type="hidden" name="extra_fields" id="extra_fields"
+                                               value="<?php echo $extra_number; ?>">
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">(+)
-                                        Gastos:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control money" placeholder="Gastos"
-                                               value="<?php echo $formulario_2->fm_2_gastos; ?>" name="gastos" id="gastos" required>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="x_title">
-                                <h2>Extras</h2>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <?php if($formulario_2_extras){?>
-                            <div class="row" id="extras_row">
-                                <?php
-                                $extra_number = 1;
-                                foreach ($formulario_2_extras->result() as $extra) {  ?>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control extra"
-                                                   placeholder="Detalle"
-                                                   value="<?php echo $extra->fm_2_extra_detalle;?>" id="extra_d_<?php echo $extra_number;?>" name="extra_d_<?php echo $extra_number;?>" required>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+                                                <button type="button" class="btn btn-success" id="add_extra">Añadir
+                                                </button>
+                                                <button type="button" class="btn btn-danger" id="delete_extra">Borrar
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Total
+                                                        extras:</label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Q.</span>
+                                                            <input type="text" class="form-control money" value="0"
+                                                                   name="total_extras" id="total_extras" required=""
+                                                                   maxlength="22" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Precio"
-                                                   value="<?php echo $extra->fm_2_extra_valor;?>" id="extra_p_<?php echo $extra_number;?>" name="extra_p_<?php echo $extra_number;?>" required>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="row" id="extras_row">
+                                        <input type="hidden" name="extra_fields" id="extra_fields">
+                                        <div class="form-group" id="container_1">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control extra"
+                                                       placeholder="Detalle"
+                                                       value="Gabinetes de cocina" id="extra_d_1" name="extra_d_1"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Precio"
+                                                       value="Sin costo" id="extra_p_1" name="extra_p_1" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="container_2">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control extra"
+                                                       placeholder="Detalle"
+                                                       value="Closets en los dormitorios" id="extra_d_2"
+                                                       name="extra_d_2">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Precio"
+                                                       value="Sin costo" id="extra_p_2" name="extra_p_2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="container_3">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control extra"
+                                                       placeholder="Detalle"
+                                                       value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli"
+                                                       id="extra_d_3" name="extra_d_3">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Precio"
+                                                       value="Sin costo" id="extra_p_3" name="extra_p_3">
+                                            </div>
                                         </div>
                                     </div>
-
-                                <?php $extra_number = $extra_number+1; //print_contenido($extra); ?>
-                                    <input type="hidden" name="extra_fields" id="extra_fields" value="<?php echo $extra_number;?>">
-
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+                                                <button type="button" class="btn btn-success" id="add_extra">Añadir
+                                                </button>
+                                                <button type="button" class="btn btn-danger" id="delete_extra">Borrar
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Total
+                                                        extras:</label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Q.</span>
+                                                            <input type="text" class="form-control money" value="0"
+                                                                   name="total_extras" id="total_extras" required=""
+                                                                   maxlength="22" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <?php } ?>
-                            </div>
+
+
+                                <div class="x_title">
+                                    <h2>Forma de pago</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+
                                 <div class="row">
                                     <div class="form-group">
-                                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
-                                            <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
-                                            <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Enganche:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control money" placeholder="Precio"
+                                                   value="<?php echo $formulario_2->fm_2_enganche; ?>" name="enganche"
+                                                   id="enganche">
                                         </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">Q.</span>
-                                                        <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Saldo a
+                                            financiar:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control money" placeholder="Precio"
+                                                   value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>"
+                                                   name="a_financiar" id="a_financiar" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
+                                            total:</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" class="form-control money" placeholder="Precio"
+                                                   value="<?php echo $formulario_2->fm_2_precio_total; ?>"
+                                                   name="precio_total" id="precio_total" required>
                                         </div>
                                     </div>
                                 </div>
-                            <?php }
-                            else{ ?>
-                                <div class="row" id="extras_row">
-                                    <input type="hidden" name="extra_fields" id="extra_fields">
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control extra"
-                                                   placeholder="Detalle"
-                                                   value="Gabinetes de cocina" id="extra_d_1" name="extra_d_1" required>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Precio"
-                                                   value="Sin costo" id="extra_p_1" name="extra_p_1" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control extra"
-                                                   placeholder="Detalle"
-                                                   value="Closets en los dormitorios" id="extra_d_2" name="extra_d_2">
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Precio"
-                                                   value="Sin costo" id="extra_p_2" name="extra_p_2">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control extra"
-                                                   placeholder="Detalle"
-                                                   value="un baño estándar para el dormitorio de atrás pegado al muro dejando el dormitorio 0.60Mts. más ampli"
-                                                   id="extra_d_3" name="extra_d_3">
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Precio"
-                                                   value="Sin costo" id="extra_p_3" name="extra_p_3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
-                                            <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
-                                            <button type="button" class="btn btn-danger" id="delete_extra">Borrar</button>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Total extras:</label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">Q.</span>
-                                                        <input type="text" class="form-control money" value="0" name="total_extras" id="total_extras" required="" maxlength="22" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php }?>
 
 
-                            <div class="x_title">
-                                <h2>Forma de pago</h2>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="row">
+                                <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Enganche:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control money" placeholder="Precio"
-                                               value="<?php echo $formulario_2->fm_2_enganche; ?>" name="enganche" id="enganche">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-success">Guardar</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Saldo a
-                                        financiar:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control money" placeholder="Precio"
-                                               value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>" name="a_financiar" id="a_financiar" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
-                                        total:</label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="text" class="form-control money" placeholder="Precio"
-                                               value="<?php echo $formulario_2->fm_2_precio_total; ?>" name="precio_total" id="precio_total" required>
-                                    </div>
-                                </div>
-                            </div>
 
-
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
-                                </div>
-                            </div>
-
-                        </form>
+                            </form>
                     </div>
                 </div>
 
@@ -389,12 +419,10 @@ if ($formulario_2) {
     var precio_total;
 
     function init_validator() {
-
         if (typeof (validator) === 'undefined') {
             return;
         }
         console.log('init_validator');
-
         // initialize the validator function
         validator.message.date = 'not a real date';
 
@@ -411,30 +439,30 @@ if ($formulario_2) {
         $('form').submit(function (e) {
             e.preventDefault();
             var submit = true;
-
             // evaluate the form using generic validaing
             if (!validator.checkAll($(this))) {
                 submit = false;
             }
-
             if (submit)
                 this.submit();
-
             return false;
         });
-
     };
 
+    function calcular_total_extras() {
+        total_extras = 0;
+        $('#total_extras').unmask();
+        $(".extra_precio").each(function () {
+
+            extra_val = parseFloat($(this).cleanVal());
+            console.log(extra_val);
+            total_extras = parseFloat(total_extras + extra_val);
+            console.log('total extras' + total_extras);
+            $("#total_extras").val(total_extras);
+        });
+    }
 
 
-    $(document).ready(function () {
-        //mask dinero
-        $('.money').mask('000,000,000,000,000.00', {reverse: true});
-        //init_validator();
-        extras = $(".extra").length;
-        extra_count = 4;
-        $("#extra_fields").val(extra_count);
-    });
     //extras
     $("#add_extra").click(function () {
         console.log('antes de añadir ' + extra_count);
@@ -453,19 +481,7 @@ if ($formulario_2) {
         $("#extra_fields").val(extra_count);
         console.log('luego de añadir ' + extra_count);
 
-        function calcular_total_extras(){
-            total_extras = 0;
-            $('#total_extras').unmask();
-            $( ".extra_precio" ).each(function() {
 
-                extra_val = parseFloat($(this).cleanVal());
-                console.log(extra_val);
-                total_extras = parseFloat(total_extras + extra_val);
-                console.log('total extras'+ total_extras);
-                $( "#total_extras" ).val(total_extras);
-
-            });
-        }
         $(".extra_precio").change(function () {
             console.log('sumar extras');
             calcular_total_extras();
@@ -492,6 +508,7 @@ if ($formulario_2) {
         $("#precio_descuento").val(precio_casa_descuento);
         console.log(precio_casa_descuento);
     }
+
     $("#precio").change(function () {
         calcular_precio_con_descuento();
         $('#precio_descuento').mask('000,000,000,000,000.00', {reverse: true});
@@ -510,6 +527,7 @@ if ($formulario_2) {
         $("#precio_total").val(precio_total);
         console.log(precio_total);
     }
+
     $("#enganche").change(function () {
         calcular_precio_total();
         $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
@@ -519,6 +537,27 @@ if ($formulario_2) {
         $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
     });
 
+    $(document).ready(function () {
+        //mask dinero
+        $('.money').mask('000,000,000,000,000.00', {reverse: true});
+        //init_validator();
+        extras = $(".extra").length;
+
+        <?php if
+    ($formulario_2_extras) {
+        $extra_number = 1;
+        foreach ($formulario_2_extras->result() as $extra) {
+            $extra_number = $extra_number + 1;
+        }?>
+        extra_count = <?php echo $extra_number?>;
+    <?php }else{ ?>
+        extra_count = 4;
+   <?php } ?>
+
+
+        $("#extra_fields").val(extra_count);
+        calcular_total_extras();
+    });
 
 
 </script>

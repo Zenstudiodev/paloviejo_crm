@@ -370,6 +370,7 @@ class Formulario extends Base_Controller
 
         $formlario_id = $this->Formularios_model->actualizar_master_2($form_2_data);
         $extra_fields_number = $this->input->post('extra_fields');
+        //echo $extra_fields_number ;
         $extra_fields_number = $extra_fields_number -1;
         $i = 1;
         $extra_fields = array();
@@ -382,7 +383,7 @@ class Formulario extends Base_Controller
             $this->Formularios_model->guardar_master_2_extra($formlario_id, $form_2_data['proceso_id'], $form_2_data['prospecto_id'], $this->input->post('extra_d_' . $i), $this->input->post('extra_p_' . $i));
             $extra_fields['extra_detalle_' . $i] = $this->input->post('extra_d_' . $i);
             $extra_fields['extra_precio_' . $i] = $this->input->post('extra_p_' . $i);
-            //print_contenido($_POST);
+           // print_contenido($_POST);
             //echo 'accion a extra - '.$i;
             $i++;
             /* el valor presentado sería $i antes del incremento (post-incremento) */
