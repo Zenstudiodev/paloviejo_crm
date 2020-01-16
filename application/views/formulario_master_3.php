@@ -26,31 +26,27 @@ $enganche = array(
     'name' => 'enganche',
     'id' => 'enganche',
     'placeholder' => 'Enganche ',
-    'type' => 'number',
-    'class' => 'form-control',
-    'step' => 'any',
+    'type' => 'text',
+    'class' => 'form-control money',
     'required' => 'required',
-    'min' => '0'
 );
 $saldo_a_financiar = array(
     'name' => 'saldo_a_financiar',
     'id' => 'saldo_a_financiar',
     'placeholder' => 'Saldo a financiar ',
-    'type' => 'number',
-    'class' => 'form-control',
-    'step' => 'any',
+    'type' => 'text',
+    'class' => 'form-control money',
     'required' => 'required',
-    'min' => '0'
 );
 $precio_total = array(
     'name' => 'precio_total',
     'id' => 'precio_total',
     'placeholder' => 'Precio total',
-    'type' => 'number',
-    'class' => 'form-control',
+    'type' => 'text',
+    'class' => 'form-control money',
     'step' => 'any',
     'required' => 'required',
-    'min' => '0'
+
 );
 
 ?>
@@ -136,7 +132,7 @@ $precio_total = array(
                                                    placeholder="Fecha" id="fecha_pago_1" name="fecha_pago_1" required>
                                         </div>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control money"
                                                    placeholder="monto" id="monto_pago_1" name="monto_pago_1" required>
                                         </div>
                                     </div>
@@ -210,6 +206,7 @@ $precio_total = array(
 <?php $this->start('js_p') ?>
 <!-- validator -->
 <script src="<?php echo base_url(); ?>ui/vendors/validator/validator.js"></script>
+<script src="<?php echo base_url(); ?>ui/vendors/jQuery-Mask/jquery.mask.min.js"></script>
 <script>
     /* VALIDATOR */
 
@@ -252,6 +249,8 @@ $precio_total = array(
     var extra_count;
     $(document).ready(function () {
         //init_validator();
+        //mask dinero
+        $('.money').mask('000,000,000,000,000.00', {reverse: true});
         extra_count = 1;
         $("#extra_fields").val(extra_count);
     });
@@ -271,7 +270,7 @@ $precio_total = array(
         extra_field += '<input type="date" class="form-control" placeholder="Fecha" value="" id="fecha_pago_' + extra_count + '" name="fecha_pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
-        extra_field += '<input type="text" class="form-control" placeholder="Monto" value="" id="monto_pago_' + extra_count + '" name="monto_pago_' + extra_count + '" required>';
+        extra_field += '<input type="text" class="form-control money" placeholder="Monto" value="" id="monto_pago_' + extra_count + '" name="monto_pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '</div>';
         extra_field += '</div>';
