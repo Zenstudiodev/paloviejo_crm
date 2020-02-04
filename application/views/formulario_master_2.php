@@ -380,8 +380,7 @@ if ($formulario_2) {
                                         </div>
                                     </div>
                                 </div>
-
-
+                                
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -448,6 +447,7 @@ if ($formulario_2) {
             return false;
         });
     };
+
 
     function calcular_total_extras() {
         total_extras = 0;
@@ -520,18 +520,34 @@ if ($formulario_2) {
 
     //precio total
     function calcular_precio_total() {
-        enganche = parseInt($("#enganche").cleanVal());
-        saldo_financiar = parseInt($("#a_financiar").cleanVal());
-        precio_total = parseInt(enganche + saldo_financiar);
+        console.log(total_extras);
+        console.log(precio_casa_descuento);
+        precio_total = total_extras + precio_casa_descuento;
+        //enganche = parseInt($("#enganche").cleanVal());
+        //saldo_financiar = parseInt($("#a_financiar").cleanVal());
+        //precio_total = parseInt(enganche + saldo_financiar);
         $('#precio_total').unmask();
         $("#precio_total").val(precio_total);
         console.log(precio_total);
     }
+    function calcular_monto_a_financiar(){
+
+        precio_total = $("#precio_total").cleanVal();
+        enganche = $("#enganche").cleanVal();
+        console.log(precio_total);
+        console.log(enganche);
+        monto_a_financiar= precio_total - enganche;
+        $('#a_financiar').unmask();
+        $("#a_financiar").val(monto_a_financiar);
+        console.log(monto_a_financiar);
+    };
 
     $("#enganche").change(function () {
-        calcular_precio_total();
-        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
+        calcular_monto_a_financiar();
+        $('#a_financiar').mask('000,000,000,000,000.00', {reverse: true});
     });
+
+
     $("#a_financiar").change(function () {
         calcular_precio_total();
         $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
@@ -544,19 +560,22 @@ if ($formulario_2) {
         extras = $(".extra").length;
 
         <?php if
-    ($formulario_2_extras) {
+        ($formulario_2_extras) {
         $extra_number = 1;
         foreach ($formulario_2_extras->result() as $extra) {
             $extra_number = $extra_number + 1;
         }?>
         extra_count = <?php echo $extra_number?>;
-    <?php }else{ ?>
+        <?php }else{ ?>
         extra_count = 4;
-   <?php } ?>
+        <?php } ?>
 
 
         $("#extra_fields").val(extra_count);
+        calcular_precio_con_descuento();
+        $('#precio_descuento').mask('000,000,000,000,000.00', {reverse: true});
         calcular_total_extras();
+        calcular_monto_a_financiar();
     });
 
 

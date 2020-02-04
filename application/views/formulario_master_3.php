@@ -17,6 +17,7 @@ $prospecto = $prospecto->row();
 $proceso = $proceso->row();
 $formulario_1 = $formulario_1->row();
 $formulario_2 = $formulario_2->row();
+//$formulario_3 = $formulario_3->row();
 $fecha = New DateTime();
 
 
@@ -27,6 +28,7 @@ $enganche = array(
     'id' => 'enganche',
     'placeholder' => 'Enganche ',
     'type' => 'text',
+    'value' => $formulario_2->fm_2_enganche,
     'class' => 'form-control money',
     'required' => 'required',
 );
@@ -35,16 +37,17 @@ $saldo_a_financiar = array(
     'id' => 'saldo_a_financiar',
     'placeholder' => 'Saldo a financiar ',
     'type' => 'text',
+    'value' => $formulario_2->fm_2_saldo_fiannciar,
     'class' => 'form-control money',
     'required' => 'required',
 );
-$precio_total = array(
-    'name' => 'precio_total',
-    'id' => 'precio_total',
+$precio_correcto = array(
+    'name' => 'precio_correcto',
+    'id' => 'precio_correcto',
     'placeholder' => 'Precio total',
     'type' => 'text',
+    'value' => $formulario_2->fm_2_precio_total,
     'class' => 'form-control money',
-    'step' => 'any',
     'required' => 'required',
 
 );
@@ -86,6 +89,7 @@ $precio_total = array(
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <?php //print_contenido($formulario_2) ?>
                         <p>Plan de venta <br>
                             casa No. <?php echo $formulario_2->fm_2_casa_no; ?><br>
                             <?php echo $formulario_2->fm_2_proyecto; ?>
@@ -107,11 +111,11 @@ $precio_total = array(
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>formulario/guardar_master_3"
                               method="post">
-                           <!-- <pre>
-                                <?php /*print_r($formulario_1); */?>
+                            <!-- <pre>
+                                <?php /*print_r($formulario_1); */ ?>
                             </pre>
                             <pre>
-                                <?php /*print_r($formulario_2); */?>
+                                <?php /*print_r($formulario_2); */ ?>
                             </pre>-->
 
                             <div class="x_title">
@@ -132,7 +136,7 @@ $precio_total = array(
                                                    placeholder="Fecha" id="fecha_pago_1" name="fecha_pago_1" required>
                                         </div>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control money"
+                                            <input type="text" class="form-control money cuota"
                                                    placeholder="monto" id="monto_pago_1" name="monto_pago_1" required>
                                         </div>
                                     </div>
@@ -142,7 +146,35 @@ $precio_total = array(
                                 </div>
 
                             </div>
+
                             <div id="extras_row">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <input type="hidden" name="extra_fields" id="extra_fields">
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="pago" id="pago_credito_bancario"
+                                                   name="pago_credito_bancario" required>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="date" class="form-control"
+                                                   placeholder="Fecha" id="fecha_pago_credito_bancario"
+                                                   name="fecha_pago_credito_bancario" required>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input type="text" class="form-control money"
+                                                   placeholder="monto" id="monto_pago_credito_bancario"
+                                                   name="monto_pago_credito_bancario1"
+                                                   value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
 
                             </div>
                             <div class="row">
@@ -150,6 +182,21 @@ $precio_total = array(
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        Precio Total incluye O.G y E
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" class="form-control money"
+                                               placeholder="monto" id="precio_total" name="precio_total"
+                                               total>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -176,7 +223,7 @@ $precio_total = array(
                                     <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
                                         total:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <?php echo form_input($precio_total) ?>
+                                        <?php echo form_input($precio_correcto) ?>
                                     </div>
                                 </div>
                             </div>
@@ -184,10 +231,10 @@ $precio_total = array(
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
-                                <input type="hidden" name="prospecto" value="<?php echo $prospecto->id;?>">
-                                <input type="hidden" name="proceso" value="<?php echo $proceso->id;?>">
+                                <input type="hidden" name="prospecto" value="<?php echo $prospecto->id; ?>">
+                                <input type="hidden" name="proceso" value="<?php echo $proceso->id; ?>">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-success" id="btn_guardar">Guardar</button>
                                 </div>
                             </div>
 
@@ -258,7 +305,7 @@ $precio_total = array(
         console.log('antes de añadir ' + extra_count);
         extra_count += 1;
 
-        var extra_field='';
+        var extra_field = '';
 
         extra_field += '<div class="row" id="pago_container_' + extra_count + '">';
         extra_field += '<div class="col-md-11">';
@@ -270,7 +317,7 @@ $precio_total = array(
         extra_field += '<input type="date" class="form-control" placeholder="Fecha" value="" id="fecha_pago_' + extra_count + '" name="fecha_pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
-        extra_field += '<input type="text" class="form-control money" placeholder="Monto" value="" id="monto_pago_' + extra_count + '" name="monto_pago_' + extra_count + '" required>';
+        extra_field += '<input type="text" class="form-control money cuota" placeholder="Monto" value="" id="monto_pago_' + extra_count + '" name="monto_pago_' + extra_count + '" required>';
         extra_field += '</div>';
         extra_field += '</div>';
         extra_field += '</div>';
@@ -283,21 +330,61 @@ $precio_total = array(
 
         $("#extra_fields").val(extra_count);
         console.log('luego de añadir ' + extra_count);
+
+        $(".cuota").change(function () {
+            sumar_cuotas();
+            $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
+        });
     });
+
+    function sumar_cuotas() {
+        total_cuotas = 0;
+        desembolso_banco = 0;
+        precio_total = 0;
+        precio_total_correcto =0;
+
+        $("#btn_guardar").hide();
+
+        cuotas = $(".cuota").length;
+        console.log(cuotas);
+        $(".cuota").each(function () {
+            cuouta_val = parseInt($(this).cleanVal());
+            total_cuotas = total_cuotas + cuouta_val;
+            console.log($(this).val());
+        });
+        console.log(cuotas);
+        console.log(total_cuotas);
+        desembolso_banco = parseInt($("#monto_pago_credito_bancario").cleanVal());
+        precio_total = parseInt(desembolso_banco + total_cuotas);
+        precio_total_correcto = parseInt($("#precio_correcto").cleanVal());
+
+        console.log($("#precio_correcto").val());
+        $('#precio_total').unmask();
+        $("#precio_total").val(precio_total);
+        console.log(precio_total);
+        console.log(precio_total_correcto);
+        if(precio_total == precio_total_correcto){
+            $("#btn_guardar").show();
+        }
+    }
 
 
     $('#extras_row').on('click', '.delete_btn', function () {
-       var pago_id = $(this).attr('pago_id');
+        var pago_id = $(this).attr('pago_id');
         var pago_container = '#pago_container_' + pago_id;
         //alert(pago_id);
-        $(pago_container).css('background','red');
+        $(pago_container).css('background', 'red');
         $(pago_container).remove();
         extra_count -= 1;
+        sumar_cuotas();
+        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
 
     });
+    $(".cuota").change(function () {
+        sumar_cuotas();
+        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
+    });
 </script>
-
-
 
 
 <?php $this->stop() ?>
