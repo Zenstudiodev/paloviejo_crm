@@ -15,9 +15,46 @@ $this->layout('master', [
 
 $prospecto = $prospecto->row();
 $proceso = $proceso->row();
-$formulario_1 = $formulario_1->row();
-$formulario_2 = $formulario_2->row();
-//$formulario_3 = $formulario_3->row();
+if ($formulario_1) {
+    $formulario_1 = $formulario_1->row();
+} else {
+    $formulario_1->fm_1_proceso_id = '';
+    $formulario_1->fm_1_prospecto_id = '';
+    $formulario_1->fm_1_nombre = '';
+    $formulario_1->fm_1_edad = '';
+    $formulario_1->fm_1_nit = '';
+    $formulario_1->fm_1_dpi = '';
+    $formulario_1->fm_1_extendido_en = '';
+    $formulario_1->fm_1_nacionalidad = '';
+    $formulario_1->fm_1_estado_civil = '';
+    $formulario_1->fm_1_profesión = '';
+    $formulario_1->fm_1_direccion = '';
+    $formulario_1->fm_1_correo = '';
+    $formulario_1->fm_1_telefono_casa = '';
+    $formulario_1->fm_1_telefono_celular = '';
+    $formulario_1->fm_1_nombre_sucesor = '';
+    $formulario_1->fm_1_dpi_sucesor = '';
+    $formulario_1->fm_1_extendido_en_sucesor = '';
+    $formulario_1->fm_1_correo_sucesor = '';
+    $formulario_1->fm_1_telefono_sucesor = '';
+}
+if ($formulario_2) {
+    $formulario_2 = $formulario_2->row();
+} else {
+    $formulario_2->fm_2_precio = '0';
+    $formulario_2->fm_2_descuento = '0';
+    $formulario_2->fm_2_precio_descuento = '0';
+    $formulario_2->fm_2_precio_desglose = '0';
+    $formulario_2->fm_2_gastos = '0';
+    $formulario_2->fm_2_enganche = '0';
+    $formulario_2->fm_2_saldo_fiannciar = '0';
+    $formulario_2->fm_2_precio_total = '0';
+}
+if ($formulario_3_pagos) {
+    $formulario_3 = $formulario_3->row();
+    print_contenido($formulario_3_pagos);
+} else {
+}
 $fecha = New DateTime();
 
 
@@ -80,6 +117,7 @@ $precio_correcto = array(
         <div class="clearfix"></div>
 
         <div class="row">
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <!--Pagos  pagina 2-->
                 <div class="x_panel">
@@ -108,9 +146,17 @@ $precio_correcto = array(
                         </div>
 
 
+
+                        <?php if ($formulario_3_pagos) { ?>
+                        <form class="form-horizontal form-label-left"
+                              action="<?php echo base_url(); ?>formulario/actualizar_master_3"
+                              method="post">
+                        <?php }else{ ?>
                         <form class="form-horizontal form-label-left"
                               action="<?php echo base_url(); ?>formulario/guardar_master_3"
                               method="post">
+                        <?php }?>
+
                             <!-- <pre>
                                 <?php /*print_r($formulario_1); */ ?>
                             </pre>
@@ -123,67 +169,145 @@ $precio_correcto = array(
 
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <input type="hidden" name="extra_fields" id="extra_fields">
-                                    <div class="form-group">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="pago" id="pago_1" name="pago_1" required>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="date" class="form-control"
-                                                   placeholder="Fecha" id="fecha_pago_1" name="fecha_pago_1" required>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control money cuota"
-                                                   placeholder="monto" id="monto_pago_1" name="monto_pago_1" required>
+
+                            <?php if ($formulario_3_pagos) { ?>
+
+                                <?php
+                                print_contenido($formulario_3_pagos->result());
+                                ?>
+
+                                <div class="row" id="extras_row">
+                                    <?php
+                                    $extra_number = 1;
+                                    foreach ($formulario_3_pagos->result() as $extra) { ?>
+                                        <?php if ($extra->desembolso_bancario == 'no') { ?>
+                                            <div class="form-group" id="container_<?php echo $extra_number; ?>">
+                                                <div class="form-group">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="pago" id="pago_<?php echo $extra_number; ?>"
+                                                               name="pago_<?php echo $extra_number; ?>"
+                                                               value="<?php echo $extra->fm_3_pago_pago; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Fecha"
+                                                               id="fecha_pago_<?php echo $extra_number; ?>"
+                                                               name="fecha_pago_<?php echo $extra_number; ?>"
+                                                               value="<?php echo $extra->fm_3_pago_fecha; ?>" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control money cuota"
+                                                               placeholder="monto"
+                                                               id="monto_pago_<?php echo $extra_number; ?>"
+                                                               name="monto_pago_<?php echo $extra_number; ?>"
+                                                               value="<?php echo $extra->fm_3_pago_monto; ?>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php $extra_number = $extra_number + 1; //print_contenido($extra); ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </div>
+
+                                <div class="row">
+                                    <?php foreach ($formulario_3_pagos->result() as $extra) { ?>
+                                        <?php if ($extra->desembolso_bancario == 'si') { ?>
+                                            <div class="form-group" id="container_<?php echo $extra_number; ?>">
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="pago" id="pago_credito_bancario"
+                                                           name="pago_credito_bancario"
+                                                           value="<?php echo $extra->fm_3_pago_pago; ?>" required>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <input type="date" class="form-control"
+                                                           placeholder="Fecha" id="fecha_pago_credito_bancario"
+                                                           name="fecha_pago_credito_bancario"
+                                                           value="<?php echo $extra->fm_3_pago_fecha; ?>"
+                                                           required>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <input type="text" class="form-control money"
+                                                           placeholder="monto" id="monto_pago_credito_bancario"
+                                                           name="monto_pago_credito_bancario"
+                                                           value="<?php echo $extra->fm_3_pago_monto; ?>"
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <?php $extra_number = $extra_number + 1; //print_contenido($extra); ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </div>
+                            <?php } else { ?>
+                                <!--Campos de pagos-->
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="pago" id="pago_1" name="pago_1" required>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="date" class="form-control"
+                                                       placeholder="Fecha" id="fecha_pago_1" name="fecha_pago_1"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="text" class="form-control money cuota"
+                                                       placeholder="monto" id="monto_pago_1" name="monto_pago_1"
+                                                       required>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-1">
+                                        Acciones
+                                    </div>
+
                                 </div>
-                                <div class="col-md-1">
-                                    Acciones
+                                <div id="extras_row">
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
 
-                            </div>
-
-                            <div id="extras_row">
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <input type="hidden" name="extra_fields" id="extra_fields">
-                                    <div class="form-group">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control"
-                                                   placeholder="pago" id="pago_credito_bancario"
-                                                   name="pago_credito_bancario" required>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="date" class="form-control"
-                                                   placeholder="Fecha" id="fecha_pago_credito_bancario"
-                                                   name="fecha_pago_credito_bancario" required>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <input type="text" class="form-control money"
-                                                   placeholder="monto" id="monto_pago_credito_bancario"
-                                                   name="monto_pago_credito_bancario1"
-                                                   value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>" required>
+                                        <div class="form-group">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="text" class="form-control"
+                                                       placeholder="pago" id="pago_credito_bancario"
+                                                       name="pago_credito_bancario" required>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="date" class="form-control"
+                                                       placeholder="Fecha" id="fecha_pago_credito_bancario"
+                                                       name="fecha_pago_credito_bancario" required>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input type="text" class="form-control money"
+                                                       placeholder="monto" id="monto_pago_credito_bancario"
+                                                       name="monto_pago_credito_bancario"
+                                                       value="<?php echo $formulario_2->fm_2_saldo_fiannciar; ?>"
+                                                       required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-1">
+                                    <div class="col-md-1">
+
+                                    </div>
 
                                 </div>
-
-                            </div>
+                                <!--Campos de pagos-->
+                            <?php } ?>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <button type="button" class="btn btn-success" id="add_extra">Añadir</button>
+                                        <button type="button" class="btn btn-danger" id="delete_extra">Borrar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -231,6 +355,7 @@ $precio_correcto = array(
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
+                                <input type="hidden" name="extra_fields" id="extra_fields">
                                 <input type="hidden" name="prospecto" value="<?php echo $prospecto->id; ?>">
                                 <input type="hidden" name="proceso" value="<?php echo $proceso->id; ?>">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -300,6 +425,8 @@ $precio_correcto = array(
         $('.money').mask('000,000,000,000,000.00', {reverse: true});
         extra_count = 1;
         $("#extra_fields").val(extra_count);
+        sumar_cuotas();
+        $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
     });
     $("#add_extra").click(function () {
         console.log('antes de añadir ' + extra_count);
@@ -308,7 +435,7 @@ $precio_correcto = array(
         var extra_field = '';
 
         extra_field += '<div class="row" id="pago_container_' + extra_count + '">';
-        extra_field += '<div class="col-md-11">';
+        extra_field += '<div class="col-md-12">';
         extra_field += '<div class="form-group" >';
         extra_field += '<div class="col-md-4 col-sm-4 col-xs-12">';
         extra_field += '<input type="text" class="form-control" placeholder="Pago" id="pago_' + extra_count + '" name="pago_' + extra_count + '" required>';
@@ -322,26 +449,38 @@ $precio_correcto = array(
         extra_field += '</div>';
         extra_field += '</div>';
         extra_field += '<div class="col-md-1">';
-        extra_field += '<button type="button" class="btn btn-danger delete_btn" pago_id="' + extra_count + '" id="btn_del_' + extra_count + '"><i class="fa fa-minus-circle"></i></button>';
+        //extra_field += '<button type="button" class="btn btn-danger delete_btn" pago_id="' + extra_count + '" id="btn_del_' + extra_count + '"><i class="fa fa-minus-circle"></i></button>';
         extra_field += '</div>';
         extra_field += '</div>';
 
         $("#extras_row").append(extra_field);
 
-        $("#extra_fields").val(extra_count);
         console.log('luego de añadir ' + extra_count);
+        $("#extra_fields").val(extra_count);
+        console.log('valor de extras' + $("#extra_fields").val());
 
         $(".cuota").change(function () {
             sumar_cuotas();
             $('#precio_total').mask('000,000,000,000,000.00', {reverse: true});
         });
+
+    });
+    $("#delete_extra").click(function () {
+        console.log(extra_count);
+
+
+        console.log(extra_count);
+        container_d = "#pago_container_" + extra_count;
+        console.log(container_d);
+        $(container_d).remove();
+        extra_count -= 1;
     });
 
     function sumar_cuotas() {
         total_cuotas = 0;
         desembolso_banco = 0;
         precio_total = 0;
-        precio_total_correcto =0;
+        precio_total_correcto = 0;
 
         $("#btn_guardar").hide();
 
@@ -363,7 +502,7 @@ $precio_correcto = array(
         $("#precio_total").val(precio_total);
         console.log(precio_total);
         console.log(precio_total_correcto);
-        if(precio_total == precio_total_correcto){
+        if (precio_total == precio_total_correcto) {
             $("#btn_guardar").show();
         }
     }

@@ -157,6 +157,11 @@ class Formularios_model extends CI_Model
 		$query = $this->db->get('formulario_master_2');
 		if ($query->num_rows() > 0) return $query;
 	}
+	function get_formulario_3_pagos($proceso_id){
+		$this->db->where('fm_3_pago_id_proceso', $proceso_id);
+		$query = $this->db->get('formulario_master_3_pagos');
+		if ($query->num_rows() > 0) return $query;
+	}
 	function guardar_formulario_3($formData){
 	    //
         $data= array(
@@ -170,7 +175,7 @@ class Formularios_model extends CI_Model
         $insert_id = $this->db->insert_id();
         return  $insert_id;
     }
-    function guardar_pagos_formulario_3($formData){
+    function guardar_formulario_3_pago($formData){
         //
         $data= array(
             'fm_3_pago_id_formulario'=>$formData['formulario_id'],
@@ -181,6 +186,10 @@ class Formularios_model extends CI_Model
             'fm_3_pago_monto'=>$formData['monto'],
         );
         $this->db->insert('formulario_master_3_pagos', $data);
+    }
+    function borrar_pagos_formulario_3($proceso_id){
+        $this->db->where('fm_3_pago_id_proceso', $proceso_id);
+        $this->db->delete('formulario_master_3_pagos');
     }
     function guardar_formularios_4($fomrDdata){
         $data= array(
