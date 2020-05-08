@@ -159,6 +159,7 @@ class Formularios_model extends CI_Model
 	}
 	function get_formulario_3_pagos($proceso_id){
 		$this->db->where('fm_3_pago_id_proceso', $proceso_id);
+        $this->db->order_by('fm_3_pago_id', 'ASC');
 		$query = $this->db->get('formulario_master_3_pagos');
 		if ($query->num_rows() > 0) return $query;
 	}
@@ -184,6 +185,7 @@ class Formularios_model extends CI_Model
             'fm_3_pago_pago'=>$formData['pago'],
             'fm_3_pago_fecha'=>$formData['fecha'],
             'fm_3_pago_monto'=>$formData['monto'],
+            'desembolso_bancario'=>$formData['desembolso_bancario'],
         );
         $this->db->insert('formulario_master_3_pagos', $data);
     }

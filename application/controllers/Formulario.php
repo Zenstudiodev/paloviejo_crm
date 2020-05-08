@@ -448,7 +448,7 @@ class Formulario extends Base_Controller
         //print_contenido($datos_pago);
         $formlario_id = $this->Formularios_model->guardar_formulario_3($datos_pago);
 
-       print_contenido($_POST);
+       //print_contenido($_POST);
 
         $numero_de_pagos = $this->input->post('extra_fields');
         $i = 1;
@@ -467,6 +467,7 @@ class Formulario extends Base_Controller
                 'pago' => $pago,
                 'fecha' => $fecha_pago,
                 'monto' => $monto_pago,
+                'desembolso_bancario' => 'no',
             );
             $this->Formularios_model->guardar_formulario_3_pago($datos_pagos);
             $i++;
@@ -483,11 +484,12 @@ class Formulario extends Base_Controller
             'pago' => $pago,
             'fecha' => $fecha_pago,
             'monto' => $monto_pago,
+            'desembolso_bancario' => 'si',
         );
         $this->Formularios_model->guardar_formulario_3_pago($datos_pagos);
 
 
-        exit();
+       // exit();
        //redirect
         redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
@@ -496,7 +498,7 @@ class Formulario extends Base_Controller
 
         $proceso_id = $this->input->post('proceso');
         $prospecto_id = $this->input->post('prospecto');
-        $this->Formularios_model->borrar_pagos_formulario_3($proceso_id);
+
         //guardar numero formulario 3
         $datos_pago = array(
             'proceso_id' => $proceso_id,
@@ -504,12 +506,14 @@ class Formulario extends Base_Controller
             'enganche' => $this->input->post('enganche'),
             'saldo' => $this->input->post('saldo_a_financiar'),
             'preio_total' => $this->input->post('precio_total'),
+
         );
         //print_contenido($datos_pago);
         $formlario_id = $this->Formularios_model->guardar_formulario_3($datos_pago);
 
-        print_contenido($_POST);
+        //print_contenido($_POST);
         //exit();
+        $this->Formularios_model->borrar_pagos_formulario_3($proceso_id);
         $numero_de_pagos = $this->input->post('extra_fields');
         $i = 1;
         // guardar pagos formulario 3
@@ -527,6 +531,7 @@ class Formulario extends Base_Controller
                 'pago' => $pago,
                 'fecha' => $fecha_pago,
                 'monto' => $monto_pago,
+                'desembolso_bancario' => 'no',
             );
             $this->Formularios_model->guardar_formulario_3_pago($datos_pagos);
             $i++;
@@ -543,6 +548,7 @@ class Formulario extends Base_Controller
             'pago' => $pago,
             'fecha' => $fecha_pago,
             'monto' => $monto_pago,
+            'desembolso_bancario' => 'si',
         );
         $this->Formularios_model->guardar_formulario_3_pago($datos_pagos);
 
