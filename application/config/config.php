@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'https://crm.paloviejosa.com/';
+$config['base_url'] = 'http://crm.zenstudiogt.com/';
 
 
 /*
