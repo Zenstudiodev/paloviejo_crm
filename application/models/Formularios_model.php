@@ -70,8 +70,8 @@ class Formularios_model extends CI_Model
         else return false;
     }
     function lleno_master_5($proceso_id){
-        $this->db->where('fm_5_proceso_id', $proceso_id);
-        $query = $this->db->get('formulario_master_5');
+        $this->db->where('fm_5_no_inlcuye_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_5_no_incluye');
         if ($query->num_rows() > 0) return true;
         else return false;
     }
@@ -193,12 +193,21 @@ class Formularios_model extends CI_Model
         $this->db->where('fm_3_pago_id_proceso', $proceso_id);
         $this->db->delete('formulario_master_3_pagos');
     }
+    function get_formulario_4($proceso_id){
+        $this->db->where('fm_4_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_4');
+        if ($query->num_rows() > 0) return $query;
+    }
+    function get_formulario_4_incluye($proceso_id){
+        $this->db->where('fm_4_incluye_proceso_id', $proceso_id);
+        $this->db->order_by('fm_4_inlcuye_id', 'ASC');
+        $query = $this->db->get('formulario_master_4_incluye');
+        if ($query->num_rows() > 0) return $query;
+    }
     function guardar_formularios_4($fomrDdata){
         $data= array(
             'fm_4_proceso_id'=>$fomrDdata['proceso'],
             'fm_4_prospecto'=>$fomrDdata['prospecto'],
-            'fm_4_gabinete'=>$fomrDdata['tipo_gavinete'],
-            'fm_4_descuento'=>$fomrDdata['descuento_promocion'],
             'fm_4_seguro'=>$fomrDdata['seguro_incendio_terremoto'],
             'fm_4_cuota_seguro'=>$fomrDdata['cuota_seguro'],
             'fm_4_avaluo'=>$fomrDdata['avaluo_bancario'],
@@ -209,23 +218,68 @@ class Formularios_model extends CI_Model
         $insert_id = $this->db->insert_id();
         return  $insert_id;
     }
-    function guardar_formulario_5($fomrDdata){
-        $data= array(
-            'fm_5_proceso_id'=>$fomrDdata['proceso'],
-            'fm_5_prospecto_id'=>$fomrDdata['prospecto'],
-            'fm_5_proceso_extras'=>$fomrDdata['extras'],
-            'fm_5_proceso_tipo_gabinete'=>$fomrDdata['tipo_gabinete'],
-            'fm_5_proceso_ampliaciones_extras'=>$fomrDdata['ampliaciones_extras'],
-            'fm_5_proceso_cambio_ventanas'=>$fomrDdata['cambio_ventanas'],
-            'fm_5_proceso_ventanas_tipo_junta_hueso'=>$fomrDdata['ventanas_tipo_junta_hueso'],
-            'fm_5_proceso_azulejar_lavanderia'=>$fomrDdata['azulejar_lavanderia'],
-            'fm_5_proceso_pago_agua'=>$fomrDdata['pago_agua'],
-            'fm_5_proceso_pago_seguridad'=>$fomrDdata['pago_seguridad'],
-            'fm_5_proceso_pago_areas_verdes'=>$fomrDdata['deposito_energia'],
+    function guardar_incluye_formulario_4($data){
+        $incluye_data= array(
+            'fm_4_incluye_proceso_id'=>$data['proceso_id'],
+            'fm_4_incluye_prospecto_id'=>$data['prospecto_id'],
+            'fm_4_id'=>$data['formulario_id'],
+            'fm_4_inlcuye_valor'=>$data['valor'],
         );
-        $this->db->insert('formulario_master_5', $data);
+        $this->db->insert('formulario_master_4_incluye', $incluye_data);
+    }
+    function borrar_incluye_formulario_4($proceso_id){
+        $this->db->where('fm_4_incluye_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_4_incluye');
+    }
+    function actualizar_master_4($data){
+
+	    $form_data= array(
+            'fm_4_seguro'=>$data['seguro_incendio_terremoto'],
+            'fm_4_cuota_seguro'=>$data['cuota_seguro'],
+            'fm_4_avaluo'=>$data['avaluo_bancario'],
+            'fm_4_porcentaje_banrural'=>$data['porcentage_banrural'],
+            'fm_4_deposito_energia'=>$data['deposito_energia'],
+        );
+        $this->db->where('fm_4_id', $data['inlcuye_id']);
+        $this->db->update('formulario_master_4', $form_data);
         $insert_id = $this->db->insert_id();
         return  $insert_id;
+    }
+
+    function get_formulario_5($proceso_id){
+        $this->db->where('fm_5_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_5');
+        if ($query->num_rows() > 0) return $query;
+    }
+    function get_formulario_5_no_incluye($proceso_id){
+        $this->db->where('fm_5_no_inlcuye_proceso_id', $proceso_id);
+        $this->db->order_by('fm_5_no_inlcuye_id', 'ASC');
+        $query = $this->db->get('formulario_master_5_no_incluye');
+        if ($query->num_rows() > 0) return $query;
+    }
+    function guardar_formulario_5_no_incluye($data){
+        $incluye_data= array(
+            'fm_5_no_inlcuye_proceso_id'=>$data['proceso_id'],
+            'fm_5_no_inlcuye_prospecto_id'=>$data['prospecto_id'],
+            //'fm_4_id'=>$data['formulario_id'],
+            'fm_5_no_inlcuye_valor'=>$data['valor'],
+        );
+        $this->db->insert('formulario_master_5_no_incluye', $incluye_data);
+    }
+    function borrar_no_incluye_formulario_5($proceso_id){
+        $this->db->where('fm_5_no_inlcuye_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_5_no_incluye');
+    }
+    function get_formulario_6($proceso_id){
+        $this->db->where('fm_6_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_6');
+        if ($query->num_rows() > 0) return $query;
+    }
+    function get_formulario_6_og($proceso_id){
+        $this->db->where('fm_6_og_proceso_id', $proceso_id);
+        $this->db->order_by('fm_6_og_proceso_id', 'ASC');
+        $query = $this->db->get('formulario_master_6_og');
+        if ($query->num_rows() > 0) return $query;
     }
     function guardar_formulario_6($fomrDdata){
         $data= array(
@@ -241,11 +295,44 @@ class Formularios_model extends CI_Model
             'fm_6_metros_construccion'=>$fomrDdata['metros_construccion'],
             'fm_6_dias_de_entrega'=>$fomrDdata['dias_de_entrega'],
             'fm_6_arras'=>$fomrDdata['arras'],
-            'fm_6_exepto_de_credito'=>$fomrDdata['excepto_de_credito'],
+            /*'fm_6_exepto_de_credito'=>$fomrDdata['excepto_de_credito'],*/
         );
         $this->db->insert('formulario_master_6', $data);
         $insert_id = $this->db->insert_id();
         return  $insert_id;
+    }
+    function actualizar_master_6($fomrDdata){
+
+        $data= array(
+            'fm_6_proceso_id'=>$fomrDdata['proceso'],
+            'fm_6_prospecto_id'=>$fomrDdata['prospecto'],
+            'fm_6_finca'=>$fomrDdata['finca'],
+            'fm_6_folio'=>$fomrDdata['folio'],
+            'fm_6_libro'=>$fomrDdata['libro'],
+            'fm_6_area'=>$fomrDdata['area'],
+            'fm_6_frente'=>$fomrDdata['frente'],
+            'fm_6_fondo'=>$fomrDdata['fondo'],
+            'fm_6_forma'=>$fomrDdata['forma'],
+            /*'fm_6_metros_construccion'=>$fomrDdata['metros_construccion'],
+            'fm_6_dias_de_entrega'=>$fomrDdata['dias_de_entrega'],
+            'fm_6_arras'=>$fomrDdata['arras'],
+            'fm_6_exepto_de_credito'=>$fomrDdata['excepto_de_credito'],*/
+        );
+        $this->db->where('fm_6_id', $fomrDdata['form_6_id']);
+        $this->db->update('formulario_master_6', $data);
+    }
+    function guardar_formulario_6_og($data){
+        $incluye_data= array(
+            'fm_6_og_proceso_id'=>$data['proceso_id'],
+            'fm_6_og_prospecto_id'=>$data['prospecto_id'],
+            //'fm_6_id'=>$data['formulario_id'],
+            'fm_6_og_valor'=>$data['valor'],
+        );
+        $this->db->insert('formulario_master_6_og', $incluye_data);
+    }
+    function borrar_formulario_6_og($proceso_id){
+        $this->db->where('fm_6_og_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_6_og');
     }
     function get_formulario_ive($datos){
         $this->db->where('five_proceso_id', $datos['proceso_id']);

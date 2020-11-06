@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url(); ?>ui/build/css/custom.min.css" rel="stylesheet">
 
     <link href="<?php echo base_url(); ?>ui/build/css/print.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>ui/build/css/main.css" rel="stylesheet">
 
     <style>
         .wraptocenter {

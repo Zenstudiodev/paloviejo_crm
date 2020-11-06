@@ -312,6 +312,7 @@ $this->layout('master', [
                                                                             DATOS DE REGISTRO
                                                                         </a>
                                                                     <?php } ?>
+
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -359,6 +360,46 @@ $this->layout('master', [
                                                                             NO INCLUYE
                                                                         </a>
                                                                     <?php } ?>
+                                                                    <?php if (lleno_master_6($proceso->id)) { ?>
+                                                                        <a href="<?php echo base_url(); ?>formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-success btn-xs"
+                                                                           target="_blank">
+                                                                            <i class="fa fa-print"></i>
+                                                                            DATOS DE REGISTRO
+                                                                        </a>
+                                                                    <?php } ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <?php if (lleno_master_6($proceso->id)) { ?>
+                                                                        <a href="<?php echo base_url(); ?>formulario/master_7/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-primary btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            OBSERVACIONES GENERALES
+                                                                        </a>
+                                                                    <?php } ?>
+                                                                    <?php if (lleno_master_6($proceso->id)) { ?>
+                                                                        <a href="<?php echo base_url(); ?>formulario/master_8/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-primary btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            CARTA DE INTENCION DE CONTRATO
+                                                                        </a>
+                                                                    <?php } ?>
+
+                                                                    <?php if (lleno_master_6($proceso->id)) { ?>
+                                                                        <a href="<?php echo base_url(); ?>formulario/master_9/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
+                                                                           class="btn btn-primary btn-xs">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                            CONTRATO PRIVADO DE CONSTRUCCION DE VIVIENDA
+                                                                        </a>
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
                                                                     <?php if (lleno_master_6($proceso->id)) { ?>
                                                                         <a href="<?php echo base_url(); ?>formulario/imprimir_master_6/<?php echo $prospecto->id . '/' . $proceso->id; ?>"
                                                                            class="btn btn-success btn-xs"

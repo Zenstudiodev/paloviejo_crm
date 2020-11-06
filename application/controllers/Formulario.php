@@ -301,7 +301,7 @@ class Formulario extends Base_Controller
             $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_prceso']);
             $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_prceso']);
         }
-        $data['title'] = 'Foarmulario master 2';
+        $data['title'] = 'Formulario master 2';
         echo $this->templates->render('formulario_master_2', $data);
     }
 
@@ -584,17 +584,22 @@ class Formulario extends Base_Controller
             $data['formulario_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
             $data['formulario_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
             $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_proceso']);
+            $data['formulario_4_incluye'] = $this->Formularios_model->get_formulario_4_incluye($data['segmento_proceso']);
+            $data['formulario_4'] = $this->Formularios_model->get_formulario_4($data['segmento_proceso']);
         }
 
         $data['title'] = 'Formulario master 4';
         echo $this->templates->render('formulario_master_4', $data);
     }
     public function guardar_master_4(){
+
+       // print_contenido($_POST);
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+
         $datos_formulario = array(
-            'prospecto'=>$this->input->post('prospecto'),
-            'proceso'=>$this->input->post('proceso'),
-            'tipo_gavinete'=>$this->input->post('tipo_gavinete'),
-            'descuento_promocion'=>$this->input->post('descuento_promocion'),
+            'prospecto'=>$prospecto_id,
+            'proceso'=>$proceso_id,
             'deposito_energia'=>$this->input->post('deposito_energia'),
             'seguro_incendio_terremoto'=>$this->input->post('seguro_incendio_terremoto'),
             'cuota_seguro'=>$this->input->post('cuota_seguro'),
@@ -602,9 +607,69 @@ class Formulario extends Base_Controller
             'porcentage_banrural'=>$this->input->post('porcentage_banrural'),
         );
         //guardar formulario
-        $this->Formularios_model->guardar_formularios_4($datos_formulario);
+        $form_4_id = $this->Formularios_model->guardar_formularios_4($datos_formulario);
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+       // exit();
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_4_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_incluye_formulario_4($datos_pagos);
+            $i++;
+        }
+
         //redirect
         redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $datos_formulario['prospecto']);
+    }
+    public function actualizar_master_4(){
+// print_contenido($_POST);
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $form_4_id = $this->input->post('inlcuye_id');
+
+        $datos_formulario = array(
+            'inlcuye_id'=>$form_4_id,
+            'deposito_energia'=>$this->input->post('deposito_energia'),
+            'seguro_incendio_terremoto'=>$this->input->post('seguro_incendio_terremoto'),
+            'cuota_seguro'=>$this->input->post('cuota_seguro'),
+            'avaluo_bancario'=>$this->input->post('avaluo_bancario'),
+            'porcentage_banrural'=>$this->input->post('porcentage_banrural'),
+        );
+        //guardar formulario
+        $this->Formularios_model->actualizar_master_4($datos_formulario);
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_incluye_formulario_4($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_4_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_incluye_formulario_4($datos_pagos);
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
     public function master_5()
     {
@@ -627,40 +692,71 @@ class Formulario extends Base_Controller
             $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
             $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
-            //Formulario 1
+            //Formularios data
             $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
             $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
             $data['formulario_2_extras'] = $this->Formularios_model->get_formulario_2_extras($data['segmento_proceso']);
+            $data['formulario_5'] = $this->Formularios_model->get_formulario_5($data['segmento_proceso']);
+            $data['formulario_5_no_incluye'] = $this->Formularios_model->get_formulario_5_no_incluye($data['segmento_proceso']);
         }
         $data['title'] = 'Formulario master 5';
         echo $this->templates->render('formulario_master_5', $data);
     }
     public function guardar_master_5(){
-        print_contenido($_POST);
-        echo $_POST['extras'];
-        $json = json_encode($_POST['extras']);
-        $son_decopde = json_decode($json);
-        echo $son_decopde;
-
-        $datos_formulario = array(
-            'prospecto'=>$this->input->post('prospecto'),
-            'proceso'=>$this->input->post('proceso'),
-            'extras'=>$this->input->post('extras'),
-            'tipo_gabinete'=>$this->input->post('tipo_gabinete'),
-            'ampliaciones_extras'=>$this->input->post('ampliaciones_extras'),
-            'cambio_ventanas'=>$this->input->post('cambio_ventanas'),
-            'ventanas_tipo_junta_hueso'=>$this->input->post('ventanas_tipo_junta_hueso'),
-            'azulejar_lavanderia'=>$this->input->post('azulejar_lavanderia'),
-            'pago_agua'=>$this->input->post('pago_agua'),
-            'pago_seguridad'=>$this->input->post('pago_seguridad'),
-            'deposito_energia'=>$this->input->post('pago_areas_verdes'),
-        );
-
-        //print_contenido($datos_formulario);
-        //guardar formulario
-        $this->Formularios_model->guardar_formulario_5($datos_formulario);
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $numero_de_incluye = $this->input->post('extra_fields');
+        /*echo  $proceso_id;
+        echo  $prospecto_id;
+        echo  $numero_de_incluye;
+        print_contenido($_POST);*/
+        // exit();
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+           // echo $i. ' '.$valor.'<br>';
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_formulario_5_no_incluye($datos_pagos);
+            $i++;
+        }
         //redirect
-        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $datos_formulario['prospecto']);
+       redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function actualizar_master_5(){
+// print_contenido($_POST);
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        //$form_4_id = $this->input->post('inlcuye_id');
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_no_incluye_formulario_5($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+           // echo $i. ' '.$valor.'<br>';
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_formulario_5_no_incluye($datos_pagos);
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
 
     public function master_6()
@@ -687,13 +783,16 @@ class Formulario extends Base_Controller
             //Formulario 1
             $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
             $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
+            $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
         }
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
         $data['title'] = 'Formulario master 6';
         echo $this->templates->render('formulario_master_6', $data);
     }
     public function guardar_master_6(){
-       // print_contenido($_POST);
+      //print_contenido($_POST);
+      //exit();
        $datos_formulario = array(
             'prospecto'=>$this->input->post('prospecto'),
             'proceso'=>$this->input->post('proceso'),
@@ -707,13 +806,367 @@ class Formulario extends Base_Controller
             'metros_construccion'=>$this->input->post('metros_construccion'),
             'dias_de_entrega'=>$this->input->post('dias_de_entrega'),
             'arras'=>$this->input->post('arras'),
-            'excepto_de_credito'=>$this->input->post('excepto_de_credito'),
+            //'excepto_de_credito'=>$this->input->post('excepto_de_credito'),
         );
        // print_contenido($datos_formulario);
         //guardar formulario
         $this->Formularios_model->guardar_formulario_6($datos_formulario);
         //redirect
         redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $datos_formulario['prospecto']);
+    }
+    public function actualizar_master_6(){
+    //print_contenido($_POST);
+    //exit();
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $form_6_id = $this->input->post('fm_6_id');
+
+
+        $datos_formulario = array(
+            'form_6_id'=>$form_6_id,
+            'prospecto'=>$this->input->post('prospecto'),
+            'proceso'=>$this->input->post('proceso'),
+            'finca'=>$this->input->post('finca'),
+            'folio'=>$this->input->post('folio'),
+            'libro'=>$this->input->post('libro'),
+            'area'=>$this->input->post('area'),
+            'frente'=>$this->input->post('frente'),
+            'fondo'=>$this->input->post('fondo'),
+            'forma'=>$this->input->post('forma'),
+            'metros_construccion'=>$this->input->post('metros_construccion'),
+            'dias_de_entrega'=>$this->input->post('dias_de_entrega'),
+            'arras'=>$this->input->post('arras'),
+            //'excepto_de_credito'=>$this->input->post('excepto_de_credito'),
+        );
+        //guardar formulario
+        $this->Formularios_model->actualizar_master_6($datos_formulario);
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_6_id,
+                'valor' => $valor,
+            );
+
+            if($valor != ''){
+                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            }
+
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function master_7()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //datos del prospecto
+        $data['segmento_prospecto'] = $this->uri->segment(3);
+        //datos del proceso
+        $data['segmento_proceso'] = $this->uri->segment(4);
+        if (!$data['segmento_prospecto']) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            //alertas y notificaciones
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+            //datos a pasar a vista
+            //pospecto
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            //proceso
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
+            //Formulario 1
+            $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+            $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
+            $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
+        }
+        //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
+        $data['title'] = 'Formulario master 6 observaciones generales';
+        echo $this->templates->render('formulario_master_7', $data);
+    }
+    public function guardar_master_7(){
+
+
+        //print_contenido($_POST);
+        //exit();
+        //redirect
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $numero_de_incluye = $this->input->post('extra_fields');
+        /*echo  $proceso_id;
+        echo  $prospecto_id;
+        echo  $numero_de_incluye;
+        print_contenido($_POST);*/
+        // exit();
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            // echo $i. ' '.$valor.'<br>';
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            $i++;
+        }
+
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function actualizar_master_7(){
+        //print_contenido($_POST);
+        //exit();
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $form_6_id = $this->input->post('fm_6_id');
+
+
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_6_id,
+                'valor' => $valor,
+            );
+
+            if($valor != ''){
+                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            }
+
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function master_8()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //datos del prospecto
+        $data['segmento_prospecto'] = $this->uri->segment(3);
+        //datos del proceso
+        $data['segmento_proceso'] = $this->uri->segment(4);
+        if (!$data['segmento_prospecto']) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            //alertas y notificaciones
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+            //datos a pasar a vista
+            //pospecto
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            //proceso
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
+            //Formulario 1
+            $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+            $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
+            $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
+        }
+        //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
+        $data['title'] = 'Formulario master 6 observaciones generales';
+        echo $this->templates->render('formulario_master_8', $data);
+    }
+    public function guardar_master_8(){
+
+
+        //print_contenido($_POST);
+        //exit();
+        //redirect
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $numero_de_incluye = $this->input->post('extra_fields');
+        /*echo  $proceso_id;
+        echo  $prospecto_id;
+        echo  $numero_de_incluye;
+        print_contenido($_POST);*/
+        // exit();
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            // echo $i. ' '.$valor.'<br>';
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            $i++;
+        }
+
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function actualizar_master_8(){
+        //print_contenido($_POST);
+        //exit();
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $form_6_id = $this->input->post('fm_6_id');
+
+
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_6_id,
+                'valor' => $valor,
+            );
+
+            if($valor != ''){
+                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            }
+
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function master_9()
+    {
+        //comprobamos session desde el helper de sesion
+        $data = compobarSesion();
+        //datos del prospecto
+        $data['segmento_prospecto'] = $this->uri->segment(3);
+        //datos del proceso
+        $data['segmento_proceso'] = $this->uri->segment(4);
+        if (!$data['segmento_prospecto']) {
+            //redirect('prospectos/prospectosList', 'refresh');
+        } else {
+            //alertas y notificaciones
+            $data['notificaciones'] = $this->Notificaciones_model->listar_notificaciones($data['user_id']);
+            $data['notificaciones_supervisor'] = $this->Notificaciones_model->listar_notificaciones_supervisor($data['rol']);
+            $data['alertas'] = $this->Notificaciones_model->listar_alertas($data['user_id']);
+            $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
+            //datos a pasar a vista
+            //pospecto
+            $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
+            //proceso
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
+            //Formulario 1
+            $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+            $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
+            $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
+        }
+        //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
+        $data['title'] = 'Formulario master 6 observaciones generales';
+        echo $this->templates->render('formulario_master_7', $data);
+    }
+    public function guardar_master_9(){
+
+
+        //print_contenido($_POST);
+        //exit();
+        //redirect
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $numero_de_incluye = $this->input->post('extra_fields');
+        /*echo  $proceso_id;
+        echo  $prospecto_id;
+        echo  $numero_de_incluye;
+        print_contenido($_POST);*/
+        // exit();
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            // echo $i. ' '.$valor.'<br>';
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'valor' => $valor,
+            );
+            $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            $i++;
+        }
+
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
+    }
+    public function actualizar_master_9(){
+        //print_contenido($_POST);
+        //exit();
+        $proceso_id = $this->input->post('proceso');
+        $prospecto_id = $this->input->post('prospecto');
+        $form_6_id = $this->input->post('fm_6_id');
+
+
+        //echo $form_4_id;
+        $numero_de_incluye = $this->input->post('extra_fields');
+        // exit();
+        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $i = 1;
+        // guardar incluye formulario 4
+        $extra_fields = array();
+        while ($i <= $numero_de_incluye) {
+            //obtenemos los datos del pago
+            $valor = $this->input->post('incluye_input_' . $i);
+            //armamos array para pasar pagos
+            $datos_pagos =array(
+                'proceso_id' => $proceso_id,
+                'prospecto_id' => $prospecto_id,
+                'formulario_id' => $form_6_id,
+                'valor' => $valor,
+            );
+
+            if($valor != ''){
+                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            }
+
+            $i++;
+        }
+
+        //redirect
+        redirect(base_url() . 'index.php/prospectos/prospectoDetalle/' . $prospecto_id);
     }
 
     public function imprimir_master_1()
