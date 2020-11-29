@@ -1037,7 +1037,7 @@ class Formulario extends Base_Controller
         //exit();
         $proceso_id = $this->input->post('proceso');
         $prospecto_id = $this->input->post('prospecto');
-        $form_6_id = $this->input->post('fm_6_id');
+        $form_6_id = $this->input->post('fm_8_id');
 
 
         //echo $form_4_id;
@@ -1097,7 +1097,7 @@ class Formulario extends Base_Controller
         }
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
         $data['title'] = 'Formulario master 6 observaciones generales';
-        echo $this->templates->render('formulario_master_7', $data);
+        echo $this->templates->render('formulario_master_9', $data);
     }
     public function guardar_master_9(){
 

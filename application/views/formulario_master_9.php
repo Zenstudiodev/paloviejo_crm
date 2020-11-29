@@ -121,7 +121,7 @@ if ($formulario_master_6) {
                                 <?php } ?>
 
                                 <?php
-                                if ($formulario_master_6_og) {
+                                if (false) {
                                     //print_contenido($formulario_4_incluye->result());
                                     ?>
                                     <div class="row">
@@ -159,11 +159,17 @@ if ($formulario_master_6) {
                                 <?php } else { ?>
 
                                 <?php
+                                /*print_contenido($formulario_master_6);
+                                print_contenido($master_1);
+                                print_contenido($master_2);*/
+
+                                $varas_area = $formulario_master_6->fm_6_area * 1.431;
+
                                 print_contenido($formulario_master_6);
                                 print_contenido($master_1);
                                 print_contenido($master_2);
 
-                                $varas_area = $formulario_master_6->fm_6_area * 1.431;
+                                $dpi_numero = intval($master_1->fm_1_dpi);
                                 ?>
 
                                 <div class="row">
@@ -176,10 +182,9 @@ if ($formulario_master_6) {
                                             </span>
                                                 <textarea class="form-control" name="incluye_input_1"
                                                           id="incluye_input_1"
-                                                >EL TERRENO DE LA CASA No. <?php echo $master_2->fm_2_casa_no; ?> DE <?php echo $master_2->fm_2_proyecto; ?>, TIENE UNA ÀREA DE: <?php echo $formulario_master_6->fm_6_area; ?>, METROS2: EQUIVALENTES A  <?php echo $varas_area; ?> VARAS2 Y ES DE FORMA <?php echo $formulario_master_6->fm_6_forma; ?> LA CASA TIENE APROXIMADAMENTE <?php echo $formulario_master_6->fm_6_metros_construccion; ?> M2 DE CONSTRUCCIÓN.</textarea>
+                                                >CONTRATO PRIVADO DE CONSTRUCCION DE VIVIENDA</textarea>
                                             </div><!-- /input-group -->
                                         </div>
-                                        <?php if( $master_2->fm_2_niveles_casa == '1'){?>
                                             <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
                                                  id="incluye_container_2">
                                                 <div class="input-group">
@@ -187,35 +192,10 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_2" class="incluye_checkbox">
                                             </span>
                                                     <textarea name="incluye_input_2" id="incluye_input_2"
-                                                              class="form-control ">LA CONSTRUCCIÒN DE LA CASA CONSTA DE: PLANTA BAJA: GARAGE PARA DOS O TRES VEHICULOS PEQUEÑOS, SALA-COMEDOR EN UN SOLO AMBIENTE, COCINA CON GABINETES, LAVANDERIA TECHADA CON LOZA CON PILA SIN AZULEJAR, JARDINES AL FRENTE Y ATRÁS DE LA CASA, UN BAÑO DE VISITAS Y CUBO DE GRADAS. PLANTA ALTA: TRES DORMITORIOS CON CLOSETS, UN BAÑO COMPLETO.</textarea>
+                                                              class="form-control ">En la ciudad de Guatemala, departamento de Guatemala, el día: cinco de noviembre del año dos mil dieciocho, en las oficinas de la entidad denominada CONSTRUCCIONES DE CENTROAMERICA, SOCIEDAD ANÓNIMA, ubicada en 8ª. Calle 20-06 Colonia El Mirador 1, zona 11, ciudad de Guatemala, comparecemos: </textarea>
                                                 </div>
                                             </div>
-                                        <?php } ?>
 
-                                        <?php if( $master_2->fm_2_niveles_casa == '2'){?>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_2">
-                                            <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" id="incluye_checkbox_2" class="incluye_checkbox">
-                                            </span>
-                                                <textarea name="incluye_input_2" id="incluye_input_2"
-                                                          class="form-control ">LA CONSTRUCCIÒN DE LA CASA CONSTA DE: PLANTA BAJA (PRIMER NIVEL), PLANTA ALTA (SEGUNDO NIVEL): GARAGE PARA DOS O TRES VEHICULOS PEQUEÑOS, SALA-COMEDOR EN UN SOLO AMBIENTE, COCINA CON GABINETES, LAVANDERIA TECHADA CON LOZA CON PILA SIN AZULEJAR, JARDINES AL FRENTE Y ATRÁS DE LA CASA, UN BAÑO DE VISITAS Y CUBO DE GRADAS. PLANTA ALTA: TRES DORMITORIOS CON CLOSETS, UN BAÑO COMPLETO.</textarea>
-                                            </div>
-                                        </div>
-                                        <?php } ?>
-                                        <?php if( $master_2->fm_2_niveles_casa == '3'){?>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                                 id="incluye_container_2">
-                                                <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" id="incluye_checkbox_2" class="incluye_checkbox">
-                                            </span>
-                                                    <textarea name="incluye_input_2" id="incluye_input_2"
-                                                              class="form-control ">LA CONSTRUCCIÒN DE LA CASA CONSTA DE: PLANTA BAJA (PRIMER NIVEL), PLANTA ALTA (SEGUNDO NIVEL), PLANTA ALTA (TERCER NIVEL): GARAGE PARA DOS O TRES VEHICULOS PEQUEÑOS, SALA-COMEDOR EN UN SOLO AMBIENTE, COCINA CON GABINETES, LAVANDERIA TECHADA CON LOZA CON PILA SIN AZULEJAR, JARDINES AL FRENTE Y ATRÁS DE LA CASA, UN BAÑO DE VISITAS Y CUBO DE GRADAS. PLANTA ALTA: TRES DORMITORIOS CON CLOSETS, UN BAÑO COMPLETO.</textarea>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container "
                                              id="incluye_container_3">
                                             <div class="input-group">
@@ -223,7 +203,7 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_3" class="incluye_checkbox">
                                             </span>
                                                 <textarea name="incluye_input_3" id="incluye_input_3"
-                                                          class="form-control">LA REFERENCIA DEL TIPO DE CAMBIO SE TOMARÀ DE LAS PUBLICACIONES DIARIA DEL BANCO DE GUATEMALA, EN LOS DIARIOS DEL PAÌS, DEL MERCADO BANCARIO, Y SE TOMARÀ COMO BASE SIEMPRE EL PROMEDIO PONDERADO EN LOS BANCOS DEL SISTEMA MENOS DIEZ CENTAVOS DE QUETZAL (-Q. 0.10), PARA CUALQUIER PAGO QUE SE QUISIERA HACER EN DÓLARES DE NORTEAMERICA (US$.). Y (-Q. 0.15) SI EL PAGO FUERA EN DÓLARES NORTEAMERICANOS (US$) EN EFECTIVO.</textarea>
+                                                          class="form-control" rows="5">A) PEDRO PABLO GALINDO MORALES, quien dice ser de 46 años de edad, casado, guatemalteco,  Ingeniero Civil, de este domicilio, quien se identifica con Documento Personal de Identificación, Código Único de Identificación número Dos mil seiscientos setenta y dos, ochenta y seis mil quinientos cuarenta y seis, cero uno cero uno (2672 86546 0101) extendido por el Registro Nacional de las Personas de la República de Guatemala, quien actúa en su calidad de GERENTE GENERAL Y REPRESENTANTE LEGAL de la entidad CONSTRUCCIONES DE CENTROAMERICA, SOCIEDAD ANONIMA, representación que se encuentra documentada en acta notarial de fecha 01/09/2009, autorizada en esta ciudad, por la Notaria Mirna Liseth Hernández Vásquez, documento que se encuentra inscrito en el Registro Mercantil General de la República bajo número trecientos diecinueve mil, cuatrocientos treinta (319430), folio cuatrocientos sesenta y tres (463), libro  doscientos cuarenta y seis (246) de Auxiliares de Comercio; entidad que podrá ser denominada indistintamente como “LA CONSTRUCTORA.</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
@@ -233,74 +213,72 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_4" class="incluye_checkbox">
                                             </span>
                                                 <textarea name="incluye_input_4" id="incluye_input_4"
-                                                          class="form-control">TIEMPO MÁXIMO DE ENTREGA: <?php echo $formulario_master_6->fm_6_dias_de_entrega; ?> DÍAS CORRIDOS A PARTIR DE LA PRESENTE FECHA (SI NO HUBIERA MODIFICACIONES O EXTRAS NUEVAS A LA CASA). Y CONTRA LA CANCELACIÓN TOTAL DEL ENGANCHE, EL CRÉDITO BANCARIO Y TODOS LOS GASTOS Y EXTRAS RELACIONADOS CON ESTA VENTA.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_5">
-                                            <div class="input-group">
+                                                          class="form-control">B) <?php echo $master_1->fm_1_nombre?> de <?php echo $master_1->fm_1_edad?> años de edad, <?php echo $master_1->fm_1_estado_civil?>, <?php echo $master_1->fm_1_nacionalidad?>, <?php echo $master_1->fm_1_profesión?>, con domicilio en: <?php echo $master_1->fm_1_direccion?>. Me identifico con DPI Número:  <?php echo  pasar_dpi_a_letras($dpi_numero);?>, ( <?php echo  ($dpi_numero); ?>). Quien podrá ser denominado como “EL CLIENTE”.
+                                    Los comparecientes celebramos Contrato Privado de Construcción de Vivienda de conformidad con los siguientes términos y condiciones:
+                                    </textarea>
+                                </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
+                         id="incluye_container_5">
+                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="incluye_checkbox_5" class="incluye_checkbox">
                                             </span>
-                                                <textarea name="incluye_input_5" id="incluye_input_5"
-                                                          class="form-control">INTERESES POR MORA Y/O EXTRAFINANCIAMIENTO: 3.85 % MENSUAL SOBRE SALDOS DEUDORES MOROSOS, EN UNA MORA DE HASTA 60 DÍAS CALENDARIO CORRIDOS EN AL MENOS UNO DE LOS PAGOS DE ESTE CONTRATO, PREVIAMENTE ESTABLECIDOS, LUEGO DE LOS CUALES SE PROCEDERÁ A DAR POR FINALIZADO EL PRESENTE 	CONTRATO PREVIO EL COBRO DE LAS ARRAS Y OTROS GASTOS CORRESPONDIENTES.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_6">
-                                            <div class="input-group">
+                            <textarea name="incluye_input_5" id="incluye_input_5"
+                                      class="form-control">Planta baja: Carport para dos vehículos pequeños, sala – comedor en un solo ambiente, cocina con gabinetes, lavandería techada con losa, jardín al frente y atrás de la casa, un baño de visitas y cubo de gradas. Planta alta: cinco dormitorios con closets, dos baños completos.</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
+                         id="incluye_container_6">
+                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="incluye_checkbox_6" class="incluye_checkbox">
                                             </span>
-                                                <textarea name="incluye_input_6" id="incluye_input_6"
-                                                          class="form-control">ARRAS: Q. <?php echo $formulario_master_6->fm_6_arras; ?>. - MAS EL VALOR DE LAS EXTRAS SOLICITADAS, SI LAS HUBIERA Y EL VALOR DE LOS GASTOS DE ESCRITURACIÓN. SI EL CREDITO HIPOTECARIO NO ES APROBADO POR NINGUNA ENTIDAD BANCARIA, HABIENDO CUMPLIDO EL CLIENTE CON LA ENTREGA DE PAPELERIA SOLICITADA DENTRO DEL TIEMPO ESTABLECIDO (TOMANDO EN CUENTA QUE EL CLIENTE NO ES RESIDENTE, Y SI CUENTA CON PERMISO DE TRABAJO), LAS ARRAS NO SE HARAN EFECTIVAS A EXCEPCION DE LOS GASTOS ADMINISTRATIVOS DE Q. 11,000.00, MENOS EL 50% DE DESCUENTO QUEDANDO EN Q. 5,500.00.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_7">
-                                            <div class="input-group">
+                            <textarea name="incluye_input_6" id="incluye_input_6"
+                                      class="form-control">El monto de la obra contratada asciende a la cantidad de: Q. <?php echo $master_1->fm_2_precio?> a cancelar por medio de enganche por Q. <?php echo $master_1->fm_2_enganche?>  y financiamiento bancario por Q. <?php echo $master_1->fm_2_saldo_fiannciar?> .</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12  incluye_container"
+                         id="incluye_container_7">
+                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="incluye_checkbox_7" class="incluye_checkbox">
                                             </span>
-                                                <textarea name="incluye_input_7" id="incluye_input_7"
-                                                          class="form-control "
-                                                          required="required">MULTA POR DÌA DE ATRASO EN LA ENTREGA DE LA CASA: Q. 25.00 DIARIOS. ÙNICAMENTE SI ES POR RESPONSABILIDAD DIRECTA DE LA EMPRESA, Y SI NO SE HUBIERA PEDIDO MODIFICACIONES O EXTRAS AL DISEÑO ORIGINAL DE LA CASA, QUE PUDIERAN RETRASAR LA CONSTRUCCIÓN DE LA MISMA, PARA LAS CUALES TUVIERON QUE HABER ACUERDOS PREVIOS A SU REALIZACIÓN POR ESCRITO.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12  incluye_container"
-                                             id="incluye_container_8">
-                                            <div class="input-group">
+                            <textarea name="incluye_input_7" id="incluye_input_7"
+                                      class="form-control ">El plazo del presente contrato será por un plazo de 212 días a partir de la presente fecha. El presente contrato podrá ser prorrogado a petición de ambas partes, o en forma unilateral a criterio de la constructora por motivos de trabajos extras, mejoras o modificaciones en la construcción.
+Cualquier modificación, trabajos extras, cambios de orden de trabajos o ampliaciones modificara el valor de este contrato.
+Cualquier sobrecosto originado por cambios en las leyes tributarias y económicas del país que afecten el presente contrato será por cuenta de El Cliente.
+</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
+                         id="incluye_container_8">
+                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="incluye_checkbox_8" class="incluye_checkbox">
                                             </span>
-                                                <textarea name="incluye_input_8" id="incluye_input_8"
-                                                          class="form-control ">INDEXACIÓN: Q. 8.15 = $. 1.00.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_9">
-                                            <div class="input-group">
+                            <textarea type="text" name="incluye_input_8" id="incluye_input_8"
+                                      class="form-control ">La Constructora señala lugar para recibir notificaciones o citaciones las oficinas de la   entidad ubicadas en: 8ª.  Calle 20-06, zona 11 Colonia El Mirador I.
+El Cliente señala lugar para recibir notificaciones o citaciones el lugar de residencia ubicada en: zona 4, Colonia El Cafetal II, Boca del Monte.
+</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
+                         id="incluye_container_9">
+                        <div class="input-group">
                                             <span class="input-group-addon">
-                                                <input type="checkbox" id="incluye_checkbox_9" class="incluye_checkbox">
-                                            </span>
-                                                <textarea type="text" name="incluye_input_9" id="incluye_input_9"
-                                                          class="form-control ">QUEDA A DISCRECIÓN DE LOS CONSTRUCTORES ACEPTAR O NO CUALQUIER EXTRA, MODIFICACIÓN, AMPLIACIÒN, REDUCCIÓN O CAMBIO SOLICITADO EN LA CONSTRUCCIÓN DE ESTRUCTURAS, ACABADOS, SERVICIOS, CONEXIONES, DETALLES O ELEMENTOS NO INCLUIDOS DENTRO DE ESTE CONTRATO, ASÌ COMO SU COSTO Y TIEMPO PARA REALIZARLAS, PUDIENDO ÈSTAS DE SER ACEPTADAS, RETRASAR EL TIEMPO DE ENTREGA DE LA CASA.</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
-                                             id="incluye_container_10">
-                                            <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" id="incluye_checkbox_10"
+                                                <input type="checkbox" id="incluye_checkbox_9"
                                                        class="incluye_checkbox">
                                             </span>
-                                                <textarea name="incluye_input_10" id="incluye_input_10"
-                                                          class="form-control ">SUCESOR: <?php echo $master_1->fm_1_nombre_sucesor ?> QUIEN SE IDENTIFICAN CON NUMERO DE DPI: <?php echo $master_1->fm_1_dpi_sucesor ?></textarea>
-                                            </div>
-                                        </div>
-                                        <div id="extras_row">
-                                        </div>
-                                    </div>
+                            <textarea name="incluye_input_9" id="incluye_input_9"
+                                      class="form-control ">Cualquier conflicto que se genere entre las partes por el presente contrato será sometido a los tribunales en materia civil y mercantil de la ciudad de Guatemala, ambas partes desde ya renuncian al fuero de su domicilio y se someten a los tribunales civiles y mercantiles de la ciudad de Guatemala, departamento de Guatemala.
+En la ciudad de Guatemala el día 05 de noviembre del 2018.
+</textarea>
+                        </div>
+                    </div>
+                    <div id="extras_row">
+                    </div>
+                </div>
                                 </div>
                     </div>
 

@@ -13,6 +13,7 @@ $this->layout('master', [
     'alertas_s' => $alertas_supervisor
 ]);
 
+
 $prospecto = $prospecto->row();
 $proceso = $proceso->row();
 $master_1 = $formulario_master_1->row();
@@ -100,10 +101,10 @@ if ($formulario_master_6) {
 
                         <?php if ($formulario_master_6_og) { ?>
                         <form class="form-horizontal form-label-left"
-                              action="<?php echo base_url(); ?>Formulario/actualizar_master_7" method="post">
+                              action="<?php echo base_url(); ?>Formulario/actualizar_master_8" method="post">
                             <?php }else{ ?>
                             <form class="form-horizontal form-label-left"
-                                  action="<?php echo base_url(); ?>Formulario/guardar_master_7" method="post">
+                                  action="<?php echo base_url(); ?>Formulario/guardar_master_8" method="post">
                                 <?php } ?>
 
 
@@ -159,13 +160,20 @@ if ($formulario_master_6) {
                                 <?php } else { ?>
 
                                 <?php
-                                /*print_contenido($formulario_master_6);
+                                print_contenido($formulario_master_6);
                                 print_contenido($master_1);
-                                print_contenido($master_2);*/
+                                print_contenido($master_2);
 
                                 $varas_area = $formulario_master_6->fm_6_area * 1.431;
+                                $dpi_en_letras ='';
+                                //echo $master_1->fm_1_dpi;
+                                $dpi_numero = intval($master_1->fm_1_dpi);
+                                //echo $dpi_numero;
+                                pasar_dpi_a_letras($dpi_numero);
+
                                 ?>
 
+                                <p>Plantilla</p>
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
@@ -174,9 +182,7 @@ if ($formulario_master_6) {
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="incluye_checkbox_1" class="incluye_checkbox">
                                             </span>
-                                                <textarea class="form-control" name="incluye_input_1"
-                                                          id="incluye_input_1"
-                                                >CARTA DE INTENCION DE CONTRATO.</textarea>
+                                                <textarea class="form-control" name="incluye_input_1" id="incluye_input_1">CARTA DE INTENCION DE CONTRATO.</textarea>
                                             </div><!-- /input-group -->
                                         </div>
 
@@ -191,8 +197,6 @@ if ($formulario_master_6) {
                                                 </div>
                                             </div>
 
-
-
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container "
                                              id="incluye_container_3">
                                             <div class="input-group">
@@ -200,7 +204,7 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_3" class="incluye_checkbox">
                                             </span>
                                                 <textarea name="incluye_input_3" id="incluye_input_3"
-                                                          class="form-control">YO: BARBARA DENISSE QUINTEROS ARRIAZA de 24 años de edad, soltera, guatemalteca, Bachiller, con domicilio en: 6ª. Calle “A” 3-34, zona 4, Colonia El Cafetal II, Boca del Monte. Me identifico con DPI Número: dos mil seiscientos veintitrés, cuarenta y ocho mil ochocientos cuarenta y cinco, un mil ciento uno, (2623 48845 0101). Quien podrá ser denominado como “EL CLIENTE”.</textarea>
+                                                          class="form-control">YO: <?php echo $master_1->fm_1_nombre?> de 24 años de edad, soltera, guatemalteca, Bachiller, con domicilio en: <?php echo $master_1->fm_1_direccion?>. Me identifico con DPI Número: <?php echo  pasar_dpi_a_letras($dpi_numero);?>, (<?php echo ($dpi_numero);?>). Quien podrá ser denominado como “EL CLIENTE”.</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
@@ -230,10 +234,10 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_6" class="incluye_checkbox">
                                             </span>
                                                 <textarea name="incluye_input_6" id="incluye_input_6"
-                                                          class="form-control" rows="4">IDENTIFICACION DEL INMUEBLE: Casa No. 77 de Residenciales Arcos de Santa María Fase I.
-PRECIO: Q.120, 000.-
+                                                          class="form-control" rows="4">IDENTIFICACION DEL INMUEBLE: Casa No. <?php echo $master_2->fm_2_casa_no?>  de <?php echo $master_2->fm_2_proyecto?>.
+PRECIO: Q.<?php echo $master_2->fm_2_precio?>.-
 FORMA DE PAGO:
-Financiamiento Bancario: Q. 120,000.-
+Financiamiento Bancario: Q. <?php echo $master_2->fm_2_saldo_fiannciar?>.-
 </textarea>
                                             </div>
                                         </div>
@@ -248,6 +252,17 @@ Financiamiento Bancario: Q. 120,000.-
                                                           required="required" rows="6">CONDICIONES: a) el contrato se formalizará hasta que “EL CLIENTE” no tenga pagos pendientes con La Propietaria; b) se tendrá por rescindido la presente intención, si la cliente, desiste, abandona, incumple cualquier condición acordada; c) La Propietaria queda autorizada en forma exclusiva para designar a la entidad Constructora que deba realizar los trabajos de construcción en el bien inmueble objeto de la presente carta; d) No se formalizará el contrato de compra venta sin construcción, en virtud que el proyecto de terreno y vivienda son una unidad dentro del Residencial; e) No se formalizará el contrato si El Cliente no acepta a la entidad Constructora designada por la Propietaria; f)  El propietario, dará por rescindido, terminado o cancelado en forma unilateral la presente carta sin su responsabilidad por cualquier incumplimiento por parte de El Cliente a formalizar el contrato; h) La presentes condiciones quedarán sin efecto legal alguno si El Cliente no acepta la designación de la entidad Constructora designada   por;   La   Propietaria  i) Cualquier sobrecosto originado por cambios en las leyes tributarias y económicas del país que afecten la presente intención de contrato será por cuenta de El Cliente.</textarea>
                                             </div>
                                         </div>
+
+                                        <?php
+                                        setlocale(LC_TIME, 'es_ES.UTF-8');
+                                        $fecha = new DateTime();
+
+                                        $miFecha= time();
+
+                                       // echo 'Después de setlocale es_ES.UTF-8 strftime devuelve: '.strftime("%A, %d de %B de %Y %H:%M", $miFecha).'<br/>';
+
+
+                                        ?>
                                         <div class="col-md-12 col-sm-12 col-xs-12  incluye_container"
                                              id="incluye_container_8">
                                             <div class="input-group">
@@ -256,7 +271,7 @@ Financiamiento Bancario: Q. 120,000.-
                                             </span>
                                                 <textarea name="incluye_input_8" id="incluye_input_8"
                                                           class="form-control ">Los comparecientes ratificamos y aceptamos la presente carta de intención de contrato firmando al pie de la presente.
-En la ciudad de Guatemala el día 05 de noviembre del año 2018.
+En la ciudad de Guatemala el día <?php echo $fecha->format('d')?> de <?php echo strftime("%B", $miFecha)?>  del año <?php echo $fecha->format('Y')?> .
 </textarea>
                                             </div>
                                         </div>
