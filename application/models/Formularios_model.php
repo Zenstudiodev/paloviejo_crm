@@ -334,6 +334,40 @@ class Formularios_model extends CI_Model
         $this->db->where('fm_6_og_proceso_id', $proceso_id);
         $this->db->delete('formulario_master_6_og');
     }
+    function guardar_formulario_8($data){
+        $incluye_data= array(
+            'fm_8_proceso_id'=>$data['proceso_id'],
+            'fm_8_prospecto_id'=>$data['prospecto_id'], //'fm_6_id'=>$data['formulario_id'],
+            'fm_8_valor'=>$data['valor'],
+        );
+        $this->db->insert('formulario_master_8', $incluye_data);
+    }
+    function borrar_formulario_8($proceso_id){
+        $this->db->where('fm_8_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_8');
+    }
+    function get_formulario_8($proceso_id){
+        $this->db->where('fm_8_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_8');
+        if ($query->num_rows() > 0) return $query;
+    }
+    function guardar_formulario_9($data){
+        $incluye_data= array(
+            'fm_9_proceso_id'=>$data['proceso_id'],
+            'fm_9_prospecto_id'=>$data['prospecto_id'], //'fm_6_id'=>$data['formulario_id'],
+            'fm_9_valor'=>$data['valor'],
+        );
+        $this->db->insert('formulario_master_9', $incluye_data);
+    }
+    function borrar_formulario_9($proceso_id){
+        $this->db->where('fm_9_proceso_id', $proceso_id);
+        $this->db->delete('formulario_master_9');
+    }
+    function get_formulario_9($proceso_id){
+        $this->db->where('fm_9_proceso_id', $proceso_id);
+        $query = $this->db->get('formulario_master_9');
+        if ($query->num_rows() > 0) return $query;
+    }
     function get_formulario_ive($datos){
         $this->db->where('five_proceso_id', $datos['proceso_id']);
         $this->db->where('five_prospecto_id', $datos['prospecto_id']);

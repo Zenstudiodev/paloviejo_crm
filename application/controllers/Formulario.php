@@ -13,6 +13,7 @@ class Formulario extends Base_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('proceso');
+        $this->load->model('Admin_model');
         $this->load->model('Prospecto_model');
         $this->load->model('Proceso_model');
         $this->load->model('Cita');
@@ -994,9 +995,10 @@ class Formulario extends Base_Controller
             $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
             $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
             $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
+            $data['formulario_master_8'] = $this->Formularios_model->get_formulario_8($data['segmento_proceso']);
         }
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
-        $data['title'] = 'Formulario master 6 observaciones generales';
+        $data['title'] = 'Formulario master 8';
         echo $this->templates->render('formulario_master_8', $data);
     }
     public function guardar_master_8(){
@@ -1026,7 +1028,7 @@ class Formulario extends Base_Controller
                 'prospecto_id' => $prospecto_id,
                 'valor' => $valor,
             );
-            $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            $this->Formularios_model->guardar_formulario_8($datos_pagos);
             $i++;
         }
 
@@ -1043,7 +1045,7 @@ class Formulario extends Base_Controller
         //echo $form_4_id;
         $numero_de_incluye = $this->input->post('extra_fields');
         // exit();
-        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $this->Formularios_model->borrar_formulario_8($proceso_id);
         $i = 1;
         // guardar incluye formulario 4
         $extra_fields = array();
@@ -1059,7 +1061,7 @@ class Formulario extends Base_Controller
             );
 
             if($valor != ''){
-                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+                $this->Formularios_model->guardar_formulario_8($datos_pagos);
             }
 
             $i++;
@@ -1092,11 +1094,14 @@ class Formulario extends Base_Controller
             //Formulario 1
             $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
             $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+            $data['formulario_master_3_pagos'] = $this->Formularios_model->get_formulario_3_pagos($data['segmento_proceso']);
             $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
-            $data['formulario_master_6_og'] = $this->Formularios_model->get_formulario_6_og($data['segmento_proceso']);
+            $data['formulario_master_9'] = $this->Formularios_model->get_formulario_9($data['segmento_proceso']);
+            $data['parametros'] = $this->Admin_model->get_parametros();
+
         }
         //$data['formulario_master_3']= $this->Formularios_model->get_formulario_3($data['segmento_proceso']);
-        $data['title'] = 'Formulario master 6 observaciones generales';
+        $data['title'] = 'Formulario master 9';
         echo $this->templates->render('formulario_master_9', $data);
     }
     public function guardar_master_9(){
@@ -1126,7 +1131,7 @@ class Formulario extends Base_Controller
                 'prospecto_id' => $prospecto_id,
                 'valor' => $valor,
             );
-            $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+            $this->Formularios_model->guardar_formulario_9($datos_pagos);
             $i++;
         }
 
@@ -1143,7 +1148,7 @@ class Formulario extends Base_Controller
         //echo $form_4_id;
         $numero_de_incluye = $this->input->post('extra_fields');
         // exit();
-        $this->Formularios_model->borrar_formulario_6_og($proceso_id);
+        $this->Formularios_model->borrar_formulario_9($proceso_id);
         $i = 1;
         // guardar incluye formulario 4
         $extra_fields = array();
@@ -1159,7 +1164,7 @@ class Formulario extends Base_Controller
             );
 
             if($valor != ''){
-                $this->Formularios_model->guardar_formulario_6_og($datos_pagos);
+                $this->Formularios_model->guardar_formulario_9($datos_pagos);
             }
 
             $i++;

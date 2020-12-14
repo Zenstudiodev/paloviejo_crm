@@ -179,4 +179,10 @@ class Admin_model extends CI_Model
         $this->db->where('id', $data['user_id']);
         $query = $this->db->update('users', $usuario);
     }
+
+    function get_parametros(){
+        $query = $this->db->get('parametros');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
 }

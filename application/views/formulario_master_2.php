@@ -42,10 +42,12 @@ if ($formulario_1) {
 if ($formulario_2) {
     $formulario_2 = $formulario_2->row();
 } else {
+    $formulario_2->fm_2_fecha = '0';
     $formulario_2->fm_2_precio = '0';
     $formulario_2->fm_2_descuento = '0';
     $formulario_2->fm_2_precio_descuento = '0';
     $formulario_2->fm_2_precio_desglose = '0';
+    $formulario_2->fm_2_precio_terreno = '0';
     $formulario_2->fm_2_gastos = '0';
     $formulario_2->fm_2_enganche = '0';
     $formulario_2->fm_2_saldo_fiannciar = '0';
@@ -153,9 +155,9 @@ if ($formulario_2) {
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha:</label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control"
+                                                <input type="date" class="form-control"
                                                        placeholder="Fecha de "
-                                                       value="<?php echo $fecha->format('Y-m-d') ?>" name="fecha"
+                                                       value="<?php echo $formulario_2->fm_2_fecha; ?>" name="fecha"
                                                        required>
                                             </div>
                                         </div>
@@ -202,6 +204,20 @@ if ($formulario_2) {
                                                        value="<?php echo $formulario_2->fm_2_precio_descuento; ?>"
                                                        required
                                                        readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12">Precio
+                                            de terreno</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Q.</span>
+                                                <input type="text" class="form-control"
+                                                       placeholder="Precio de terreno "
+                                                       name="precio_terreno" id="precio_terreno"
+                                                       value="<?php echo $formulario_2->fm_2_precio_terreno; ?>"
+                                                       required >
                                             </div>
                                         </div>
                                     </div>

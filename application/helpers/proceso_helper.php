@@ -125,14 +125,85 @@ function pasar_dpi_a_letras($numerop_dpi)
     $segunda_seccion_en_letras = $formatterES->format($segunda_seccion);
    // echo $segunda_seccion . '<br>';
 
-    $tercera_seccion = substr($numerop_dpi, 9, 4);
+    $tercera_seccion = substr($numerop_dpi, 9, 1);
+    $cuarta_seccion = substr($numerop_dpi, 10, 3);
+    //echo $tercera_seccion;
     $tercera_seccion_en_letras = $formatterES->format($tercera_seccion);
+    $cuarta_seccion_en_letras = $formatterES->format($cuarta_seccion);
+    //echo $cuarta_seccion;
 
-   // echo $tercera_seccion . '<br>';
+    // echo $tercera_seccion . '<br>';
 
-    $dpi_en_letras = $primera_seccion_en_letras . ', ' . $segunda_seccion_en_letras . ', ' . $tercera_seccion_en_letras;
+    $dpi_en_letras = $primera_seccion_en_letras . ', ' . $segunda_seccion_en_letras . ', ' . $tercera_seccion_en_letras.' '.$cuarta_seccion_en_letras ;
     return $dpi_en_letras;
 
 }
+function numeros_a_letras($numeros){
+
+    $numeros = str_replace (',', '', $numeros);
+    $formatterES = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+    $numeros_a_letras = $formatterES->format($numeros);
+    return $numeros_a_letras;
+}
+
+
+function formato_dinero($valor)
+{
+    $valor_formateado = number_format($valor, 2, '.', ',');
+    return $valor_formateado;
+}
+function fecha_formato_1_master9($fecha){
+    setlocale(LC_ALL,"es_ES");
+    $formatterES = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+    // Ahora establecemos una fecha cualquiera:
+    $date = new Datetime("$fecha");
+    //$mes_en_letras = strftime("La fecha es del año %y y su mes es %B", $date->getTimestamp());
+    $mes_en_letras = strftime("%B", $date->getTimestamp());
+    $fecha_forma_contrato = date_create($fecha);
+    $dia = date_format($fecha_forma_contrato,"d");
+    $dia_en_letras = $formatterES->format($dia);
+    $mes = date_format($fecha_forma_contrato,"F");
+    $año = date_format($fecha_forma_contrato,"Y");
+    $año_en_letras = $formatterES->format($año);
+   /* echo $dia.'<br>';
+    echo $dia_en_letras.'<br>';
+    echo $mes.'<br>';
+    echo $año.'<br>';
+    echo $año_en_letras;*/
+    //echo $master_2->fm_2_fecha;
+    //echo date_format($fecha_forma_contrato,"Y/F/l");
+
+    $fecha_formateada =$dia_en_letras.' de '.$mes_en_letras.' del año '.$año_en_letras;
+    return $fecha_formateada;
+}
+
+function diferencia_en_dias($fecha_inicio, $fecha_fin)
+{
+    $fecha_inicio = new DateTime($fecha_inicio);
+    $fecha_fin = new DateTime($fecha_fin);
+
+    $d1   = $fecha_fin;
+    $d2   = $fecha_inicio;
+    $diff = $d2->diff($d1);
+    $diferencia_dias = intval($diff->format('%R%a'));
+
+    return $diferencia_dias;
+
+}
+function diferencia_en_años($fecha_pago)
+{
+    $fecha_actual = new DateTime();
+
+    $d1   = $fecha_actual;
+    $d2   = new DateTime($fecha_pago);
+    $diff = $d2->diff($d1);
+    $diferencia_dias = intval($diff->format('%R%y'));
+
+    return $diferencia_dias;
+
+}
+
+
+
 
 ?>
