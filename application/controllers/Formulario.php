@@ -30,11 +30,12 @@ class Formulario extends Base_Controller
     public function llenar_ive()
     {
 //comprobamos session desde el helper de sesion
+        //comprobamos session desde el helper de sesion
         $data = compobarSesion();
         //datos del prospecto
         $data['segmento_prospecto'] = $this->uri->segment(3);
         //datos del proceso
-        $data['segmento_prceso'] = $this->uri->segment(4);
+        $data['segmento_proceso'] = $this->uri->segment(4);
         if (!$data['segmento_prospecto']) {
             //redirect('prospectos/prospectosList', 'refresh');
         } else {
@@ -48,17 +49,79 @@ class Formulario extends Base_Controller
             //pospecto
             $data['prospecto'] = $this->Prospecto_model->ListarProspecto($data['segmento_prospecto']);
             //proceso
-            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_prceso']);
+            $data['proceso'] = $this->Proceso_model->ListarProceso($data['segmento_proceso']);
 
         }
         $data['title'] = 'Detalle de prospecto';
-        echo $this->templates->render('formulario_ive', $data);
+        $data['formulario_master_1'] = $this->Formularios_model->get_formulario_1($data['segmento_proceso']);
+        $data['formulario_master_2'] = $this->Formularios_model->get_formulario_2($data['segmento_proceso']);
+        $data['formulario_master_3_pagos'] = $this->Formularios_model->get_formulario_3_pagos($data['segmento_proceso']);
+        $data['formulario_master_6'] = $this->Formularios_model->get_formulario_6($data['segmento_proceso']);
+        $data['formulario_master_9'] = $this->Formularios_model->get_formulario_9($data['segmento_proceso']);
+        $data['formulario_ive'] = $this->Formularios_model->get_formulario_ive($data['segmento_proceso']);
+
+        $data['parametros'] = $this->Admin_model->get_parametros();
+        echo $this->templates->render('formulario_ive_new', $data);
     }
 
     public function guardar_ive()
     {
         print_contenido($_POST);
 
+        $moneda_ingreso_egreso='';
+        $moneda_egreso='';
+
+        $five=array(
+            'five_proceso_id'=> $this->input->post('proceso_id'),
+            'five_prospecto_id'=>$this->input->post('proceso_id'),
+            'five_genero'=>$this->input->post('genero'),
+            'five_lugar_emision_dpi_departamento'=>$this->input->post('lugar_emision_dpi_departamento'),
+            'five_lugar_emision_dpi_municipio'=>$this->input->post('lugar_emision_dpi_municipio'),
+            'five_lugar_emision_dpi_pais'=>$this->input->post('lugar_emision_dpi_pais'),
+            'five_condicion_migratoria'=>$this->input->post('condicion_migratoria'),
+            'five_condicion_migratoria_otro'=>$this->input->post('condicion_migratoria_otro'),
+            'five_fecha_nacimiento_constitucion'=>$this->input->post('fecha_nacimiento_creacion'),
+            'five_otra_nacionalidad'=>$this->input->post('otra_nacionalidad'),
+            'five_telefono_linea_fija'=>$this->input->post('pj_telefono_linea_fija'),
+            'five_telefono_celular'=>$this->input->post('pj_telefono_celular'),
+            'five_direccion_zona'=>$this->input->post('zona_persona'),
+            'five_direccion_departamento'=>$this->input->post('departamento_persona'),
+            'five_direccion_municipio'=>$this->input->post('municipio_trabajo'),
+            'five_direccion_pais'=>$this->input->post('pais_persona'),
+            'five_fuente_ingreso'=>$this->input->post('fuente_ingreso'),
+            'five_trabajo_nombre'=>$this->input->post('lugar_trabajo'),
+            'five_trabajo_puesto'=>$this->input->post('puesto_trabajo'),
+            'five_trabajo_telefono'=>$this->input->post('telefono_trabajo'),
+            'five_trabajo_direccion'=>$this->input->post('direccion_trabajo'),
+            'five_trabajo_zona'=>$this->input->post('zona_trabajo'),
+            'five_trabajo_municipio'=>$this->input->post('municipio_trabajo'),
+            'five_trabajo_departamento'=>$this->input->post('departamento_trabajo'),
+            'five_trabajo_pais'=>$this->input->post('pais_trabajo'),
+            'five_fuente_ingrersos_adicional'=>$this->input->post('fuente_ingrersos_adicional'),
+            'five_persona_negocio_nit'=>$this->input->post('nit_np'),
+            'five_persona_negocio_direccion'=>$this->input->post('direccion_np'),
+            'five_trabajo_actividad_economica'=>$this->input->post('actividad_economica'),
+            'five_persona_negocio_direccion_sede'=>$this->input->post('proceso_id'),
+            'five_persona_negocio_no_agencias'=>$this->input->post('trabajo_no_agencias'),
+            'five_persona_negocio_no_empleados'=>$this->input->post('trabajo_no_empleados'),
+            'five_proveedor_nombre_1'=>$this->input->post('nombre_proveedor1'),
+            'five_proveedor_pais_1'=>$this->input->post('pais_proveedor1'),
+            'five_proveedor_nombre_2'=>$this->input->post('nombre_proveedor2'),
+            'five_proveedor_pais_2'=>$this->input->post('pais_proveedor2'),
+            'five_cliente_nombre_1'=>$this->input->post('nombre_cliente1'),
+            'five_cliente_pais_1'=>$this->input->post('pais_cliente1'),
+            'five_cliente_nombre_2'=>$this->input->post('nombre_cliente2'),
+            'five_cliente_pais_2'=>$this->input->post('pais_cliente2'),
+            'five_ingreso_egreso_persona'=>$this->input->post('proceso_id'),
+            'five_ingresos_moneda'=>$this->input->post('proceso_id'),
+            'five_ingreso_rango'=>$this->input->post('proceso_id'),
+            'five_egreso_moneda'=>$this->input->post('proceso_id'),
+            'five_egreso_rango'=>$this->input->post('proceso_id'),
+            'five_decripcion_producto_servicio'=>$this->input->post('producto_servicio'),
+            'five_procedencia_fondos'=>$this->input->post('procedencia_fondos'),
+            'five_tranferencia_fondos'=>$this->input->post('proceso_id'),
+            'five_presona_politicamente_expuesta'=>$this->input->post('proceso_id'),
+        );
 
 
     }
@@ -92,7 +155,7 @@ class Formulario extends Base_Controller
             'proceso_id'=>$data['segmento_proceso'] ,
             'prospecto_id'=>$data['segmento_prospecto']
         );
-        $data['formulario_ive']= $this->Formularios_model->get_formulario_ive($five);
+        $data['formulario_ive']= $this->Formularios_model->get_formulario_ive($five['proceso_id']);
         echo $this->templates->render('imprimir_ive', $data);
     }
 

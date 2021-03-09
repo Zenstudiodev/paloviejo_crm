@@ -368,10 +368,10 @@ class Formularios_model extends CI_Model
         $query = $this->db->get('formulario_master_9');
         if ($query->num_rows() > 0) return $query;
     }
-    function get_formulario_ive($datos){
-        $this->db->where('five_proceso_id', $datos['proceso_id']);
-        $this->db->where('five_prospecto_id', $datos['prospecto_id']);
-        $query = $this->db->get('formulario_ive');
+    function get_formulario_ive($proceso_id){
+        $this->db->where('five_proceso_id', $proceso_id);
+        //$this->db->where('five_prospecto_id', $datos['prospecto_id']);
+        $query = $this->db->get('formulario_ivet');
         if ($query->num_rows() > 0) return $query;
     }
 

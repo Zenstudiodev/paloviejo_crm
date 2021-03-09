@@ -185,4 +185,11 @@ class Admin_model extends CI_Model
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    function actualizar_parametro($data){
+        $usuario= array(
+            'parametro_valor'=>$data['valor'],
+        );
+        $this->db->where('parametro_id', $data['parametro_id']);
+        $query = $this->db->update('parametros', $usuario);
+    }
 }

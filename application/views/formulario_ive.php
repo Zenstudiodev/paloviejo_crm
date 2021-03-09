@@ -17,6 +17,28 @@ $prospecto = $prospecto->row();
 $proceso = $proceso->row();
 
 
+
+if ($formulario_ive) {
+    $formulario_ive = $formulario_ive->row();
+
+    $finca_val = $formulario_master_6->fm_6_finca;
+    $folio_val = $formulario_master_6->fm_6_folio;
+    $libro_val = $formulario_master_6->fm_6_libro;
+    $area_val = $formulario_master_6->fm_6_area;
+    $frente_val = $formulario_master_6->fm_6_frente;
+    $fondo_val = $formulario_master_6->fm_6_fondo;
+    $forma_val = $formulario_master_6->fm_6_forma;
+} else {
+
+    $finca_val = 0;
+    $folio_val = 0;
+    $libro_val = 0;
+    $area_val = 0;
+    $frente_val = 0;
+    $fondo_val = 0;
+    $forma_val = 0;
+
+}
 ?>
 <?php $this->start('css_p') ?>
 <!--cargamos css personalizado-->
@@ -60,6 +82,46 @@ $proceso = $proceso->row();
                               action="<?php echo base_url(); ?>formulario/guardar_ive"
                               method="post">
                             <?php
+                            $lugar_documento = array(
+                                'type' => 'text',
+                                'name' => 'lugar_documento',
+                                'id' => 'lugar_documento',
+                                'placeholder' => 'Lugar:',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
+                            $fecha_documento = array(
+                                'type' => 'text',
+                                'name' => 'fecha_documento',
+                                'id' => 'fecha_documento',
+                                'placeholder' => 'Fecha:',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
+                            $nombre_compania = array(
+                                'type' => 'text',
+                                'name' => 'nombre_compania',
+                                'id' => 'nombre_compania',
+                                'placeholder' => 'Nombre compañia:',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
+                            $nombre_agecia = array(
+                                'type' => 'text',
+                                'name' => 'nombre_agecia',
+                                'id' => 'nombre_agecia',
+                                'placeholder' => 'Nombre agencia:',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
+                            $codigo_agecia = array(
+                                'type' => 'text',
+                                'name' => 'codigo_agecia',
+                                'id' => 'codigo_agecia',
+                                'placeholder' => 'Código agencia:',
+                                'class' => 'form-control has-feedback-left ',
+                                'required' => 'required'
+                            );
                             $nombre_competo_razon_social = array(
                                 'name' => 'nombre_competo_razon_social',
                                 'id' => 'nombre_competo_razon_social',
@@ -237,7 +299,6 @@ $proceso = $proceso->row();
                                 'class' => 'form-control has-feedback-left',
                                 'required' => 'required'
                             );
-
                             $direccion_np = array(
                                 'name' => 'direccion_np',
                                 'id' => 'direccion_np',
@@ -294,7 +355,6 @@ $proceso = $proceso->row();
                                 'class' => 'form-control has-feedback-left',
                                 'required' => 'required'
                             );
-
                             $origen_fondos = array(
                                 'name' => 'origen_fondos',
                                 'id' => 'origen_fondos',
@@ -458,6 +518,41 @@ $proceso = $proceso->row();
 
                             <form class="form-horizontal form-label-left input_mask">
 
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <label for="fecha_nacimiento_creacion">Lugar</label>
+                                        <?php echo form_input($lugar_documento); ?>
+                                        <span class="fa fa-map-marker form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <label for="nacionalidad">Fecha documento</label>
+                                        <?php echo form_input($fecha_documento); ?>
+                                        <span class="fa fa-calendar-o form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <label for="fecha_nacimiento_creacion">Nombre compañia o razon social</label>
+                                        <?php echo form_input($nombre_compania); ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <label for="fecha_nacimiento_creacion">Agencia</label>
+                                        <?php echo form_input($nombre_agecia); ?>
+                                        <span class="fa fa-map-marker form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <label for="nacionalidad">Código de agencia</label>
+                                        <?php echo form_input($codigo_agecia); ?>
+                                        <span class="fa fa-calendar-o form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="x_title">
                                         <h2>DATOS DE LA PERSONA OBLIGADA (PO)</h2>

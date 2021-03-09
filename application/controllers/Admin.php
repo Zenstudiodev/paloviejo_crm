@@ -469,8 +469,96 @@ class Admin extends Base_Controller
         $data['alertas_supervisor'] = $this->Notificaciones_model->listar_alertas_supervisor($data['rol']);
         //proyectos
         $data['proyectos'] = $this->Admin_model->get_proyectos();
-        $data['title'] = 'Crear usuario';
-        echo $this->templates->render('crear_usuario', $data);
+        $data['title'] = 'Parametros';
+        $data['parametros'] = $this->Admin_model->get_parametros();
+        echo $this->templates->render('parametros', $data);
+    }
+    function actualizar_parametros(){
+        //print_contenido($_POST);
+
+        //gerente
+        $data = array(
+            'valor' => $this->input->post('gerente'),
+            'parametro_id' => '1',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //fecha_nacimiento_gerente
+        $data = array(
+            'valor' => $this->input->post('fecha_nacimiento_gerente'),
+            'parametro_id' => '2',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [estado_civil_gerente] => casado
+        $data = array(
+            'valor' => $this->input->post('estado_civil_gerente'),
+            'parametro_id' => '3',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [nacionalidad_gerente] => guatemalteco
+        $data = array(
+            'valor' => $this->input->post('nacionalidad_gerente'),
+            'parametro_id' => '6',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [dpi_gerente] => 2672 86546 0101
+        $data = array(
+            'valor' => $this->input->post('dpi_gerente'),
+            'parametro_id' => '6',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [dpi_amitido] => República de Guatemala
+        $data = array(
+            'valor' => $this->input->post('dpi_amitido'),
+            'parametro_id' => '7',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [nombre_notaria] => Mirna Liseth Hernández Vásquez
+        $data = array(
+            'valor' => $this->input->post('nombre_notaria'),
+            'parametro_id' => '8',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [fecha_acta_notarial] => 01/09/2009
+        $data = array(
+            'valor' => $this->input->post('fecha_acta_notarial'),
+            'parametro_id' => '9',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [registro_acta_notarial] => 319430
+        $data = array(
+            'valor' => $this->input->post('registro_acta_notarial'),
+            'parametro_id' => '10',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [folio_acta_notarial] => 463
+        $data = array(
+            'valor' => $this->input->post('folio_acta_notarial'),
+            'parametro_id' => '11',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+        //    [libro_acta_notarial] => 246
+        $data = array(
+            'valor' => $this->input->post('libro_acta_notarial'),
+            'parametro_id' => '12',
+        );
+        $this->Admin_model->actualizar_parametro($data);
+
+
+
+        redirect(base_url() . 'admin/parametros/');
+
+
+
     }
 
 

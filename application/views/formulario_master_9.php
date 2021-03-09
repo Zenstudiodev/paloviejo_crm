@@ -159,10 +159,10 @@ if ($formulario_master_6) {
 
                                 $varas_area = $formulario_master_6->fm_6_area * 1.431;
 
-                                print_contenido($formulario_master_6);
+                               /* print_contenido($formulario_master_6);
                                 print_contenido($master_1);
                                 print_contenido($master_2);
-                                print_contenido($formulario_master_3_pagos->result());
+                                print_contenido($formulario_master_3_pagos->result());*/
 
                                 $dpi_numero = intval($master_1->fm_1_dpi);
                                 ?>
@@ -195,23 +195,25 @@ if ($formulario_master_6) {
 
                                         <?php
                                         $parametros = $parametros->result();
+                                        //print_contenido($parametros);
 
                                         $representante_legal = $parametros[0]->parametro_valor;
                                         $fecha_nacimiento_representante = $parametros[1]->parametro_valor;
                                         $estado_civil_representante = $parametros[2]->parametro_valor;
                                         $Nacionalidad_representante = $parametros[3]->parametro_valor;
-                                        $dpi_representante = $parametros[4]->parametro_valor;
-                                        $dpi_emitido_representante = $parametros[5]->parametro_valor;
-                                        $nombre_notaria = $parametros[6]->parametro_valor;
-                                        $fecha_notaria = $parametros[7]->parametro_valor;
-                                        $registro_acta = $parametros[8]->parametro_valor;
-                                        $folio_acta = $parametros[9]->parametro_valor;
-                                        $libro_acta = $parametros[10]->parametro_valor;
+                                        $profesion_representante_legal = $parametros[4]->parametro_valor;
+                                        $dpi_representante = $parametros[5]->parametro_valor;
+                                        $dpi_emitido_representante = $parametros[6]->parametro_valor;
+                                        $nombre_notaria = $parametros[7]->parametro_valor;
+                                        $fecha_notaria = $parametros[8]->parametro_valor;
+                                        $registro_acta = $parametros[9]->parametro_valor;
+                                        $folio_acta = $parametros[10]->parametro_valor;
+                                        $libro_acta = $parametros[11]->parametro_valor;
 
                                         //print_contenido($parametros[1]->parametro_valor);
 
 
-                                        echo  diferencia_en_años($fecha_nacimiento_representante);
+                                        //echo  diferencia_en_años($fecha_nacimiento_representante);
 
                                         ?>
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container "
@@ -221,7 +223,7 @@ if ($formulario_master_6) {
                                                 <input type="checkbox" id="incluye_checkbox_3" class="incluye_checkbox">
                                             </span>
                                                 <textarea name="incluye_input_3" id="incluye_input_3"
-                                                          class="form-control" rows="5">A) <?php echo $representante_legal?>, quien dice ser de <?php echo  diferencia_en_años($fecha_nacimiento_representante);?> años de edad, <?php echo $estado_civil_representante?>, <?php echo $Nacionalidad_representante?>,  Ingeniero Civil, de este domicilio, quien se identifica con Documento Personal de Identificación, Código Único de Identificación número Dos mil seiscientos setenta y dos, ochenta y seis mil quinientos cuarenta y seis, cero uno cero uno (<?php echo $dpi_numero?>) extendido por el Registro Nacional de las Personas de la <?php echo $dpi_emitido_representante?>, quien actúa en su calidad de GERENTE GENERAL Y REPRESENTANTE LEGAL de la entidad CONSTRUCCIONES DE CENTROAMERICA, SOCIEDAD ANONIMA, representación que se encuentra documentada en acta notarial de fecha <?php echo $fecha_notaria?>, autorizada en esta ciudad, por la Notaria <?php echo $nombre_notaria?>, documento que se encuentra inscrito en el Registro Mercantil General de la República bajo número trecientos diecinueve mil, cuatrocientos treinta (<?php echo $registro_acta?>), folio cuatrocientos sesenta y tres (<?php echo $folio_acta?>), libro  doscientos cuarenta y seis (<?php echo $libro_acta?>) de Auxiliares de Comercio; entidad que podrá ser denominada indistintamente como “LA CONSTRUCTORA.</textarea>
+                                                          class="form-control" rows="5">A) <?php echo $representante_legal?>, quien dice ser de <?php echo  diferencia_en_años($fecha_nacimiento_representante);?> años de edad, <?php echo $estado_civil_representante?>, <?php echo $Nacionalidad_representante?>,  <?php echo $profesion_representante_legal?>, de este domicilio, quien se identifica con Documento Personal de Identificación, Código Único de Identificación número <?php echo pasar_dpi_a_letras($dpi_numero)?> (<?php echo $dpi_numero?>) extendido por el Registro Nacional de las Personas de la <?php echo $dpi_emitido_representante?>, quien actúa en su calidad de GERENTE GENERAL Y REPRESENTANTE LEGAL de la entidad CONSTRUCCIONES DE CENTROAMERICA, SOCIEDAD ANONIMA, representación que se encuentra documentada en acta notarial de fecha <?php echo $fecha_notaria?>, autorizada en esta ciudad, por la Notaria <?php echo $nombre_notaria?>, documento que se encuentra inscrito en el Registro Mercantil General de la República bajo número <?php echo numeros_a_letras($registro_acta);?> (<?php echo $registro_acta?>), folio <?php echo numeros_a_letras($folio_acta);?> (<?php echo $folio_acta?>), libro  <?php echo numeros_a_letras($libro_acta);?>  (<?php echo $libro_acta?>) de Auxiliares de Comercio; entidad que podrá ser denominada indistintamente como “LA CONSTRUCTORA.</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12 incluye_container"
@@ -288,6 +290,7 @@ Los comparecientes celebramos Contrato Privado de Construcción de Vivienda de c
 
 
                                         <?php
+                                        //print_contenido($formulario_master_3_pagos->result());
                                         $pagos_array = $formulario_master_3_pagos->result();
                                         $ultimo_pago= end($pagos_array);
                                         $primer_pago = $formulario_master_3_pagos->row();

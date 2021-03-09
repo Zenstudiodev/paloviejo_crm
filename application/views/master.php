@@ -101,6 +101,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php if (puede_ver($rol, array('0', '1'))) { ?>
                                 <li><a><i class="fa fa-cog"></i> Configuración <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a href="<?php echo base_url(); ?>admin/parametros">Parametros</a>
+                                        </li>
                                         <li><a href="<?php echo base_url(); ?>admin/administrar_usuarios">Administrar
                                                 usuarios</a>
                                         </li>
